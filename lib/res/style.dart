@@ -18,3 +18,15 @@ final TextStyle subHeadingStyle = TextStyle(
     fontFamily: 'Segoe',
     fontWeight: FontWeight.w400,
     color: AppColors.subHeading);
+
+final TextStyle buttonTextStyle = TextStyle(
+    fontSize: 15,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w400,
+    color: Colors.white);
+
+final TextStyle textSeparatorStyle = TextStyle(
+    fontSize: 15,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w400,
+    color: AppColors.separator);

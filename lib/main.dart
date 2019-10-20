@@ -4,7 +4,7 @@ import 'package:diwan/screens/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'localization/app_localization.dart';
+import 'helper/app_localization.dart';
 
 
 void main() => runApp(MyApp());
