@@ -1,0 +1,18 @@
+{
+  "login_or_signup": "Log In or Sign Up",
+  "welcome_to_diwan": "Welcome to Diwan!",
+  "welcome_message": "Please log in or sign up with your email or social media account.",
+  "continue_with_email": "Continue with Email",
+  "continue_with_social": "Continue with Social Media",
+  "forgot_password": "Forgot Password?",
+  "choose_language": "Choose Language",
+  "language_message": "Please select your preferred language.\nYou may change it later from the settings.",
+  "done": "Done",
+  "password": "Password",
+  "enter_password": "Enter Password",
+  "password_requirement_desc": "Please enter your password and log in.\nPlease tap Forgot Password? and reset your password.",
+  "password_requirement_one": "8 to 32 alphanumeric characters (At least 1 upper case)",
+  "password_requirement_two": "1 or more numbers",
+  "password_requirement_three": "1 or more special characters",
+  "login": "Log In"
+}

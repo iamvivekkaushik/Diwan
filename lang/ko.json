@@ -1,0 +1,18 @@
+{
+  "login_or_signup": "에서 로그 또는 가입",
+  "welcome_to_diwan": "디완에 오신 것을 환영합니다",
+  "welcome_message": "로그인하거나 이메일 또는 소셜 미디어 계정에 가입하시기 바랍니다.",
+  "continue_with_email": "이메일로 계속",
+  "continue_with_social": "소셜 미디어를 계속",
+  "forgot_password": "비밀번호를 잊으 셨나요?",
+  "choose_language": "언어 선택",
+  "language_message": "원하는 언어를 선택하십시오.\n당신은 설정에서 나중에 변경 될 수 있습니다.",
+  "done": "끝난",
+  "password": "암호",
+  "enter_password": "암호를 입력",
+  "password_requirement_desc": "비밀번호를 입력하고 로그인하십시오.\n비밀번호 찾기를 누릅니다하세요? 와 비밀번호를 재설정합니다.",
+  "password_requirement_one": "8 내지 32의 영숫자 (적어도 1 상부 케이스)",
+  "password_requirement_two": "1 개 이상의 숫자",
+  "password_requirement_three": "1 개 이상의 특수 문자",
+  "login": "로그인"
+}
