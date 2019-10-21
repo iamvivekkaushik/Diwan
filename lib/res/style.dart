@@ -36,3 +36,9 @@ final TextStyle inputLabelStyle = TextStyle(
     fontFamily: 'Segoe',
     fontWeight: FontWeight.w400,
     color: Colors.black);
+
+final TextStyle textFieldHintStyle = TextStyle(
+    fontSize: 14, fontFamily: 'Segoe', fontWeight: FontWeight.w400, color: AppColors.textFieldHint);
+
+final TextStyle textFieldStyle = TextStyle(
+    fontSize: 14, fontFamily: 'Segoe', fontWeight: FontWeight.w400);
