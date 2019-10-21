@@ -1,6 +1,7 @@
 import 'package:diwan/helper/app_localization.dart';
 import 'package:diwan/helper/diwan_icons.dart';
 import 'package:diwan/res/colors.dart';
+import 'package:diwan/res/dimen.dart';
 import 'package:diwan/res/style.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,7 @@ class _WelcomePageState extends State<WelcomePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           SizedBox(
-            height: 40,
+            height: Dimen.topMargin,
           ),
           Align(
             alignment: Alignment.center,
@@ -52,7 +53,10 @@ class _WelcomePageState extends State<WelcomePage> {
             child: Container(
               margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               child: RaisedButton(
-                onPressed: () {},
+                onPressed: () {
+                  // Go to Email SignUp Page
+                  Navigator.of(context).pushNamed('/signup/email');
+                },
                 color: AppColors.buttonBackground,
                 shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(7),

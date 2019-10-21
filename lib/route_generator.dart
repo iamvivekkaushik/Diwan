@@ -1,4 +1,5 @@
 import 'package:diwan/screens/language_screen.dart';
+import 'package:diwan/screens/signup_email_screen.dart';
 import 'package:diwan/screens/splash_screen.dart';
 import 'package:diwan/screens/welcome_page.dart';
 import 'package:flutter/material.dart';
@@ -8,11 +9,13 @@ class RouteGenerator {
     // Getting arguments passed in while calling Navigator.pushNamed
     final args = settings.arguments;
     switch (settings.name) {
-      case '/SplashScreen':
+      case '/splashScreen':
         return MaterialPageRoute(builder: (_) => SplashPage());
-      case '/Welcome':
+      case '/welcome':
         return MaterialPageRoute(builder: (_) => WelcomePage());
-      case '/LanguageSelection':
+      case '/signup/email':
+        return MaterialPageRoute(builder: (_) => EmailSignupScreen());
+      case '/languageSelection':
         return MaterialPageRoute(builder: (_) => LanguageScreen());
 //      case '/Home':
 //        return MaterialPageRoute(builder: (_) => Homepage(currentTab: args,));

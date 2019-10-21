@@ -14,5 +14,9 @@
   "password_requirement_one": "8-32 أحرف أبجدية رقمية (1 ما لا يقل عن حالة العلوي)",
   "password_requirement_two": "1 أو أكثر من أرقام",
   "password_requirement_three": "1 أو أكثر من الأحرف الخاصة",
-  "login": "تسجيل الدخول"
+  "login": "تسجيل الدخول",
+  "what_your_email": "ما هو بريدك الإلكتروني؟",
+  "email": "البريد الإلكتروني",
+  "enter_email": "أدخل البريد الإلكتروني",
+  "next": "التالى"
 }

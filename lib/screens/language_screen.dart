@@ -2,6 +2,7 @@ import 'package:diwan/config/config.dart';
 import 'package:diwan/helper/app_localization.dart';
 import 'package:diwan/helper/diwan_icons.dart';
 import 'package:diwan/res/colors.dart';
+import 'package:diwan/res/dimen.dart';
 import 'package:diwan/res/style.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +22,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           SizedBox(
-            height: 30,
+            height: Dimen.topMargin,
           ),
 
           Container(

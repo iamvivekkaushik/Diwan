@@ -14,5 +14,9 @@
   "password_requirement_one": "8 내지 32의 영숫자 (적어도 1 상부 케이스)",
   "password_requirement_two": "1 개 이상의 숫자",
   "password_requirement_three": "1 개 이상의 특수 문자",
-  "login": "로그인"
+  "login": "로그인",
+  "what_your_email": "이메일은 무엇입니까?",
+  "email": "이메일",
+  "enter_email": "이메일 주소를 입력",
+  "next": "다음"
 }

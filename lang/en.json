@@ -14,5 +14,9 @@
   "password_requirement_one": "8 to 32 alphanumeric characters (At least 1 upper case)",
   "password_requirement_two": "1 or more numbers",
   "password_requirement_three": "1 or more special characters",
-  "login": "Log In"
+  "login": "Log In",
+  "what_your_email": "What’s your email?",
+  "email": "Email",
+  "enter_email": "Enter Email",
+  "next": "Next"
 }

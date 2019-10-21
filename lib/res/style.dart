@@ -30,3 +30,9 @@ final TextStyle textSeparatorStyle = TextStyle(
     fontFamily: 'Segoe',
     fontWeight: FontWeight.w400,
     color: AppColors.separator);
+
+final TextStyle inputLabelStyle = TextStyle(
+    fontSize: 14,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w400,
+    color: Colors.black);
