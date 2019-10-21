@@ -5,12 +5,16 @@ import 'package:diwan/res/dimen.dart';
 import 'package:diwan/res/style.dart';
 import 'package:flutter/material.dart';
 
-class EmailSignupScreen extends StatefulWidget {
+class LoginPasswordScreen extends StatefulWidget {
+  final String email;
+
+  LoginPasswordScreen({this.email = ""});
+
   @override
-  _EmailSignupScreenState createState() => _EmailSignupScreenState();
+  _LoginPasswordScreenState createState() => _LoginPasswordScreenState();
 }
 
-class _EmailSignupScreenState extends State<EmailSignupScreen> {
+class _LoginPasswordScreenState extends State<LoginPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,13 +43,23 @@ class _EmailSignupScreenState extends State<EmailSignupScreen> {
               margin: EdgeInsets.symmetric(horizontal: 20),
               width: MediaQuery.of(context).size.width,
               child: Text(
-                AppLocalization.of(context).translate('what_your_email'),
+                //ToDo: Change with user provided email
+                "user@email.com",
                 style: boldTextHeading,
               ),
             ),
 
+            Container(
+              width: MediaQuery.of(context).size.width - 40,
+              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              child: Text(
+                  AppLocalization.of(context).translate('password_requirement_desc'),
+                style: subHeadingStyle,
+              ),
+            ),
+
             SizedBox(
-              height: 30,
+              height: 10,
             ),
 
             Row(
@@ -53,7 +67,7 @@ class _EmailSignupScreenState extends State<EmailSignupScreen> {
                 Container(
                   margin: EdgeInsets.fromLTRB(20, 0, 5, 0),
                   child: Text(
-                    AppLocalization.of(context).translate('email'),
+                    AppLocalization.of(context).translate('password'),
                     style: inputLabelStyle,
                   ),
                 ),
@@ -66,7 +80,6 @@ class _EmailSignupScreenState extends State<EmailSignupScreen> {
                     borderRadius: BorderRadius.circular(30),
                   ),
                 ),
-
               ],
             ),
 
@@ -75,7 +88,7 @@ class _EmailSignupScreenState extends State<EmailSignupScreen> {
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               height: 45,
               decoration: new BoxDecoration(
-                borderRadius: BorderRadius.circular(3),
+                  borderRadius: BorderRadius.circular(3),
                   border: new Border.all(color: AppColors.textFieldBorder)
               ),
 
@@ -84,7 +97,7 @@ class _EmailSignupScreenState extends State<EmailSignupScreen> {
                 child: TextField(
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: AppLocalization.of(context).translate('enter_email'),
+                    hintText: AppLocalization.of(context).translate('enter_password'),
                     hintStyle: textFieldHintStyle,
                   ),
                   style: textFieldStyle,
@@ -92,19 +105,54 @@ class _EmailSignupScreenState extends State<EmailSignupScreen> {
               ),
             ),
 
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 2,
+
+            Container(
+              width: MediaQuery.of(context).size.width - 40,
+              margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
+              child: Text(
+                AppLocalization.of(context).translate('password_requirement_one'),
+                style: subHeadingStyle,
+              ),
             ),
 
-            Align(
-              alignment: Alignment.center,
-              child: Text(AppLocalization.of(context).translate('continue_with_social') + '?',
-                style: TextStyle(
-                  color: AppColors.buttonBackground,
-                  fontFamily: 'Segoe',
-                  fontWeight: FontWeight.w400,
+            Container(
+              width: MediaQuery.of(context).size.width - 40,
+              margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+              child: Text(
+                AppLocalization.of(context).translate('password_requirement_two'),
+                style: subHeadingStyle,
+              ),
+            ),
 
-                ),),
+            Container(
+              width: MediaQuery.of(context).size.width - 40,
+              margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+              child: Text(
+                AppLocalization.of(context).translate('password_requirement_three'),
+                style: subHeadingStyle,
+              ),
+            ),
+
+            SizedBox(
+              height: MediaQuery.of(context).size.width / 1.5,
+            ),
+
+            InkWell(
+              onTap: () {},
+              child: Container(
+                width: 140,
+                margin: EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Image.asset("images/question_mark.png", width: 14, color: AppColors.blackIcon,),
+                    SizedBox(width: 8,),
+                    Text(AppLocalization.of(context).translate('forgot_password'),
+                    style: subHeadingStyle,)
+                  ],
+                ),
+              ),
             ),
 
             SizedBox(
@@ -114,9 +162,9 @@ class _EmailSignupScreenState extends State<EmailSignupScreen> {
             Container(
               margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               child: RaisedButton(
-                    onPressed: () {
-                      Navigator.of(context).pushNamed('/login/password');
-                    },
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/login/password');
+                },
                 color: AppColors.buttonBackground,
                 shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(7),
@@ -126,12 +174,13 @@ class _EmailSignupScreenState extends State<EmailSignupScreen> {
                   width: MediaQuery.of(context).size.width - 70,
                   child: Align(
                     alignment: Alignment.center,
-                    child: Text(AppLocalization.of(context).translate('next'),
+                    child: Text(AppLocalization.of(context).translate('login'),
                       style: buttonTextStyle,),
                   ),
                 ),
               ),
             ),
+
           ],
         ),
       ),

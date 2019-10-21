@@ -1,4 +1,5 @@
 import 'package:diwan/screens/language_screen.dart';
+import 'package:diwan/screens/login_password_screen.dart';
 import 'package:diwan/screens/signup_email_screen.dart';
 import 'package:diwan/screens/splash_screen.dart';
 import 'package:diwan/screens/welcome_page.dart';
@@ -17,8 +18,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => EmailSignupScreen());
       case '/languageSelection':
         return MaterialPageRoute(builder: (_) => LanguageScreen());
-//      case '/Home':
-//        return MaterialPageRoute(builder: (_) => Homepage(currentTab: args,));
+      case '/login/password':
+        return MaterialPageRoute(builder: (_) => LoginPasswordScreen(email: args,));
       default:
       // If there is no such named route in the switch statement, e.g. /third
         return _errorRoute();
