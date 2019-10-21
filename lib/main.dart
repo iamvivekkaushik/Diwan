@@ -1,4 +1,6 @@
+import 'package:diwan/config/config.dart';
 import 'package:diwan/route_generator.dart';
+import 'package:diwan/screens/language_screen.dart';
 import 'package:diwan/screens/welcome_page.dart';
 
 import 'package:flutter/material.dart';
@@ -20,11 +22,7 @@ class MyApp extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate
       ],
-      supportedLocales: [
-        const Locale('en'), // English
-        const Locale('ar'), // Arabic
-        const Locale('ko') // Korean
-      ],
+      supportedLocales: AppLanguage.supportedLocale,
       // Returns a locale which will be used by the app
       localeResolutionCallback: (locale, supportedLocales) {
         // Check if the current device locale is supported
@@ -36,7 +34,7 @@ class MyApp extends StatelessWidget {
         // Current Device locale is not supported, fallback to english
         return supportedLocales.first;
       },
-      home: WelcomePage(),
+      home: LanguageScreen(),
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }

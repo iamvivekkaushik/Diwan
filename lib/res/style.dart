@@ -14,13 +14,13 @@ final TextStyle boldTextHeading = TextStyle(
     color: AppColors.heading);
 
 final TextStyle subHeadingStyle = TextStyle(
-    fontSize: 13,
+    fontSize: 14,
     fontFamily: 'Segoe',
     fontWeight: FontWeight.w400,
     color: AppColors.subHeading);
 
 final TextStyle buttonTextStyle = TextStyle(
-    fontSize: 15,
+    fontSize: 17,
     fontFamily: 'Segoe',
     fontWeight: FontWeight.w400,
     color: Colors.white);

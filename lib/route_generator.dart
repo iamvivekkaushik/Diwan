@@ -1,3 +1,4 @@
+import 'package:diwan/screens/language_screen.dart';
 import 'package:diwan/screens/splash_screen.dart';
 import 'package:diwan/screens/welcome_page.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => SplashPage());
       case '/Welcome':
         return MaterialPageRoute(builder: (_) => WelcomePage());
+      case '/LanguageSelection':
+        return MaterialPageRoute(builder: (_) => LanguageScreen());
 //      case '/Home':
 //        return MaterialPageRoute(builder: (_) => Homepage(currentTab: args,));
       default:
