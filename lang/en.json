@@ -10,6 +10,7 @@
   "done": "Done",
   "password": "Password",
   "enter_password": "Enter Password",
+  "confirm_password": "Confirm Password",
   "password_requirement_desc": "Please enter your password and log in.\nPlease tap Forgot Password? and reset your password.",
   "password_requirement_one": "8 to 32 alphanumeric characters (At least 1 upper case)",
   "password_requirement_two": "1 or more numbers",
@@ -18,5 +19,13 @@
   "what_your_email": "What’s your email?",
   "email": "Email",
   "enter_email": "Enter Email",
-  "next": "Next"
+  "next": "Next",
+  "create_password": "Create a Password",
+  "password_signup_desc": "You don't have an account with us just yet. Please sign up by creating a password for your account.",
+  "password_not_match": "Your password must match the previous entry. Please check again.",
+  "enter_name": "Enter your Name?",
+  "first_name": "First Name",
+  "last_name": "Last Name",
+  "enter_first_name": "Enter first name",
+  "enter_last_name": "Enter last name"
 }

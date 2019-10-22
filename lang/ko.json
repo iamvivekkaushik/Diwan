@@ -10,6 +10,7 @@
   "done": "끝난",
   "password": "암호",
   "enter_password": "암호를 입력",
+  "confirm_password": "비밀번호 확인",
   "password_requirement_desc": "비밀번호를 입력하고 로그인하십시오.\n비밀번호 찾기를 누릅니다하세요? 와 비밀번호를 재설정합니다.",
   "password_requirement_one": "8 내지 32의 영숫자 (적어도 1 상부 케이스)",
   "password_requirement_two": "1 개 이상의 숫자",
@@ -18,5 +19,13 @@
   "what_your_email": "이메일은 무엇입니까?",
   "email": "이메일",
   "enter_email": "이메일 주소를 입력",
-  "next": "다음"
+  "next": "다음",
+  "create_password": "비밀번호 만들기",
+  "password_signup_desc": "당신은 아직 우리와 함께 계정을 가지고 있지 않습니다. 가입하세요 귀하의 계정에 대한 암호를 만들어.",
+  "password_not_match": "암호는 이전의 항목과 일치해야합니다. 부디 다시 확인.",
+  "enter_name": "당신의 이름을 입력?",
+  "first_name": "이름",
+  "last_name": "성",
+  "enter_first_name": "이름을 입력",
+  "enter_last_name": "성을 입력"
 }
