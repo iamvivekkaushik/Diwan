@@ -1,3 +1,4 @@
+import 'package:diwan/screens/country_selection_screen.dart';
 import 'package:diwan/screens/email_verification_screen.dart';
 import 'package:diwan/screens/language_screen.dart';
 import 'package:diwan/screens/login_password_screen.dart';
@@ -24,6 +25,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => PasswordSignupScreen());
       case '/signup/name':
         return MaterialPageRoute(builder: (_) => SignupNameScreen());
+      case '/signup/country':
+        return MaterialPageRoute(builder: (_) => CountrySelectionScreen());
       case '/signup/terms':
         return MaterialPageRoute(builder: (_) => SignupTermsScreen());
       case '/signup/verification':

@@ -28,6 +28,9 @@ class MyApp extends StatelessWidget {
       // Returns a locale which will be used by the app
       localeResolutionCallback: (locale, supportedLocales) {
         // Check if the current device locale is supported
+        // In iOS this method is called twice. On first call locale is null.
+        if(locale == null) return supportedLocales.first;
+
         for(var supportedLocale in supportedLocales) {
           if(supportedLocale.languageCode == locale.languageCode) {
             return supportedLocale;

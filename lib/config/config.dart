@@ -13,3 +13,13 @@ class AppLanguage {
     "한글"
   ];
 }
+
+
+List<String> countryList = [
+  'France',
+  'Germany',
+  'India',
+  'Paris',
+  'United State of Ameraica',
+  'United Kingdom'
+];
