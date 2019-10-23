@@ -145,7 +145,7 @@ class _SignupTermsScreenState extends State<SignupTermsScreen> {
               child: RaisedButton(
                 onPressed: () {
                   // ToDo: Go to Email Verification Screen
-                  Navigator.of(context).pushNamed('/login/password');
+                  Navigator.of(context).pushNamed('/signup/verification');
                 },
                 color: AppColors.buttonBackground,
                 shape: RoundedRectangleBorder(

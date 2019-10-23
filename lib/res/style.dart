@@ -13,6 +13,12 @@ final TextStyle boldTextHeading = TextStyle(
     fontWeight: FontWeight.w700,
     color: AppColors.heading);
 
+final TextStyle textHeadingStyle = TextStyle(
+    fontSize: 23,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w400,
+    color: AppColors.heading);
+
 final TextStyle subHeadingStyle = TextStyle(
     fontSize: 14,
     fontFamily: 'Segoe',
@@ -38,17 +44,28 @@ final TextStyle inputLabelStyle = TextStyle(
     color: Colors.black);
 
 final TextStyle termsHeadingStyle = TextStyle(
-    fontSize: 15, fontFamily: 'Segoe', fontWeight: FontWeight.w400, color: AppColors.termsHeading);
+    fontSize: 15,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w400,
+    color: AppColors.termsHeading);
 
 final TextStyle termsDescStyle = TextStyle(
-    fontSize: 15, fontFamily: 'Segoe', fontWeight: FontWeight.w400, color: AppColors.separator);
+    fontSize: 15,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w400,
+    color: AppColors.separator);
 
 final TextStyle termsSeeMoreStyle = TextStyle(
-  fontSize: 15, fontFamily: 'Segoe', fontWeight: FontWeight.w400, color: AppColors.textFieldHint
-);
+    fontSize: 15,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w400,
+    color: AppColors.textFieldHint);
 
 final TextStyle textFieldHintStyle = TextStyle(
-    fontSize: 14, fontFamily: 'Segoe', fontWeight: FontWeight.w400, color: AppColors.textFieldHint);
+    fontSize: 14,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w400,
+    color: AppColors.textFieldHint);
 
-final TextStyle textFieldStyle = TextStyle(
-    fontSize: 14, fontFamily: 'Segoe', fontWeight: FontWeight.w400);
+final TextStyle textFieldStyle =
+    TextStyle(fontSize: 14, fontFamily: 'Segoe', fontWeight: FontWeight.w400);
