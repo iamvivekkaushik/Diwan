@@ -165,7 +165,7 @@ class _SignupNameScreenState extends State<SignupNameScreen> {
               margin: EdgeInsets.symmetric(horizontal: 20),
               child: RaisedButton(
                 onPressed: () {
-                  Navigator.of(context).pushNamed('/login/password');
+                  Navigator.of(context).pushNamed('/signup/terms');
                 },
                 color: AppColors.buttonBackground,
                 shape: RoundedRectangleBorder(

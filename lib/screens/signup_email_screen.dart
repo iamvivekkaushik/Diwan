@@ -133,7 +133,6 @@ class _EmailSignupScreenState extends State<EmailSignupScreen> {
               ),
             ),
 
-
           ],
         ),
       ),

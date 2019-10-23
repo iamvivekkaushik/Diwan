@@ -1,6 +1,8 @@
 import 'package:diwan/config/config.dart';
 import 'package:diwan/route_generator.dart';
 import 'package:diwan/screens/language_screen.dart';
+import 'package:diwan/screens/signup_create_password.dart';
+import 'package:diwan/screens/signup_name_screen.dart';
 import 'package:diwan/screens/welcome_page.dart';
 
 import 'package:flutter/material.dart';
@@ -34,7 +36,7 @@ class MyApp extends StatelessWidget {
         // Current Device locale is not supported, fallback to english
         return supportedLocales.first;
       },
-      home: WelcomePage(),
+      home: SignupNameScreen(),
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }

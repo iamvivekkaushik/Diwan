@@ -37,6 +37,16 @@ final TextStyle inputLabelStyle = TextStyle(
     fontWeight: FontWeight.w400,
     color: Colors.black);
 
+final TextStyle termsHeadingStyle = TextStyle(
+    fontSize: 15, fontFamily: 'Segoe', fontWeight: FontWeight.w400, color: AppColors.termsHeading);
+
+final TextStyle termsDescStyle = TextStyle(
+    fontSize: 15, fontFamily: 'Segoe', fontWeight: FontWeight.w400, color: AppColors.separator);
+
+final TextStyle termsSeeMoreStyle = TextStyle(
+  fontSize: 15, fontFamily: 'Segoe', fontWeight: FontWeight.w400, color: AppColors.textFieldHint
+);
+
 final TextStyle textFieldHintStyle = TextStyle(
     fontSize: 14, fontFamily: 'Segoe', fontWeight: FontWeight.w400, color: AppColors.textFieldHint);
 
