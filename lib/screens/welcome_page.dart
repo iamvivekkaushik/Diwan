@@ -100,7 +100,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 icon: Image.asset("images/twitter.png"),
                 onPressed: () {
                   // ToDo: Implement Twitter login
-                  Navigator.of(context).pushNamed('/signup/name');
+                  Navigator.of(context).pushNamed('/signup/password');
                 },
               ),
               SizedBox(
@@ -110,7 +110,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 icon: Image.asset("images/google.png"),
                 onPressed: () {
                   // ToDo: Implement google login
-                  Navigator.of(context).pushNamed('/signup/name');
+                  Navigator.of(context).pushNamed('/signup/password');
                 },
               ),
             ],
@@ -129,8 +129,13 @@ class _WelcomePageState extends State<WelcomePage> {
                   children: <Widget>[
                     Image.asset("images/question_mark.png", width: 20, height: 20,),
                     SizedBox(width: 5,),
-                    Text(AppLocalization.of(context).translate('forgot_password'),
-                    style: textSeparatorStyle,)
+                    InkWell(
+                      onTap: () {
+                        // ToDo: Forgot password screen
+                      },
+                      child: Text(AppLocalization.of(context).translate('forgot_password'),
+                      style: textSeparatorStyle,),
+                    )
                   ],
                 ),
               ),

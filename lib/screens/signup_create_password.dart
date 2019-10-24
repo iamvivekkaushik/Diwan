@@ -210,7 +210,7 @@ class _PasswordSignupScreenState extends State<PasswordSignupScreen> {
               margin: EdgeInsets.symmetric(horizontal: 20),
               child: RaisedButton(
                 onPressed: () {
-                  Navigator.of(context).pushNamed('/login/password');
+                  Navigator.of(context).pushNamed('/signup/name');
                 },
                 color: AppColors.buttonBackground,
                 shape: RoundedRectangleBorder(
