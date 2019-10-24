@@ -115,13 +115,12 @@ class _CountrySelectionScreenState extends State<CountrySelectionScreen> {
               ),
             ),
           ),
-
           Expanded(
             child: Align(
               alignment: Alignment.center,
               child: Container(
                 height: 45,
-                width: MediaQuery.of(context).size.width-40,
+                width: MediaQuery.of(context).size.width - 40,
                 margin: EdgeInsets.symmetric(horizontal: 20),
                 child: RaisedButton(
                   onPressed: () {
@@ -131,8 +130,10 @@ class _CountrySelectionScreenState extends State<CountrySelectionScreen> {
                   shape: RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(7),
                   ),
-                  child: Text(AppLocalization.of(context).translate('next'),
-                    style: buttonTextStyle,),
+                  child: Text(
+                    AppLocalization.of(context).translate('next'),
+                    style: buttonTextStyle,
+                  ),
                 ),
               ),
             ),

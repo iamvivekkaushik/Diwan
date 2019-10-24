@@ -77,25 +77,25 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Text(AppLocalization.of(context).translate('email_not_received'),
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: 'Segoe',
-                          color: AppColors.textFieldHint
-                        ),),
-
-                        SizedBox(
-                          width: 10,
-                        ),
-
                         Text(
-                          AppLocalization.of(context).translate('resend_email'),
+                          AppLocalization.of(context)
+                              .translate('email_not_received'),
                           style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
                               fontFamily: 'Segoe',
-                              color: Colors.black,
+                              color: AppColors.textFieldHint),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          AppLocalization.of(context).translate('resend_email'),
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: 'Segoe',
+                            color: Colors.black,
                           ),
                         )
                       ],

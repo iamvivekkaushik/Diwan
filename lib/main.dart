@@ -10,7 +10,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'helper/app_localization.dart';
 
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -29,10 +28,10 @@ class MyApp extends StatelessWidget {
       localeResolutionCallback: (locale, supportedLocales) {
         // Check if the current device locale is supported
         // In iOS this method is called twice. On first call locale is null.
-        if(locale == null) return supportedLocales.first;
+        if (locale == null) return supportedLocales.first;
 
-        for(var supportedLocale in supportedLocales) {
-          if(supportedLocale.languageCode == locale.languageCode) {
+        for (var supportedLocale in supportedLocales) {
+          if (supportedLocale.languageCode == locale.languageCode) {
             return supportedLocale;
           }
         }

@@ -22,11 +22,13 @@ class _SignupNameScreenState extends State<SignupNameScreen> {
             SizedBox(
               height: Dimen.topMargin,
             ),
-
             Container(
               margin: EdgeInsets.symmetric(horizontal: 5),
               child: IconButton(
-                icon: Icon(DiwanIcons.back, size: 18,),
+                icon: Icon(
+                  DiwanIcons.back,
+                  size: 18,
+                ),
                 color: AppColors.blackIcon,
                 onPressed: () {
                   // Go Back To previous Screen
@@ -34,7 +36,6 @@ class _SignupNameScreenState extends State<SignupNameScreen> {
                 },
               ),
             ),
-
             Stack(
               children: <Widget>[
                 Container(
@@ -42,7 +43,6 @@ class _SignupNameScreenState extends State<SignupNameScreen> {
                   width: MediaQuery.of(context).size.width,
                   color: AppColors.progressBarBg,
                 ),
-
                 Container(
                   height: 5,
                   width: MediaQuery.of(context).size.width / 2,
@@ -50,7 +50,6 @@ class _SignupNameScreenState extends State<SignupNameScreen> {
                 ),
               ],
             ),
-
             Container(
               width: MediaQuery.of(context).size.width - 40,
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -59,11 +58,9 @@ class _SignupNameScreenState extends State<SignupNameScreen> {
                 style: boldTextHeading,
               ),
             ),
-
             SizedBox(
               height: 20,
             ),
-
             Row(
               children: <Widget>[
                 Container(
@@ -73,7 +70,6 @@ class _SignupNameScreenState extends State<SignupNameScreen> {
                     style: inputLabelStyle,
                   ),
                 ),
-
                 Container(
                   width: 6,
                   height: 6,
@@ -84,34 +80,29 @@ class _SignupNameScreenState extends State<SignupNameScreen> {
                 ),
               ],
             ),
-
             Container(
               width: MediaQuery.of(context).size.width,
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               height: 45,
               decoration: new BoxDecoration(
                   borderRadius: BorderRadius.circular(3),
-                  border: new Border.all(color: AppColors.textFieldBorder)
-              ),
-
+                  border: new Border.all(color: AppColors.textFieldBorder)),
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 5),
                 child: TextField(
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: AppLocalization.of(context).translate('enter_first_name'),
+                    hintText: AppLocalization.of(context)
+                        .translate('enter_first_name'),
                     hintStyle: textFieldHintStyle,
                   ),
                   style: textFieldStyle,
                 ),
               ),
             ),
-
             SizedBox(
               height: 20,
             ),
-
-
             Row(
               children: <Widget>[
                 Container(
@@ -121,7 +112,6 @@ class _SignupNameScreenState extends State<SignupNameScreen> {
                     style: inputLabelStyle,
                   ),
                 ),
-
                 Container(
                   width: 6,
                   height: 6,
@@ -132,36 +122,32 @@ class _SignupNameScreenState extends State<SignupNameScreen> {
                 ),
               ],
             ),
-
             Container(
               width: MediaQuery.of(context).size.width,
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               height: 45,
               decoration: new BoxDecoration(
                   borderRadius: BorderRadius.circular(3),
-                  border: new Border.all(color: AppColors.textFieldBorder)
-              ),
-
+                  border: new Border.all(color: AppColors.textFieldBorder)),
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 5),
                 child: TextField(
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: AppLocalization.of(context).translate('enter_last_name'),
+                    hintText: AppLocalization.of(context)
+                        .translate('enter_last_name'),
                     hintStyle: textFieldHintStyle,
                   ),
                   style: textFieldStyle,
                 ),
               ),
             ),
-
             SizedBox(
               height: 60,
             ),
-
             Container(
               height: 45,
-              width: MediaQuery.of(context).size.width-40,
+              width: MediaQuery.of(context).size.width - 40,
               margin: EdgeInsets.symmetric(horizontal: 20),
               child: RaisedButton(
                 onPressed: () {
@@ -171,8 +157,10 @@ class _SignupNameScreenState extends State<SignupNameScreen> {
                 shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(7),
                 ),
-                child: Text(AppLocalization.of(context).translate('next'),
-                  style: buttonTextStyle,),
+                child: Text(
+                  AppLocalization.of(context).translate('next'),
+                  style: buttonTextStyle,
+                ),
               ),
             )
           ],

@@ -22,11 +22,13 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
             SizedBox(
               height: Dimen.topMargin,
             ),
-
             Container(
               margin: EdgeInsets.symmetric(horizontal: 5),
               child: IconButton(
-                icon: Icon(DiwanIcons.back, size: 18,),
+                icon: Icon(
+                  DiwanIcons.back,
+                  size: 18,
+                ),
                 color: AppColors.blackIcon,
                 onPressed: () {
                   // Go Back To previous Screen
@@ -34,7 +36,6 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                 },
               ),
             ),
-
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20),
               width: MediaQuery.of(context).size.width,
@@ -43,11 +44,9 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                 style: boldTextHeading,
               ),
             ),
-
             SizedBox(
               height: 30,
             ),
-
             Row(
               children: <Widget>[
                 Container(
@@ -57,7 +56,6 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                     style: inputLabelStyle,
                   ),
                 ),
-
                 Container(
                   width: 6,
                   height: 6,
@@ -66,57 +64,52 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                     borderRadius: BorderRadius.circular(30),
                   ),
                 ),
-
               ],
             ),
-
             Container(
               width: MediaQuery.of(context).size.width,
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               height: 45,
               decoration: new BoxDecoration(
-                borderRadius: BorderRadius.circular(3),
-                  border: new Border.all(color: AppColors.textFieldBorder)
-              ),
-
+                  borderRadius: BorderRadius.circular(3),
+                  border: new Border.all(color: AppColors.textFieldBorder)),
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 5),
                 child: TextField(
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: AppLocalization.of(context).translate('enter_email'),
+                    hintText:
+                        AppLocalization.of(context).translate('enter_email'),
                     hintStyle: textFieldHintStyle,
                   ),
                   style: textFieldStyle,
                 ),
               ),
             ),
-
             SizedBox(
               height: MediaQuery.of(context).size.height / 2,
             ),
-
             Align(
               alignment: Alignment.center,
-              child: Text(AppLocalization.of(context).translate('continue_with_social') + '?',
+              child: Text(
+                AppLocalization.of(context).translate('continue_with_social') +
+                    '?',
                 style: TextStyle(
                   color: AppColors.buttonBackground,
                   fontFamily: 'Segoe',
                   fontWeight: FontWeight.w400,
-
-                ),),
+                ),
+              ),
             ),
-
             SizedBox(
               height: 10,
             ),
-
             Container(
               margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               child: RaisedButton(
-                    onPressed: () {
-                      Navigator.of(context).pushNamed('/login/password');
-                    },
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/login/password');
+                },
                 color: AppColors.buttonBackground,
                 shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(7),
@@ -126,13 +119,14 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                   width: MediaQuery.of(context).size.width - 70,
                   child: Align(
                     alignment: Alignment.center,
-                    child: Text(AppLocalization.of(context).translate('next'),
-                      style: buttonTextStyle,),
+                    child: Text(
+                      AppLocalization.of(context).translate('next'),
+                      style: buttonTextStyle,
+                    ),
                   ),
                 ),
               ),
             ),
-
           ],
         ),
       ),

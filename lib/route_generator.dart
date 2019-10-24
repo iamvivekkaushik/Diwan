@@ -34,9 +34,12 @@ class RouteGenerator {
       case '/languageSelection':
         return MaterialPageRoute(builder: (_) => LanguageScreen());
       case '/login/password':
-        return MaterialPageRoute(builder: (_) => LoginPasswordScreen(email: args,));
+        return MaterialPageRoute(
+            builder: (_) => LoginPasswordScreen(
+                  email: args,
+                ));
       default:
-      // If there is no such named route in the switch statement, e.g. /third
+        // If there is no such named route in the switch statement, e.g. /third
         return _errorRoute();
     }
   }

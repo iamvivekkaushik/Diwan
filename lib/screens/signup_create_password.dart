@@ -22,11 +22,13 @@ class _PasswordSignupScreenState extends State<PasswordSignupScreen> {
             SizedBox(
               height: Dimen.topMargin,
             ),
-
             Container(
               margin: EdgeInsets.symmetric(horizontal: 5),
               child: IconButton(
-                icon: Icon(DiwanIcons.back, size: 18,),
+                icon: Icon(
+                  DiwanIcons.back,
+                  size: 18,
+                ),
                 color: AppColors.blackIcon,
                 onPressed: () {
                   // Go Back To previous Screen
@@ -34,7 +36,6 @@ class _PasswordSignupScreenState extends State<PasswordSignupScreen> {
                 },
               ),
             ),
-
             Stack(
               children: <Widget>[
                 Container(
@@ -42,7 +43,6 @@ class _PasswordSignupScreenState extends State<PasswordSignupScreen> {
                   width: MediaQuery.of(context).size.width,
                   color: AppColors.progressBarBg,
                 ),
-
                 Container(
                   height: 5,
                   width: MediaQuery.of(context).size.width / 3,
@@ -50,7 +50,6 @@ class _PasswordSignupScreenState extends State<PasswordSignupScreen> {
                 ),
               ],
             ),
-
             Container(
               width: MediaQuery.of(context).size.width - 40,
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -59,7 +58,6 @@ class _PasswordSignupScreenState extends State<PasswordSignupScreen> {
                 style: boldTextHeading,
               ),
             ),
-
             Container(
               width: MediaQuery.of(context).size.width - 40,
               margin: EdgeInsets.symmetric(horizontal: 20),
@@ -68,11 +66,9 @@ class _PasswordSignupScreenState extends State<PasswordSignupScreen> {
                 style: subHeadingStyle,
               ),
             ),
-
             SizedBox(
               height: 20,
             ),
-
             Row(
               children: <Widget>[
                 Container(
@@ -82,7 +78,6 @@ class _PasswordSignupScreenState extends State<PasswordSignupScreen> {
                     style: inputLabelStyle,
                   ),
                 ),
-
                 Container(
                   width: 6,
                   height: 6,
@@ -93,61 +88,56 @@ class _PasswordSignupScreenState extends State<PasswordSignupScreen> {
                 ),
               ],
             ),
-
             Container(
               width: MediaQuery.of(context).size.width,
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               height: 45,
               decoration: new BoxDecoration(
                   borderRadius: BorderRadius.circular(3),
-                  border: new Border.all(color: AppColors.textFieldBorder)
-              ),
-
+                  border: new Border.all(color: AppColors.textFieldBorder)),
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 5),
                 child: TextField(
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: AppLocalization.of(context).translate('enter_password'),
+                    hintText:
+                        AppLocalization.of(context).translate('enter_password'),
                     hintStyle: textFieldHintStyle,
                   ),
                   style: textFieldStyle,
                 ),
               ),
             ),
-
             Container(
               width: MediaQuery.of(context).size.width - 40,
               margin: EdgeInsets.fromLTRB(20, 5, 20, 0),
               child: Text(
-                AppLocalization.of(context).translate('password_requirement_one'),
+                AppLocalization.of(context)
+                    .translate('password_requirement_one'),
                 style: subHeadingStyle,
               ),
             ),
-
             Container(
               width: MediaQuery.of(context).size.width - 40,
               margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
               child: Text(
-                AppLocalization.of(context).translate('password_requirement_two'),
+                AppLocalization.of(context)
+                    .translate('password_requirement_two'),
                 style: subHeadingStyle,
               ),
             ),
-
             Container(
               width: MediaQuery.of(context).size.width - 40,
               margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
               child: Text(
-                AppLocalization.of(context).translate('password_requirement_three'),
+                AppLocalization.of(context)
+                    .translate('password_requirement_three'),
                 style: subHeadingStyle,
               ),
             ),
-
             SizedBox(
               height: 40,
             ),
-
-
             Row(
               children: <Widget>[
                 Container(
@@ -157,7 +147,6 @@ class _PasswordSignupScreenState extends State<PasswordSignupScreen> {
                     style: inputLabelStyle,
                   ),
                 ),
-
                 Container(
                   width: 6,
                   height: 6,
@@ -168,29 +157,26 @@ class _PasswordSignupScreenState extends State<PasswordSignupScreen> {
                 ),
               ],
             ),
-
             Container(
               width: MediaQuery.of(context).size.width,
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               height: 45,
               decoration: new BoxDecoration(
                   borderRadius: BorderRadius.circular(3),
-                  border: new Border.all(color: AppColors.textFieldBorder)
-              ),
-
+                  border: new Border.all(color: AppColors.textFieldBorder)),
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 5),
                 child: TextField(
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: AppLocalization.of(context).translate('enter_password'),
+                    hintText:
+                        AppLocalization.of(context).translate('enter_password'),
                     hintStyle: textFieldHintStyle,
                   ),
                   style: textFieldStyle,
                 ),
               ),
             ),
-
             Container(
               width: MediaQuery.of(context).size.width - 40,
               margin: EdgeInsets.symmetric(horizontal: 20),
@@ -199,14 +185,12 @@ class _PasswordSignupScreenState extends State<PasswordSignupScreen> {
                 style: subHeadingStyle,
               ),
             ),
-
             SizedBox(
               height: 40,
             ),
-
             Container(
               height: 45,
-              width: MediaQuery.of(context).size.width-40,
+              width: MediaQuery.of(context).size.width - 40,
               margin: EdgeInsets.symmetric(horizontal: 20),
               child: RaisedButton(
                 onPressed: () {
@@ -216,8 +200,10 @@ class _PasswordSignupScreenState extends State<PasswordSignupScreen> {
                 shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(7),
                 ),
-                child: Text(AppLocalization.of(context).translate('next'),
-                  style: buttonTextStyle,),
+                child: Text(
+                  AppLocalization.of(context).translate('next'),
+                  style: buttonTextStyle,
+                ),
               ),
             )
           ],

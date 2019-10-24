@@ -110,37 +110,42 @@ class _SignupTermsScreenState extends State<SignupTermsScreen> {
               ),
             ),
             _termView(
-                term:
-                    AppLocalization.of(context).translate('agree_to_diwan_terms'),
+                term: AppLocalization.of(context)
+                    .translate('agree_to_diwan_terms'),
+                isSelected: false,
+                isOptional: false,
+                link: ""),
+            _termView(
+                term: AppLocalization.of(context)
+                    .translate('agree_to_collection'),
                 isSelected: false,
                 isOptional: false,
                 link: ""),
             _termView(
                 term:
-                    AppLocalization.of(context).translate('agree_to_collection'),
-                isSelected: false,
-                isOptional: false,
-                link: ""),
-            _termView(
-                term: AppLocalization.of(context).translate('agree_to_age_limit'),
+                    AppLocalization.of(context).translate('agree_to_age_limit'),
                 isSelected: false,
                 isOptional: false),
             _termView(
-                term: AppLocalization.of(context).translate('activity_notification_term'),
-                desc: AppLocalization.of(context).translate('activity_notification_term_desc'),
+                term: AppLocalization.of(context)
+                    .translate('activity_notification_term'),
+                desc: AppLocalization.of(context)
+                    .translate('activity_notification_term_desc'),
                 isSelected: false,
                 isOptional: false),
             _termView(
-                term: AppLocalization.of(context).translate('event_notification_term'),
-                desc: AppLocalization.of(context).translate('event_notification_term_desc'),
+                term: AppLocalization.of(context)
+                    .translate('event_notification_term'),
+                desc: AppLocalization.of(context)
+                    .translate('event_notification_term_desc'),
                 isSelected: false,
                 isOptional: false),
-
-            SizedBox(height: 10,),
-
+            SizedBox(
+              height: 10,
+            ),
             Container(
               height: 45,
-              width: MediaQuery.of(context).size.width-40,
+              width: MediaQuery.of(context).size.width - 40,
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: RaisedButton(
                 onPressed: () {
@@ -151,8 +156,10 @@ class _SignupTermsScreenState extends State<SignupTermsScreen> {
                 shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(7),
                 ),
-                child: Text(AppLocalization.of(context).translate('next'),
-                  style: buttonTextStyle,),
+                child: Text(
+                  AppLocalization.of(context).translate('next'),
+                  style: buttonTextStyle,
+                ),
               ),
             ),
           ],

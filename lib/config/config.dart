@@ -14,7 +14,6 @@ class AppLanguage {
   ];
 }
 
-
 List<String> countryList = [
   'France',
   'Germany',

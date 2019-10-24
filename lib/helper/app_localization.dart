@@ -13,13 +13,15 @@ class AppLocalization {
     return Localizations.of<AppLocalization>(context, AppLocalization);
   }
 
-  static final LocalizationsDelegate<AppLocalization> delegate = new _AppLocalizationDelegate();
+  static final LocalizationsDelegate<AppLocalization> delegate =
+      new _AppLocalizationDelegate();
 
   Map<String, String> _localizedStrings;
 
   Future<bool> load() async {
     // Load the json file from the lang folder
-    String jsonString = await rootBundle.loadString('lang/${locale.languageCode}.json');
+    String jsonString =
+        await rootBundle.loadString('lang/${locale.languageCode}.json');
 
     Map<String, dynamic> jsonMap = json.decode(jsonString);
 

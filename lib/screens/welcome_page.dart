@@ -11,7 +11,6 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePageState extends State<WelcomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,11 +42,9 @@ class _WelcomePageState extends State<WelcomePage> {
               AppLocalization.of(context).translate('welcome_message'),
             ),
           ),
-
           SizedBox(
             height: MediaQuery.of(context).size.height / 2.5,
           ),
-
           Align(
             alignment: Alignment.center,
             child: Container(
@@ -55,7 +52,7 @@ class _WelcomePageState extends State<WelcomePage> {
               child: RaisedButton(
                 onPressed: () {
                   // Go to Email SignUp Page
-                  Navigator.of(context).pushNamed('/login/email');
+                  Navigator.of(context).pushNamed('/languageSelection');
                 },
                 color: AppColors.buttonBackground,
                 shape: RoundedRectangleBorder(
@@ -66,32 +63,34 @@ class _WelcomePageState extends State<WelcomePage> {
                   width: MediaQuery.of(context).size.width - 80,
                   child: Align(
                     alignment: Alignment.center,
-                    child: Text(AppLocalization.of(context).translate('continue_with_email'),
-                    style: buttonTextStyle,),
+                    child: Text(
+                      AppLocalization.of(context)
+                          .translate('continue_with_email'),
+                      style: buttonTextStyle,
+                    ),
                   ),
                 ),
               ),
             ),
           ),
-
           Stack(alignment: AlignmentDirectional.center, children: <Widget>[
             SizedBox(
                 height: 60.0,
                 width: 400.0,
                 child: Stack(
                   alignment: AlignmentDirectional.center,
-                    children: <Widget>[
-
-                      Container(
-                          child: Divider(color: AppColors.separator)),
-
-                      Container(height: 30,
-                          child: Text(AppLocalization.of(context).translate('continue_with_social'),
-                              style: textSeparatorStyle),
-                          color: Colors.white)
-                    ],)),
+                  children: <Widget>[
+                    Container(child: Divider(color: AppColors.separator)),
+                    Container(
+                        height: 30,
+                        child: Text(
+                            AppLocalization.of(context)
+                                .translate('continue_with_social'),
+                            style: textSeparatorStyle),
+                        color: Colors.white)
+                  ],
+                )),
           ]),
-
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -115,32 +114,38 @@ class _WelcomePageState extends State<WelcomePage> {
               ),
             ],
           ),
-
           Expanded(
-            child: Align(
-              alignment: Alignment.center,
-              child: InkWell(
-                onTap: () {
-                  // ToDo: Go to forgot password screen
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Image.asset("images/question_mark.png", width: 20, height: 20,),
-                    SizedBox(width: 5,),
-                    InkWell(
-                      onTap: () {
-                        // ToDo: Forgot password screen
-                      },
-                      child: Text(AppLocalization.of(context).translate('forgot_password'),
-                      style: textSeparatorStyle,),
-                    )
-                  ],
-                ),
+              child: Align(
+            alignment: Alignment.center,
+            child: InkWell(
+              onTap: () {
+                // ToDo: Go to forgot password screen
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Image.asset(
+                    "images/question_mark.png",
+                    width: 20,
+                    height: 20,
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      // ToDo: Forgot password screen
+                    },
+                    child: Text(
+                      AppLocalization.of(context).translate('forgot_password'),
+                      style: textSeparatorStyle,
+                    ),
+                  )
+                ],
               ),
-            )
-          )
+            ),
+          ))
         ],
       ),
     );

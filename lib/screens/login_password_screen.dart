@@ -26,11 +26,13 @@ class _LoginPasswordScreenState extends State<LoginPasswordScreen> {
             SizedBox(
               height: Dimen.topMargin,
             ),
-
             Container(
               margin: EdgeInsets.symmetric(horizontal: 5),
               child: IconButton(
-                icon: Icon(DiwanIcons.back, size: 18,),
+                icon: Icon(
+                  DiwanIcons.back,
+                  size: 18,
+                ),
                 color: AppColors.blackIcon,
                 onPressed: () {
                   // Go Back To previous Screen
@@ -38,7 +40,6 @@ class _LoginPasswordScreenState extends State<LoginPasswordScreen> {
                 },
               ),
             ),
-
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20),
               width: MediaQuery.of(context).size.width,
@@ -48,20 +49,18 @@ class _LoginPasswordScreenState extends State<LoginPasswordScreen> {
                 style: boldTextHeading,
               ),
             ),
-
             Container(
               width: MediaQuery.of(context).size.width - 40,
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: Text(
-                  AppLocalization.of(context).translate('password_requirement_desc'),
+                AppLocalization.of(context)
+                    .translate('password_requirement_desc'),
                 style: subHeadingStyle,
               ),
             ),
-
             SizedBox(
               height: 10,
             ),
-
             Row(
               children: <Widget>[
                 Container(
@@ -71,7 +70,6 @@ class _LoginPasswordScreenState extends State<LoginPasswordScreen> {
                     style: inputLabelStyle,
                   ),
                 ),
-
                 Container(
                   width: 6,
                   height: 6,
@@ -82,61 +80,56 @@ class _LoginPasswordScreenState extends State<LoginPasswordScreen> {
                 ),
               ],
             ),
-
             Container(
               width: MediaQuery.of(context).size.width,
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               height: 45,
               decoration: new BoxDecoration(
                   borderRadius: BorderRadius.circular(3),
-                  border: new Border.all(color: AppColors.textFieldBorder)
-              ),
-
+                  border: new Border.all(color: AppColors.textFieldBorder)),
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 5),
                 child: TextField(
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: AppLocalization.of(context).translate('enter_password'),
+                    hintText:
+                        AppLocalization.of(context).translate('enter_password'),
                     hintStyle: textFieldHintStyle,
                   ),
                   style: textFieldStyle,
                 ),
               ),
             ),
-
-
             Container(
               width: MediaQuery.of(context).size.width - 40,
               margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
               child: Text(
-                AppLocalization.of(context).translate('password_requirement_one'),
+                AppLocalization.of(context)
+                    .translate('password_requirement_one'),
                 style: subHeadingStyle,
               ),
             ),
-
             Container(
               width: MediaQuery.of(context).size.width - 40,
               margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
               child: Text(
-                AppLocalization.of(context).translate('password_requirement_two'),
+                AppLocalization.of(context)
+                    .translate('password_requirement_two'),
                 style: subHeadingStyle,
               ),
             ),
-
             Container(
               width: MediaQuery.of(context).size.width - 40,
               margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
               child: Text(
-                AppLocalization.of(context).translate('password_requirement_three'),
+                AppLocalization.of(context)
+                    .translate('password_requirement_three'),
                 style: subHeadingStyle,
               ),
             ),
-
             SizedBox(
               height: MediaQuery.of(context).size.width / 1.5,
             ),
-
             InkWell(
               onTap: () {},
               child: Container(
@@ -146,19 +139,25 @@ class _LoginPasswordScreenState extends State<LoginPasswordScreen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Image.asset("images/question_mark.png", width: 14, color: AppColors.blackIcon,),
-                    SizedBox(width: 8,),
-                    Text(AppLocalization.of(context).translate('forgot_password'),
-                    style: subHeadingStyle,)
+                    Image.asset(
+                      "images/question_mark.png",
+                      width: 14,
+                      color: AppColors.blackIcon,
+                    ),
+                    SizedBox(
+                      width: 8,
+                    ),
+                    Text(
+                      AppLocalization.of(context).translate('forgot_password'),
+                      style: subHeadingStyle,
+                    )
                   ],
                 ),
               ),
             ),
-
             SizedBox(
               height: 10,
             ),
-
             Container(
               margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               child: RaisedButton(
@@ -174,13 +173,14 @@ class _LoginPasswordScreenState extends State<LoginPasswordScreen> {
                   width: MediaQuery.of(context).size.width - 70,
                   child: Align(
                     alignment: Alignment.center,
-                    child: Text(AppLocalization.of(context).translate('login'),
-                      style: buttonTextStyle,),
+                    child: Text(
+                      AppLocalization.of(context).translate('login'),
+                      style: buttonTextStyle,
+                    ),
                   ),
                 ),
               ),
             ),
-
           ],
         ),
       ),
