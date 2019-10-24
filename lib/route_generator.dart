@@ -3,7 +3,7 @@ import 'package:diwan/screens/email_verification_screen.dart';
 import 'package:diwan/screens/language_screen.dart';
 import 'package:diwan/screens/login_password_screen.dart';
 import 'package:diwan/screens/signup_create_password.dart';
-import 'package:diwan/screens/signup_email_screen.dart';
+import 'package:diwan/screens/login_email_screen.dart';
 import 'package:diwan/screens/signup_name_screen.dart';
 import 'package:diwan/screens/signup_terms.dart';
 import 'package:diwan/screens/splash_screen.dart';
@@ -19,8 +19,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => SplashPage());
       case '/welcome':
         return MaterialPageRoute(builder: (_) => WelcomePage());
-      case '/signup/email':
-        return MaterialPageRoute(builder: (_) => EmailSignupScreen());
+      case '/login/email':
+        return MaterialPageRoute(builder: (_) => EmailLoginScreen());
       case '/signup/password':
         return MaterialPageRoute(builder: (_) => PasswordSignupScreen());
       case '/signup/name':

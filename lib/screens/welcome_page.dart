@@ -55,7 +55,7 @@ class _WelcomePageState extends State<WelcomePage> {
               child: RaisedButton(
                 onPressed: () {
                   // Go to Email SignUp Page
-                  Navigator.of(context).pushNamed('/signup/email');
+                  Navigator.of(context).pushNamed('/login/email');
                 },
                 color: AppColors.buttonBackground,
                 shape: RoundedRectangleBorder(
@@ -98,14 +98,20 @@ class _WelcomePageState extends State<WelcomePage> {
             children: <Widget>[
               IconButton(
                 icon: Image.asset("images/twitter.png"),
-                onPressed: () {},
+                onPressed: () {
+                  // ToDo: Implement Twitter login
+                  Navigator.of(context).pushNamed('/signup/name');
+                },
               ),
               SizedBox(
                 width: 10,
               ),
               IconButton(
                 icon: Image.asset("images/google.png"),
-                onPressed: () {},
+                onPressed: () {
+                  // ToDo: Implement google login
+                  Navigator.of(context).pushNamed('/signup/name');
+                },
               ),
             ],
           ),
@@ -114,7 +120,9 @@ class _WelcomePageState extends State<WelcomePage> {
             child: Align(
               alignment: Alignment.center,
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  // ToDo: Go to forgot password screen
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,

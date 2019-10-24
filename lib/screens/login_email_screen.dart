@@ -5,12 +5,12 @@ import 'package:diwan/res/dimen.dart';
 import 'package:diwan/res/style.dart';
 import 'package:flutter/material.dart';
 
-class EmailSignupScreen extends StatefulWidget {
+class EmailLoginScreen extends StatefulWidget {
   @override
-  _EmailSignupScreenState createState() => _EmailSignupScreenState();
+  _EmailLoginScreenState createState() => _EmailLoginScreenState();
 }
 
-class _EmailSignupScreenState extends State<EmailSignupScreen> {
+class _EmailLoginScreenState extends State<EmailLoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

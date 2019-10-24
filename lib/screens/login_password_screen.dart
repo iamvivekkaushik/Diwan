@@ -163,7 +163,7 @@ class _LoginPasswordScreenState extends State<LoginPasswordScreen> {
               margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               child: RaisedButton(
                 onPressed: () {
-                  Navigator.of(context).pushNamed('/login/password');
+                  // ToDo: Check for login and go to home screen
                 },
                 color: AppColors.buttonBackground,
                 shape: RoundedRectangleBorder(
