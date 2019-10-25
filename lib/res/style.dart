@@ -84,6 +84,8 @@ final TextStyle textFieldHintStyle = TextStyle(
 final TextStyle textFieldStyle =
     TextStyle(fontSize: 14, fontFamily: 'Segoe', fontWeight: FontWeight.w400);
 
+// Style for Comment Screen
+
 final TextStyle commentUsernameStyle = TextStyle(
     fontSize: 15,
     fontFamily: 'Segoe',
@@ -101,3 +103,29 @@ final TextStyle commentStyle = TextStyle(
     fontFamily: 'Segoe',
     fontWeight: FontWeight.w400,
     color: Colors.black);
+
+// Style for Setting Screen
+
+final TextStyle settingCategoryTitleStyle = TextStyle(
+    fontSize: 12,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w400,
+    color: AppColors.settingCategoryTitle);
+
+final TextStyle settingNameStyle = TextStyle(
+    fontSize: 15,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w400,
+    color: Colors.black);
+
+final TextStyle settingSubTextActiveStyle = TextStyle(
+    fontSize: 14,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w400,
+    color: AppColors.buttonBackground);
+
+final TextStyle settingSubTextInactiveStyle = TextStyle(
+    fontSize: 14,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w400,
+    color: AppColors.textFieldHint);

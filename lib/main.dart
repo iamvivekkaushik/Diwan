@@ -1,7 +1,6 @@
 import 'package:diwan/config/config.dart';
 import 'package:diwan/route_generator.dart';
-import 'package:diwan/screens/diwan_screen.dart';
-import 'package:diwan/screens/post_comment.dart';
+import 'package:diwan/screens/setting_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -35,7 +34,7 @@ class MyApp extends StatelessWidget {
         // Current Device locale is not supported, fallback to english
         return supportedLocales.first;
       },
-      home: PostCommentScreen(''),
+      home: SettingScreen(),
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
