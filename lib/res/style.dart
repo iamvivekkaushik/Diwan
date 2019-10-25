@@ -1,11 +1,25 @@
 import 'package:diwan/res/colors.dart';
 import 'package:flutter/material.dart';
 
+
+final TextStyle diwanLogoStyle = TextStyle(
+    fontSize: 22,
+    //ToDo: Change font to zinc rust
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w500,
+    color: AppColors.buttonBackground);
+
 final TextStyle appBarTextStyle = TextStyle(
     fontSize: 16,
     fontFamily: 'Segoe',
     fontWeight: FontWeight.w700,
     color: AppColors.heading);
+
+final TextStyle appBarRegTextStyle = TextStyle(
+    fontSize: 16,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w400,
+    color: Colors.black);
 
 final TextStyle boldTextHeading = TextStyle(
     fontSize: 25,
@@ -69,3 +83,21 @@ final TextStyle textFieldHintStyle = TextStyle(
 
 final TextStyle textFieldStyle =
     TextStyle(fontSize: 14, fontFamily: 'Segoe', fontWeight: FontWeight.w400);
+
+final TextStyle commentUsernameStyle = TextStyle(
+    fontSize: 15,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w700,
+    color: Colors.black);
+
+final TextStyle commentDateStyle = TextStyle(
+    fontSize: 12,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w400,
+    color: AppColors.textFieldHint);
+
+final TextStyle commentStyle = TextStyle(
+    fontSize: 15,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w400,
+    color: Colors.black);
