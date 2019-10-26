@@ -129,3 +129,36 @@ final TextStyle settingSubTextInactiveStyle = TextStyle(
     fontFamily: 'Segoe',
     fontWeight: FontWeight.w400,
     color: AppColors.textFieldHint);
+
+// Homepage Bottom Navbar text Style
+
+final TextStyle navbarInactiveTextStyle = TextStyle(
+    fontSize: 11,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w400,
+    color: AppColors.textFieldHint
+);
+
+final TextStyle navbarActiveTextStyle = TextStyle(
+    fontSize: 11,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w400,
+    color: Colors.white
+);
+
+
+// PagerStyle
+
+final TextStyle pagerTextInactiveStyle = TextStyle(
+  fontSize: 15,
+  fontFamily: 'Segoe',
+  fontWeight: FontWeight.w400,
+  color: AppColors.settingCategoryTitle
+);
+
+final TextStyle pagerTextActiveStyle = TextStyle(
+    fontSize: 15,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w400,
+    color: AppColors.buttonBackground
+);
