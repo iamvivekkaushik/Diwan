@@ -3,6 +3,7 @@ import 'package:diwan/route_generator.dart';
 import 'package:diwan/screens/customer_care_screen.dart';
 import 'package:diwan/screens/dashboard_screen.dart';
 import 'package:diwan/screens/homepage.dart';
+import 'package:diwan/screens/privacy_screen.dart';
 import 'package:diwan/screens/setting_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
         // Current Device locale is not supported, fallback to english
         return supportedLocales.first;
       },
-      home: DashboardScreen(),
+      home: PrivacyScreen(),
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }

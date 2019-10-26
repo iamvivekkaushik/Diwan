@@ -90,58 +90,22 @@ class _DiwanScreenState extends State<DiwanScreen> {
           ),
 
           Container(
+            width: MediaQuery.of(context).size.width - 40,
             margin: EdgeInsets.symmetric(horizontal: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                InkWell(
-                  child: Text(
-                    AppLocalization.of(context).translate('privacy_policy'),
-                    style: subHeadingStyle,
-                  ),
-                ),
-
-                Container(
-                  width: 2,
-                  height: 10,
-                  margin: EdgeInsets.fromLTRB(5, 5, 5, 0),
-                  color: AppColors.separator,
-                ),
-
-                InkWell(
-                  child: Text(
-                    AppLocalization.of(context).translate('terms_of_use'),
-                    style: subHeadingStyle,
-                  ),
-                ),
-
-                Container(
-                  width: 2,
-                  height: 10,
-                  margin: EdgeInsets.fromLTRB(5, 5, 5, 0),
-                  color: AppColors.separator,
-                ),
-
-                InkWell(
-                  child: Text(
-                    AppLocalization.of(context).translate('terms_of_operation'),
-                    style: subHeadingStyle,
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
             child: InkWell(
+              onTap: () {
+                // Go to Privacy screen
+              },
               child: Text(
-                AppLocalization.of(context).translate('terms_of_use_for_paid'),
-                style: subHeadingStyle,
+                  AppLocalization.of(context).translate('privacy_policy') + " | " +
+                      AppLocalization.of(context).translate('terms_of_use') + " | " +
+                      AppLocalization.of(context).translate('terms_of_operation') + "\n" +
+                      AppLocalization.of(context).translate('terms_of_use_for_paid'),
+                  style: subHeadingStyle,
               ),
             ),
           ),
+
         ],
       ),
     );
