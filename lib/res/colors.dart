@@ -16,4 +16,5 @@ class AppColors {
   static const Color progressBarBg = Color(0xffEBEBEB);
   static const Color termsBackground = Color(0xffECECEC);
   static const Color tickBackground = Color(0xffD8D8D8);
+  static const Color announcementColor = Color(0xff5D4646);
 }
