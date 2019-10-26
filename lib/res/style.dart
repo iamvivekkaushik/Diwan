@@ -45,6 +45,12 @@ final TextStyle buttonTextStyle = TextStyle(
     fontWeight: FontWeight.w400,
     color: Colors.white);
 
+final TextStyle buttonTextStyle2 = TextStyle(
+    fontSize: 13,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w400,
+    color: Colors.white);
+
 final TextStyle textSeparatorStyle = TextStyle(
     fontSize: 15,
     fontFamily: 'Segoe',
@@ -161,4 +167,14 @@ final TextStyle pagerTextActiveStyle = TextStyle(
     fontFamily: 'Segoe',
     fontWeight: FontWeight.w400,
     color: AppColors.buttonBackground
+);
+
+
+// Announcement Style
+
+final TextStyle announcementTextStyle = TextStyle(
+    fontSize: 14,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w400,
+    color: AppColors.announcementColor
 );
