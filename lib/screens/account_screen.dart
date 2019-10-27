@@ -3,12 +3,12 @@ import 'package:diwan/res/style.dart';
 import 'package:diwan/ui/app_pager.dart';
 import 'package:flutter/material.dart';
 
-class DashboardScreen extends StatefulWidget {
+class AccountScreen extends StatefulWidget {
   @override
-  _DashboardScreenState createState() => _DashboardScreenState();
+  _AccountScreenState createState() => _AccountScreenState();
 }
 
-class _DashboardScreenState extends State<DashboardScreen> {
+class _AccountScreenState extends State<AccountScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,6 +26,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               child: IconButton(
                 onPressed: () {
                   // Go to setting screen
+                  Navigator.of(context).pushNamed('/settings');
                 },
                 icon: Image.asset('images/settings.png', width: 20,),
               ),

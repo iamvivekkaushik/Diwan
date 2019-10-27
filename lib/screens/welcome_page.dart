@@ -80,13 +80,19 @@ class _WelcomePageState extends State<WelcomePage> {
                 child: Stack(
                   alignment: AlignmentDirectional.center,
                   children: <Widget>[
-                    Container(child: Divider(color: AppColors.separator)),
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 20),
+                      width: MediaQuery.of(context).size.width - 40,
+                        child: Divider(color: AppColors.separator)),
                     Container(
                         height: 30,
-                        child: Text(
-                            AppLocalization.of(context)
-                                .translate('continue_with_social'),
-                            style: textSeparatorStyle),
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(8, 3, 8, 0),
+                          child: Text(
+                              AppLocalization.of(context)
+                                  .translate('continue_with_social'),
+                              style: textSeparatorStyle),
+                        ),
                         color: Colors.white)
                   ],
                 )),
@@ -136,6 +142,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   InkWell(
                     onTap: () {
                       // ToDo: Forgot password screen
+                      Navigator.of(context).pushNamed("/account");
                     },
                     child: Text(
                       AppLocalization.of(context).translate('forgot_password'),

@@ -89,13 +89,18 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                         SizedBox(
                           width: 10,
                         ),
-                        Text(
-                          AppLocalization.of(context).translate('resend_email'),
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: 'Segoe',
-                            color: Colors.black,
+                        InkWell(
+                          onTap: () {
+                            // ToDo: Resend Email
+                          },
+                          child: Text(
+                            AppLocalization.of(context).translate('resend_email'),
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              fontFamily: 'Segoe',
+                              color: Colors.black,
+                            ),
                           ),
                         )
                       ],

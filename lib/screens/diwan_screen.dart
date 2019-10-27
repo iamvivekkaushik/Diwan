@@ -95,6 +95,7 @@ class _DiwanScreenState extends State<DiwanScreen> {
             child: InkWell(
               onTap: () {
                 // Go to Privacy screen
+                Navigator.of(context).pushNamed('/privacy');
               },
               child: Text(
                   AppLocalization.of(context).translate('privacy_policy') + " | " +

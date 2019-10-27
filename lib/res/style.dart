@@ -15,6 +15,12 @@ final TextStyle appBarTextStyle = TextStyle(
     fontWeight: FontWeight.w700,
     color: AppColors.heading);
 
+final TextStyle announcementAppBarStyle = TextStyle(
+    fontSize: 16,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w700,
+    color: AppColors.announcementColor);
+
 final TextStyle appBarRegTextStyle = TextStyle(
     fontSize: 16,
     fontFamily: 'Segoe',

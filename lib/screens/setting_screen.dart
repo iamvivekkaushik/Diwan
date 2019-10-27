@@ -94,7 +94,7 @@ class _SettingScreenState extends State<SettingScreen> {
                     margin: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                     child: _createRow(title: AppLocalization.of(context).translate('connect_accounts'),
                         subText: AppLocalization.of(context).translate('change'),
-                        path: "")),
+                        path: "/connectAccount")),
 
 
                 Container(
@@ -117,13 +117,13 @@ class _SettingScreenState extends State<SettingScreen> {
                 Container(
                     margin: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                     child: _createRow(title: AppLocalization.of(context).translate('app_language'),
-                        subText: "English", path: "")),
+                        subText: "English", path: "/languageSelection")),
 
                 Container(
                     margin: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                     child: _createRow(title: AppLocalization.of(context).translate('post_translation'),
                         subText: AppLocalization.of(context).translate('change'),
-                        path: "")),
+                        path: "/postTranslation")),
 
                 Container(
                     margin: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
@@ -151,12 +151,12 @@ class _SettingScreenState extends State<SettingScreen> {
                 Container(
                     margin: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                     child: _createRowWithIcon(title: AppLocalization.of(context).translate('customer_care'),
-                        path: "")),
+                        path: "/customerCare")),
 
                 Container(
                     margin: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                     child: _createRowWithIcon(title: AppLocalization.of(context).translate('service_announcements'),
-                        path: "")),
+                        path: "/serviceAnnouncement")),
               ],
             ),
           ),
@@ -168,46 +168,59 @@ class _SettingScreenState extends State<SettingScreen> {
 
   Widget _createRow({String title, String subText, String path}) {
     double width = (MediaQuery.of(context).size.width - 24) / 2;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Container(
-          width: width - 30,
-          child: Text(
-            title,
-            style: settingNameStyle,
+    return InkWell(
+      onTap: () {
+        if(path == null || path.isEmpty) return;
+        Navigator.of(context).pushNamed(path);
+      },
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            width: width - 30,
+            child: Text(
+              title,
+              style: settingNameStyle,
+            ),
           ),
-        ),
-        Container(
-          width: width,
-          child: Align(
-              alignment: Alignment.centerRight,
-              child: Text(
-                subText,
-                style: path != null ? settingSubTextActiveStyle : settingSubTextInactiveStyle,
-              )),
-        )
-      ],
+          Container(
+            width: width,
+            child: Align(
+                alignment: Alignment.centerRight,
+                child: Text(
+                  subText,
+                  style: path != null ? settingSubTextActiveStyle : settingSubTextInactiveStyle,
+                )),
+          )
+        ],
+      ),
     );
   }
 
   Widget _createRowWithIcon({String title, String path}) {
     double width = MediaQuery.of(context).size.width - 80;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Container(
-          width: width,
-          child: Text(
-            title,
-            style: settingNameStyle,
+    return InkWell(
+      onTap: () {
+        if(path == null || path.isEmpty) return;
+
+        Navigator.of(context).pushNamed(path);
+      },
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            width: width,
+            child: Text(
+              title,
+              style: settingNameStyle,
+            ),
           ),
-        ),
-        Image.asset('images/icon_forward.png', width: 10,
-            height: 15,)
-      ],
+          Image.asset('images/icon_forward.png', width: 10,
+              height: 15,)
+        ],
+      ),
     );
   }
 }

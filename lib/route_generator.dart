@@ -1,9 +1,16 @@
+import 'package:diwan/screens/account_screen.dart';
+import 'package:diwan/screens/announcement_screen.dart';
+import 'package:diwan/screens/connect_account_screen.dart';
 import 'package:diwan/screens/country_selection_screen.dart';
+import 'package:diwan/screens/customer_care_screen.dart';
 import 'package:diwan/screens/diwan_screen.dart';
 import 'package:diwan/screens/email_verification_screen.dart';
 import 'package:diwan/screens/language_screen.dart';
 import 'package:diwan/screens/login_password_screen.dart';
 import 'package:diwan/screens/post_comment.dart';
+import 'package:diwan/screens/post_translation.dart';
+import 'package:diwan/screens/privacy_screen.dart';
+import 'package:diwan/screens/setting_screen.dart';
 import 'package:diwan/screens/signup_create_password.dart';
 import 'package:diwan/screens/login_email_screen.dart';
 import 'package:diwan/screens/signup_name_screen.dart';
@@ -23,6 +30,11 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => WelcomePage());
       case '/login/email':
         return MaterialPageRoute(builder: (_) => EmailLoginScreen());
+      case '/login/password':
+        return MaterialPageRoute(
+            builder: (_) => LoginPasswordScreen(
+                  email: args,
+                ));
       case '/signup/password':
         return MaterialPageRoute(builder: (_) => PasswordSignupScreen());
       case '/signup/name':
@@ -42,11 +54,20 @@ class RouteGenerator {
             builder: (_) => PostCommentScreen(
                   args,
                 ));
-      case '/login/password':
-        return MaterialPageRoute(
-            builder: (_) => LoginPasswordScreen(
-                  email: args,
-                ));
+      case '/privacy':
+        return MaterialPageRoute(builder: (_) => PrivacyScreen());
+      case '/account':
+        return MaterialPageRoute(builder: (_) => AccountScreen());
+      case '/settings':
+        return MaterialPageRoute(builder: (_) => SettingScreen());
+      case '/connectAccount':
+        return MaterialPageRoute(builder: (_) => ConnectAccountScreen());
+      case '/postTranslation':
+        return MaterialPageRoute(builder: (_) => PostTranslationScreen());
+      case '/customerCare':
+        return MaterialPageRoute(builder: (_) => CustomerCareScreen());
+      case '/serviceAnnouncement':
+        return MaterialPageRoute(builder: (_) => ServiceAnnouncementScreen());
       default:
         // If there is no such named route in the switch statement, e.g. /third
         return _errorRoute();
