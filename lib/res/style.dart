@@ -184,3 +184,47 @@ final TextStyle announcementTextStyle = TextStyle(
     fontWeight: FontWeight.w400,
     color: AppColors.announcementColor
 );
+
+// Discover Screen Style
+
+final TextStyle searchHintStyle = TextStyle(
+    fontSize: 14,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w400,
+    color: AppColors.separator
+);
+
+final TextStyle trendingTextStyle = TextStyle(
+    fontSize: 13,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w700,
+    color: AppColors.separator
+);
+
+final TextStyle trendingDateTextStyle = TextStyle(
+    fontSize: 11,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w400,
+    color: AppColors.separator
+);
+
+final TextStyle discoverListIndexStyle = TextStyle(
+    fontSize: 40,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w700,
+    color: AppColors.discoverListNumber
+);
+
+final TextStyle discoverItemPathStyle = TextStyle(
+    fontSize: 13,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w400,
+    color: AppColors.textFieldBorder
+);
+
+final TextStyle discoverItemHeadingStyle = TextStyle(
+    fontSize: 14,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w400,
+    color: Colors.black
+);

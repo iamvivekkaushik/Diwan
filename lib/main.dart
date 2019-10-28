@@ -1,9 +1,6 @@
 import 'package:diwan/config/config.dart';
 import 'package:diwan/route_generator.dart';
-import 'package:diwan/screens/announcement_screen.dart';
-import 'package:diwan/screens/create_post_screen.dart';
-import 'package:diwan/screens/post_translation.dart';
-import 'package:diwan/screens/welcome_page.dart';
+import 'package:diwan/screens/discover_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -37,7 +34,7 @@ class MyApp extends StatelessWidget {
         // Current Device locale is not supported, fallback to english
         return supportedLocales.first;
       },
-      home: WelcomePage(),
+      home: DiscoverScreen(),
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
