@@ -5,6 +5,7 @@ import 'package:diwan/screens/country_selection_screen.dart';
 import 'package:diwan/screens/customer_care_screen.dart';
 import 'package:diwan/screens/diwan_screen.dart';
 import 'package:diwan/screens/email_verification_screen.dart';
+import 'package:diwan/screens/homepage.dart';
 import 'package:diwan/screens/language_screen.dart';
 import 'package:diwan/screens/login_password_screen.dart';
 import 'package:diwan/screens/post_comment.dart';
@@ -47,6 +48,11 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => EmailVerificationScreen());
       case '/languageSelection':
         return MaterialPageRoute(builder: (_) => LanguageScreen());
+      case '/homepage':
+        return MaterialPageRoute(
+            builder: (_) => HomepageScreen(
+              args,
+            ));
       case '/diwan':
         return MaterialPageRoute(builder: (_) => DiwanScreen());
       case '/post/comment':

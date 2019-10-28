@@ -1,9 +1,17 @@
 import 'package:diwan/helper/diwan_icons.dart';
 import 'package:diwan/res/colors.dart';
 import 'package:diwan/res/style.dart';
+import 'package:diwan/screens/account_screen.dart';
+import 'package:diwan/screens/discover_screen.dart';
+import 'package:diwan/screens/diwan_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:gradient_bottom_navigation_bar/gradient_bottom_navigation_bar.dart';
 
 class HomepageScreen extends StatefulWidget {
+  int pageIndex;
+
+  HomepageScreen(this.pageIndex);
+
   @override
   _HomepageScreenState createState() => _HomepageScreenState();
 }
@@ -21,37 +29,23 @@ class _HomepageScreenState extends State<HomepageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-              icon: Image.asset(
-                'images/nav_diwan.png',
-                height: 35,
-              ),
-              title: Text('Diwan'),
-              backgroundColor: AppColors.navbarBackground),
-          BottomNavigationBarItem(
-              icon: Icon(DiwanIcons.discover),
-              title: Text('Discover'),
-              backgroundColor: AppColors.navbarBackground),
-          BottomNavigationBarItem(
-              icon: Image.asset(
-                'images/nav_account.png',
-                height: 28,
-                color: Colors.black,
-              ),
-              title: Text('My'),
-              backgroundColor: AppColors.navbarBackground),
-          BottomNavigationBarItem(
-              icon: Icon(DiwanIcons.bell),
-              title: Text('Notification'),
-              backgroundColor: AppColors.navbarBackground)
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: AppColors.separator,
-        onTap: _onItemTapped,
+      bottomNavigationBar: Container(
+        height: 68,
+        child: GradientBottomNavigationBar(
+          backgroundColorStart: AppColors.navbarBackground,
+          backgroundColorEnd: AppColors.navbarBackground,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(icon: Image.asset("images/nav_diwan.png", width: 18, color: AppColors.settingCategoryTitle,), title: Text('Diwan')),
+            BottomNavigationBarItem(icon: Icon(DiwanIcons.discover, color: AppColors.settingCategoryTitle,), title: Text('Discover')),
+            BottomNavigationBarItem(icon: Image.asset("images/nav_account.png", width: 18, color: AppColors.settingCategoryTitle,), title: Text('My')),
+            BottomNavigationBarItem(icon: Icon(DiwanIcons.bell, color: AppColors.settingCategoryTitle,), title: Text('Notification')),
+          ],
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+          fixedColor: Colors.white,
+        ),
       ),
+      body: _getScreen(),
     );
   }
 
@@ -59,5 +53,18 @@ class _HomepageScreenState extends State<HomepageScreen> {
     setState(() {
       _selectedIndex = value;
     });
+  }
+
+  Widget _getScreen() {
+    switch(_selectedIndex) {
+      case 0:
+        return DiwanScreen();
+      case 1:
+        return DiscoverScreen();
+      case 2:
+        return AccountScreen();
+      case 3:
+        return Container();
+    }
   }
 }

@@ -138,7 +138,6 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       children: <Widget>[
                         _createList(
                             postList[index], index + 1, Color(0xFFEE8168)),
-
                         Divider(
                           color: AppColors.separator,
                         )
@@ -193,8 +192,13 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       post.username,
                       style: discoverItemPathStyle,
                     ),
-                    SizedBox(
-                      width: 4,
+                    Container(
+                      margin: EdgeInsets.symmetric(vertical: 5, horizontal: 4),
+                      child: Image.asset(
+                        "images/triangle.png",
+                        color: AppColors.textFieldBorder,
+                        width: 5,
+                      ),
                     ),
                     Text(
                       post.group,
@@ -218,8 +222,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     alignment: Alignment.centerRight,
                     child: Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10)
-                      ),
+                          borderRadius: BorderRadius.circular(10)),
                       margin:
                           EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                       width: 80,

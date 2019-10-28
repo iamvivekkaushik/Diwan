@@ -163,7 +163,7 @@ class _LoginPasswordScreenState extends State<LoginPasswordScreen> {
               child: RaisedButton(
                 onPressed: () {
                   // ToDo: Check for login and go to home screen
-                  Navigator.of(context).pushNamed('/diwan');
+                  Navigator.of(context).pushNamed('/homepage');
                 },
                 color: AppColors.buttonBackground,
                 shape: RoundedRectangleBorder(
