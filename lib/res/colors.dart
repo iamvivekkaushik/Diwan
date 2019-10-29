@@ -9,6 +9,7 @@ class AppColors {
   static const Color navbarBackground = Color(0xFF313337);
   static const Color buttonBackground = Color(0xFFA97D53);
   static const Color searchBackground = Color(0xFFF2F2F3);
+  static const Color notificationBannerBg = Color(0xFF665F8A);
   static const Color discoverDropdownBg = Color(0xFFF5F7FA);
   static const Color separator = Color(0xFFAEB1B7);
   static const Color blackIcon = Color(0xff363232);

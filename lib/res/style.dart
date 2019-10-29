@@ -228,3 +228,17 @@ final TextStyle discoverItemHeadingStyle = TextStyle(
     fontWeight: FontWeight.w400,
     color: Colors.black
 );
+
+// Notification screen style
+
+final TextStyle notificationBannerHeadingStyle = TextStyle(
+    fontSize: 15,
+    fontWeight: FontWeight.w400,
+    color: Colors.white
+);
+
+final TextStyle notificationBannerSubHeadingStyle = TextStyle(
+    fontSize: 13,
+    fontWeight: FontWeight.w400,
+    color: Colors.white
+);

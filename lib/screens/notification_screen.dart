@@ -1,17 +1,15 @@
 import 'package:diwan/helper/app_localization.dart';
-import 'package:diwan/helper/diwan_icons.dart';
 import 'package:diwan/res/colors.dart';
 import 'package:diwan/res/dimen.dart';
 import 'package:diwan/res/style.dart';
 import 'package:flutter/material.dart';
 
-class NotificationStatusScreen extends StatefulWidget {
+class NotificationScreen extends StatefulWidget {
   @override
-  _NotificationStatusScreenState createState() =>
-      _NotificationStatusScreenState();
+  _NotificationScreenState createState() => _NotificationScreenState();
 }
 
-class _NotificationStatusScreenState extends State<NotificationStatusScreen> {
+class _NotificationScreenState extends State<NotificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,126 +20,68 @@ class _NotificationStatusScreenState extends State<NotificationStatusScreen> {
           SizedBox(
             height: Dimen.topMargin,
           ),
+
           Container(
-            height: 40,
+            margin: EdgeInsets.symmetric(horizontal: 20),
+            child: Text(
+              AppLocalization.of(context).translate('notifications'),
+              style: boldTextHeading,
+            ),
+          ),
+
+          SizedBox(
+            height: 30,
+          ),
+
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 20),
+            color: AppColors.notificationBannerBg,
+            padding: EdgeInsets.all(15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 5),
-                  child: IconButton(
-                    icon: Icon(
-                      DiwanIcons.back,
-                      size: 18,
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      width: MediaQuery.of(context).size.width / 3 * 2,
+                      child: Text(
+                        "Get our exclusive discount code",
+                        style: notificationBannerHeadingStyle,
+                      ),
                     ),
-                    color: AppColors.blackIcon,
-                    onPressed: () {
-                      // Go Back To previous Screen
-                      Navigator.of(context).pop();
-                    },
-                  ),
+
+                    SizedBox(
+                      height: 7,
+                    ),
+
+                    Container(
+                      width: MediaQuery.of(context).size.width / 3 * 2,
+                      child: Text(
+                        "Available until 12 AM on Oct. 30 (GMT)",
+                        style: notificationBannerSubHeadingStyle,
+                      ),
+                    ),
+                  ],
                 ),
+
                 Expanded(
-                  child: Center(
-                    child: Text(
-                      AppLocalization.of(context).translate('notifications'),
-                      style: appBarRegTextStyle,
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: Colors.white
+                      ),
+                      width: 40,
+                      height: 40,
                     ),
                   ),
-                ),
-                Container(
-                  width: 50,
                 )
               ],
             ),
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            child: Divider(
-              color: AppColors.separator,
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            width: MediaQuery.of(context).size.width,
-            child: Text(
-              AppLocalization.of(context).translate('notification_turned_off'),
-              style: boldTextHeading,
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 20),
-            width: MediaQuery.of(context).size.width,
-            child: Text(
-              AppLocalization.of(context).translate('notification_message'),
-              style: subHeadingStyle,
-            ),
-          ),
-          SizedBox(
-            height: 25,
-          ),
-          _createRow(
-              "1",
-              AppLocalization.of(context).translate('tap_notification'),
-              'images/notification_off.png'),
-          _createRow(
-              "2",
-              AppLocalization.of(context).translate('allow_notification_msg'),
-              'images/ios_button.png'),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: RaisedButton(
-              onPressed: () {
-                // Go to Notification Settings
-              },
-              color: AppColors.buttonBackground,
-              shape: RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(15),
-              ),
-              child: Container(
-                height: 30,
-                width: 120,
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    AppLocalization.of(context).translate('open_setting'),
-                    style: buttonTextStyle2,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _createRow(String index, String text, String image) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            index + ".",
-            style: announcementTextStyle,
-          ),
-          SizedBox(
-            width: 10,
-          ),
-          Center(
-              child: Image.asset(
-            image,
-            width: 20,
-          )),
-          SizedBox(
-            width: 10,
-          ),
-          Text(
-            text,
-            style: announcementTextStyle,
           )
         ],
       ),

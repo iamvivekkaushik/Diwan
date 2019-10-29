@@ -4,6 +4,8 @@ import 'package:diwan/res/style.dart';
 import 'package:diwan/screens/account_screen.dart';
 import 'package:diwan/screens/discover_screen.dart';
 import 'package:diwan/screens/diwan_screen.dart';
+import 'package:diwan/screens/notification_screen.dart';
+import 'package:diwan/screens/notification_status_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_bottom_navigation_bar/gradient_bottom_navigation_bar.dart';
 
@@ -64,7 +66,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
       case 2:
         return AccountScreen();
       case 3:
-        return Container();
+        return NotificationScreen();
     }
   }
 }
