@@ -17,6 +17,7 @@ import 'package:diwan/screens/login_email_screen.dart';
 import 'package:diwan/screens/signup_name_screen.dart';
 import 'package:diwan/screens/signup_terms.dart';
 import 'package:diwan/screens/splash_screen.dart';
+import 'package:diwan/screens/support_screen.dart';
 import 'package:diwan/screens/welcome_page.dart';
 import 'package:flutter/material.dart';
 
@@ -74,6 +75,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => CustomerCareScreen());
       case '/serviceAnnouncement':
         return MaterialPageRoute(builder: (_) => ServiceAnnouncementScreen());
+      case '/supportScreen':
+        return MaterialPageRoute(builder: (_) => SupportScreen());
       default:
         // If there is no such named route in the switch statement, e.g. /third
         return _errorRoute();

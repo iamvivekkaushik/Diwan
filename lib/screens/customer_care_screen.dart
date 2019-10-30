@@ -30,6 +30,7 @@ class _CustomerCareScreenState extends State<CustomerCareScreen> {
             child: InkWell(
                 onTap: () {
                   // ToDo: Do something here
+                  Navigator.of(context).pushNamed('/supportScreen');
                 },
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(8, 10, 8, 10),
@@ -39,7 +40,7 @@ class _CustomerCareScreenState extends State<CustomerCareScreen> {
                   children: <Widget>[
                     Icon(DiwanIcons.chatIcon),
                     SizedBox(width: 10,),
-                    Text("1-on-1 Support",
+                    Text(AppLocalization.of(context).translate('one_one_support'),
                     style: commentUsernameStyle,)
                   ],
                 ),

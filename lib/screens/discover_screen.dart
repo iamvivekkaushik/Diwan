@@ -44,7 +44,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText:
-                      AppLocalization.of(context).translate('search_hint'),
+                      AppLocalization.of(context).translate('search'),
                   hintStyle: searchHintStyle,
                   prefixIcon: Icon(
                     Icons.search,

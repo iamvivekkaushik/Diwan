@@ -28,11 +28,13 @@ class _AccountScreenState extends State<AccountScreen> {
                   // Go to setting screen
                   Navigator.of(context).pushNamed('/settings');
                 },
-                icon: Image.asset('images/settings.png', width: 20,),
+                icon: Image.asset(
+                  'images/settings.png',
+                  width: 20,
+                ),
               ),
             ),
           ),
-
           Container(
             margin: EdgeInsets.symmetric(horizontal: 20),
             width: MediaQuery.of(context).size.width,
@@ -41,7 +43,6 @@ class _AccountScreenState extends State<AccountScreen> {
               style: boldTextHeading,
             ),
           ),
-
           Container(
             margin: EdgeInsets.symmetric(horizontal: 20),
             width: MediaQuery.of(context).size.width,
@@ -50,15 +51,18 @@ class _AccountScreenState extends State<AccountScreen> {
               style: subHeadingStyle,
             ),
           ),
-
           SizedBox(
             height: 10,
           ),
-
           Container(
-            margin: EdgeInsets.fromLTRB(20, 10, 0, 10),
-            height: 50,
-              child: AppPager(['My Diwan', 'My Post', 'Bookmarks', 'Purchase'])),
+              margin: EdgeInsets.fromLTRB(20, 10, 0, 10),
+              height: 50,
+              child: AppPager(
+                pagerList: ['My Diwan', 'My Post', 'Bookmarks', 'Purchase'],
+                pageChanged: (index) {
+                  // PageChanged
+                },
+              )),
         ],
       ),
     );

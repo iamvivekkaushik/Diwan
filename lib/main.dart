@@ -1,7 +1,11 @@
 import 'package:diwan/config/config.dart';
 import 'package:diwan/route_generator.dart';
+import 'package:diwan/screens/create_diwan_screen.dart';
+import 'package:diwan/screens/create_user_screen.dart';
 import 'package:diwan/screens/discover_screen.dart';
+import 'package:diwan/screens/group_detail_screen.dart';
 import 'package:diwan/screens/homepage.dart';
+import 'package:diwan/screens/support_screen.dart';
 import 'package:diwan/screens/welcome_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';

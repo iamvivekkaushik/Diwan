@@ -39,6 +39,12 @@ final TextStyle textHeadingStyle = TextStyle(
     fontWeight: FontWeight.w400,
     color: AppColors.heading);
 
+final TextStyle textHeadingStyle2 = TextStyle(
+    fontSize: 25,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w400,
+    color: AppColors.heading);
+
 final TextStyle subHeadingStyle = TextStyle(
     fontSize: 14,
     fontFamily: 'Segoe',
@@ -242,3 +248,6 @@ final TextStyle notificationBannerSubHeadingStyle = TextStyle(
     fontWeight: FontWeight.w400,
     color: Colors.white
 );
+
+// Feed Post TextStyle
+
