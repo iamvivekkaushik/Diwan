@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
         // Current Device locale is not supported, fallback to english
         return supportedLocales.first;
       },
-      home: AdminAccountScreen(),
+      home: WelcomePage(),
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }

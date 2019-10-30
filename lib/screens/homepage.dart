@@ -2,6 +2,7 @@ import 'package:diwan/helper/diwan_icons.dart';
 import 'package:diwan/res/colors.dart';
 import 'package:diwan/res/style.dart';
 import 'package:diwan/screens/account_screen.dart';
+import 'package:diwan/screens/admin/admin_account_screen.dart';
 import 'package:diwan/screens/discover_screen.dart';
 import 'package:diwan/screens/diwan_screen.dart';
 import 'package:diwan/screens/notification_screen.dart';
@@ -64,7 +65,8 @@ class _HomepageScreenState extends State<HomepageScreen> {
       case 1:
         return DiscoverScreen();
       case 2:
-        return AccountScreen();
+        // ToDo: Based on user change this view with AccountScreen
+        return AdminAccountScreen();
       case 3:
         return NotificationScreen();
     }
