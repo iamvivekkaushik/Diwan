@@ -1,5 +1,7 @@
 import 'package:diwan/config/config.dart';
 import 'package:diwan/route_generator.dart';
+import 'package:diwan/screens/admin/admin_account_screen.dart';
+import 'package:diwan/screens/admin/trends_screen.dart';
 import 'package:diwan/screens/create_diwan_screen.dart';
 import 'package:diwan/screens/create_user_screen.dart';
 import 'package:diwan/screens/discover_screen.dart';
@@ -40,7 +42,7 @@ class MyApp extends StatelessWidget {
         // Current Device locale is not supported, fallback to english
         return supportedLocales.first;
       },
-      home: WelcomePage(),
+      home: AdminAccountScreen(),
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
