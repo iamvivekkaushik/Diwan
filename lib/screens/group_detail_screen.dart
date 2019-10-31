@@ -4,6 +4,8 @@ import 'package:diwan/res/colors.dart';
 import 'package:diwan/res/dimen.dart';
 import 'package:diwan/res/style.dart';
 import 'package:diwan/screens/group_details/feed.dart';
+import 'package:diwan/screens/group_details/media_screen.dart';
+import 'package:diwan/screens/group_details/officials_screen.dart';
 import 'package:diwan/ui/app_pager.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +15,8 @@ class GroupDetailScreen extends StatefulWidget {
 }
 
 class _GroupDetailScreenState extends State<GroupDetailScreen> {
+  int currentPage = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +27,6 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
           SizedBox(
             height: Dimen.topMargin,
           ),
-
           Container(
             margin: EdgeInsets.symmetric(horizontal: 10),
             child: Row(
@@ -43,7 +46,6 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
                     },
                   ),
                 ),
-
                 Expanded(
                   child: Align(
                     alignment: Alignment.topRight,
@@ -52,7 +54,6 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
               ],
             ),
           ),
-
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,14 +71,16 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
                         style: boldTextHeading,
                       ),
                     ),
-
                     SizedBox(
                       height: 10,
                     ),
-
                     Container(
                       child: Text(
-                        "20,000,000" + " " + AppLocalization.of(context).translate('followers').toLowerCase(),
+                        "20,000,000" +
+                            " " +
+                            AppLocalization.of(context)
+                                .translate('followers')
+                                .toLowerCase(),
                         style: subHeadingStyle,
                       ),
                     )
@@ -86,11 +89,9 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
               ),
             ],
           ),
-
           SizedBox(
             height: 20,
           ),
-
           Container(
             height: 40,
             child: AppPager(
@@ -98,15 +99,28 @@ class _GroupDetailScreenState extends State<GroupDetailScreen> {
               fitWidth: true,
               pageChanged: (index) {
                 // Page Changed
+                setState(() {
+                  currentPage = index;
+                });
               },
             ),
           ),
-
-          Expanded(
-            child: GroupFeedScreen()
-          )
+          Expanded(child: _getCurrentPage(currentPage))
         ],
       ),
     );
+  }
+
+  Widget _getCurrentPage(int index) {
+    switch (index) {
+      case 0:
+        return GroupFeedScreen();
+      case 1:
+        return OfficialsScreen();
+      case 2:
+        return MediaScreen();
+      default:
+        return Container();
+    }
   }
 }

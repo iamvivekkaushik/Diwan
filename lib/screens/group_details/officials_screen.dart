@@ -1,56 +1,77 @@
 import 'package:diwan/helper/diwan_icons.dart';
 import 'package:diwan/models/post.dart';
+import 'package:diwan/models/story.dart';
 import 'package:diwan/res/colors.dart';
 import 'package:diwan/res/style.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class GroupFeedScreen extends StatefulWidget {
+class OfficialsScreen extends StatefulWidget {
   @override
-  _GroupFeedScreenState createState() => _GroupFeedScreenState();
+  _OfficialsScreenState createState() => _OfficialsScreenState();
 }
 
-class _GroupFeedScreenState extends State<GroupFeedScreen> {
-  List<String> topList = [
-    'images/temp/feedSlider2.png',
-    'images/temp/feedSlider2.png'
-  ];
-
+class _OfficialsScreenState extends State<OfficialsScreen> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        SizedBox(
-          height: 10,
-        ),
-        Container(
-          height: 120,
-          child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              shrinkWrap: true,
-              itemCount: topList.length,
-              itemBuilder: (context, index) {
-                return Container(
-                  child: Image.asset(
-                    topList[index],
-                    width: MediaQuery.of(context).size.width - 40,
-                  ),
-                );
-              }),
-        ),
-        Expanded(
-          child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: postList.length,
-              itemBuilder: (context, index) {
-                return Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                    child: _createPost(postList[index]));
-              }),
-        ),
-      ],
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            height: 110,
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: storyList.length,
+                itemBuilder: (context, index) {
+                  Story story = storyList[index];
+                  return Container(
+                    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          child: Image.asset(
+                            story.image,
+                            width: 50,
+                            height: 50,
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(vertical: 5),
+                          width: 50,
+                          child: Center(
+                            child: Text(
+                              story.username,
+                              style: inputLabelStyle,
+                              maxLines: 1,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  );
+                }),
+          ),
+          Expanded(
+            child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: postList.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                      margin:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                      child: _createPost(postList[index]));
+                }),
+          ),
+        ],
+      ),
     );
   }
 
@@ -65,7 +86,8 @@ class _GroupFeedScreenState extends State<GroupFeedScreen> {
           children: <Widget>[
             Container(
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30), color: Colors.blue),
+                shape: BoxShape.circle,
+              ),
               width: 40,
               height: 40,
               child: (post.image != null)

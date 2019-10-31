@@ -142,7 +142,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   InkWell(
                     onTap: () {
                       // ToDo: Forgot password screen
-                      Navigator.of(context).pushNamed("/homepage");
+                      Navigator.of(context).pushNamed("/groupDetail");
                     },
                     child: Text(
                       AppLocalization.of(context).translate('forgot_password'),

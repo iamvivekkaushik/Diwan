@@ -1,7 +1,6 @@
 import 'package:diwan/res/colors.dart';
 import 'package:flutter/material.dart';
 
-
 final TextStyle diwanLogoStyle = TextStyle(
     fontSize: 22,
     //ToDo: Change font to zinc rust
@@ -154,33 +153,27 @@ final TextStyle navbarInactiveTextStyle = TextStyle(
     fontSize: 11,
     fontFamily: 'Segoe',
     fontWeight: FontWeight.w400,
-    color: AppColors.textFieldHint
-);
+    color: AppColors.textFieldHint);
 
 final TextStyle navbarActiveTextStyle = TextStyle(
     fontSize: 11,
     fontFamily: 'Segoe',
     fontWeight: FontWeight.w400,
-    color: Colors.white
-);
-
+    color: Colors.white);
 
 // PagerStyle
 
 final TextStyle pagerTextInactiveStyle = TextStyle(
-  fontSize: 15,
-  fontFamily: 'Segoe',
-  fontWeight: FontWeight.w400,
-  color: AppColors.settingCategoryTitle
-);
+    fontSize: 15,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w400,
+    color: AppColors.settingCategoryTitle);
 
 final TextStyle pagerTextActiveStyle = TextStyle(
     fontSize: 15,
     fontFamily: 'Segoe',
     fontWeight: FontWeight.w400,
-    color: AppColors.buttonBackground
-);
-
+    color: AppColors.buttonBackground);
 
 // Announcement Style
 
@@ -188,8 +181,7 @@ final TextStyle announcementTextStyle = TextStyle(
     fontSize: 14,
     fontFamily: 'Segoe',
     fontWeight: FontWeight.w400,
-    color: AppColors.announcementColor
-);
+    color: AppColors.announcementColor);
 
 // Discover Screen Style
 
@@ -197,57 +189,53 @@ final TextStyle searchHintStyle = TextStyle(
     fontSize: 14,
     fontFamily: 'Segoe',
     fontWeight: FontWeight.w400,
-    color: AppColors.separator
-);
+    color: AppColors.separator);
 
 final TextStyle trendingTextStyle = TextStyle(
     fontSize: 13,
     fontFamily: 'Segoe',
     fontWeight: FontWeight.w700,
-    color: AppColors.separator
-);
+    color: AppColors.separator);
 
 final TextStyle trendingDateTextStyle = TextStyle(
     fontSize: 11,
     fontFamily: 'Segoe',
     fontWeight: FontWeight.w400,
-    color: AppColors.separator
-);
+    color: AppColors.separator);
 
 final TextStyle discoverListIndexStyle = TextStyle(
     fontSize: 40,
     fontFamily: 'Segoe',
     fontWeight: FontWeight.w700,
-    color: AppColors.discoverListNumber
-);
+    color: AppColors.discoverListNumber);
 
 final TextStyle discoverItemPathStyle = TextStyle(
     fontSize: 13,
     fontFamily: 'Segoe',
     fontWeight: FontWeight.w400,
-    color: AppColors.textFieldBorder
-);
+    color: AppColors.textFieldBorder);
 
 final TextStyle discoverItemHeadingStyle = TextStyle(
     fontSize: 14,
     fontFamily: 'Segoe',
     fontWeight: FontWeight.w400,
-    color: Colors.black
-);
+    color: Colors.black);
 
 // Notification screen style
 
-final TextStyle notificationBannerHeadingStyle = TextStyle(
-    fontSize: 15,
-    fontWeight: FontWeight.w400,
-    color: Colors.white
-);
+final TextStyle notificationBannerHeadingStyle =
+    TextStyle(fontSize: 15, fontWeight: FontWeight.w400, color: Colors.white);
 
-final TextStyle notificationBannerSubHeadingStyle = TextStyle(
-    fontSize: 13,
-    fontWeight: FontWeight.w400,
-    color: Colors.white
-);
+final TextStyle notificationBannerSubHeadingStyle =
+    TextStyle(fontSize: 13, fontWeight: FontWeight.w400, color: Colors.white);
 
 // Feed Post TextStyle
 
+final TextStyle feedItemUsernameStyle =
+    TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black);
+
+final TextStyle feedIconTextStyle = TextStyle(
+    fontSize: 12,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w400,
+    color: AppColors.separator);
