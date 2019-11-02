@@ -11,6 +11,12 @@ class PasswordSignupScreen extends StatefulWidget {
 }
 
 class _PasswordSignupScreenState extends State<PasswordSignupScreen> {
+  String password = "";
+  String confirmPassword = "";
+  bool hidePassword = true;
+  bool hideConfirmPass = true;
+  String _errorMessage = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,12 +104,30 @@ class _PasswordSignupScreenState extends State<PasswordSignupScreen> {
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 5),
                 child: TextField(
+                  obscureText: hidePassword,
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText:
                         AppLocalization.of(context).translate('enter_password'),
                     hintStyle: textFieldHintStyle,
+                    suffixIcon: IconButton(
+                      icon: Icon(hidePassword ? Icons.visibility_off : Icons.visibility, color: AppColors.textFieldHint,),
+                      onPressed: () {
+                        setState(() {
+                          setState(() {
+                            _errorMessage = "";
+                            hidePassword = !hidePassword;
+                          });
+                        });
+                      },
+                    ),
                   ),
+                  onChanged: (value) {
+                    setState(() {
+                      _errorMessage = "";
+                      password = value;
+                    });
+                  },
                   style: textFieldStyle,
                 ),
               ),
@@ -167,12 +191,30 @@ class _PasswordSignupScreenState extends State<PasswordSignupScreen> {
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 5),
                 child: TextField(
+                  obscureText: hideConfirmPass,
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText:
                         AppLocalization.of(context).translate('enter_password'),
                     hintStyle: textFieldHintStyle,
+                    suffixIcon: IconButton(
+                      icon: Icon(hideConfirmPass ? Icons.visibility_off : Icons.visibility, color: AppColors.textFieldHint,),
+                      onPressed: () {
+                        setState(() {
+                          setState(() {
+                            _errorMessage = "";
+                            hideConfirmPass = !hideConfirmPass;
+                          });
+                        });
+                      },
+                    ),
                   ),
+                  onChanged: (value) {
+                    setState(() {
+                      _errorMessage = "";
+                      confirmPassword = value;
+                    });
+                  },
                   style: textFieldStyle,
                 ),
               ),
@@ -181,7 +223,7 @@ class _PasswordSignupScreenState extends State<PasswordSignupScreen> {
               width: MediaQuery.of(context).size.width - 40,
               margin: EdgeInsets.symmetric(horizontal: 20),
               child: Text(
-                AppLocalization.of(context).translate('password_not_match'),
+                _errorMessage,
                 style: subHeadingStyle,
               ),
             ),
@@ -193,9 +235,7 @@ class _PasswordSignupScreenState extends State<PasswordSignupScreen> {
               width: MediaQuery.of(context).size.width - 40,
               margin: EdgeInsets.symmetric(horizontal: 20),
               child: RaisedButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed('/signup/name');
-                },
+                onPressed: () => _validatePassword(),
                 color: AppColors.buttonBackground,
                 shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(7),
@@ -210,5 +250,22 @@ class _PasswordSignupScreenState extends State<PasswordSignupScreen> {
         ),
       ),
     );
+  }
+
+  void _validatePassword() {
+    String tempMessage = "";
+    if(password.isEmpty) {
+      tempMessage = "Password can\'t be empty";
+    } else if (password != confirmPassword) {
+      tempMessage = AppLocalization.of(context).translate('password_not_match');
+    } else if (password.length < 8){
+      tempMessage = "Password does not match requirements";
+    } else {
+      Navigator.of(context).pushNamed('/signup/name', arguments: password);
+    }
+
+    setState(() {
+      _errorMessage = tempMessage;
+    });
   }
 }

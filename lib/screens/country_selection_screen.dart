@@ -1,5 +1,6 @@
 import 'package:diwan/config/config.dart';
 import 'package:diwan/helper/app_localization.dart';
+import 'package:diwan/helper/auth.dart';
 import 'package:diwan/helper/diwan_icons.dart';
 import 'package:diwan/res/colors.dart';
 import 'package:diwan/res/dimen.dart';
@@ -7,6 +8,11 @@ import 'package:diwan/res/style.dart';
 import 'package:flutter/material.dart';
 
 class CountrySelectionScreen extends StatefulWidget {
+  final String password, name;
+
+
+  CountrySelectionScreen(this.password, this.name);
+
   @override
   _CountrySelectionScreenState createState() => _CountrySelectionScreenState();
 }
@@ -123,9 +129,7 @@ class _CountrySelectionScreenState extends State<CountrySelectionScreen> {
                 width: MediaQuery.of(context).size.width - 40,
                 margin: EdgeInsets.symmetric(horizontal: 20),
                 child: RaisedButton(
-                  onPressed: () {
-                    Navigator.of(context).pushNamed('/signup/terms');
-                  },
+                  onPressed: () => _moveToNext(),
                   color: AppColors.buttonBackground,
                   shape: RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(7),
@@ -141,5 +145,13 @@ class _CountrySelectionScreenState extends State<CountrySelectionScreen> {
         ],
       ),
     );
+  }
+
+  void _moveToNext() {
+    authService.updateUserData(name: widget.name, country: dropdownValue);
+    authService.updatePassword(widget.password);
+    authService.updateProfile(name: widget.name);
+
+    Navigator.of(context).pushNamed('/signup/terms');
   }
 }

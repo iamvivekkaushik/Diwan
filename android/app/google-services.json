@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "374840540309",
+    "firebase_url": "https://diwan-fc868.firebaseio.com",
+    "project_id": "diwan-fc868",
+    "storage_bucket": "diwan-fc868.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:374840540309:android:340ee1a8dfd151df9c6f9c",
+        "android_client_info": {
+          "package_name": "tech.aayush.diwan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "374840540309-b9di1kn6smmsb214m7f5ndo2lvdufrl5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tech.aayush.diwan",
+            "certificate_hash": "8b492fc21b5c71b68abb67db7bd0e9a56baf1e9c"
+          }
+        },
+        {
+          "client_id": "374840540309-ghj4mn15b4fbabv7qairmjg2jnn5ova5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvkMe6HqmRD0ioVLYQwnw6e664smwL3gs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "374840540309-ghj4mn15b4fbabv7qairmjg2jnn5ova5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,8 +1,11 @@
 import 'package:diwan/helper/app_localization.dart';
+import 'package:diwan/helper/auth.dart';
 import 'package:diwan/helper/diwan_icons.dart';
+import 'package:diwan/models/Media.dart';
 import 'package:diwan/res/colors.dart';
 import 'package:diwan/res/dimen.dart';
 import 'package:diwan/res/style.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginPasswordScreen extends StatefulWidget {
@@ -15,6 +18,15 @@ class LoginPasswordScreen extends StatefulWidget {
 }
 
 class _LoginPasswordScreenState extends State<LoginPasswordScreen> {
+  String password = "";
+  String _errorMessage = "";
+  bool hidePassword = true;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,8 +56,7 @@ class _LoginPasswordScreenState extends State<LoginPasswordScreen> {
               margin: EdgeInsets.symmetric(horizontal: 20),
               width: MediaQuery.of(context).size.width,
               child: Text(
-                //ToDo: Change with user provided email
-                "user@email.com",
+                widget.email,
                 style: boldTextHeading,
               ),
             ),
@@ -90,16 +101,40 @@ class _LoginPasswordScreenState extends State<LoginPasswordScreen> {
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 5),
                 child: TextField(
+                  obscureText: hidePassword,
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText:
                         AppLocalization.of(context).translate('enter_password'),
                     hintStyle: textFieldHintStyle,
+                    suffixIcon: IconButton(
+                      icon: Icon(hidePassword ? Icons.visibility_off : Icons.visibility, color: AppColors.textFieldHint,),
+                      onPressed: () {
+                        setState(() {
+                          setState(() {
+                            _errorMessage = "";
+                            hidePassword = !hidePassword;
+                          });
+                        });
+                      },
+                    ),
                   ),
+                  onChanged: (value) {
+                    password = value;
+                  },
                   style: textFieldStyle,
                 ),
               ),
             ),
+            _errorMessage.isNotEmpty ?
+            Container(
+              width: MediaQuery.of(context).size.width - 40,
+              margin: EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                _errorMessage,
+                style: errorMessageTextStyle,
+              ),
+            ) : Container(),
             Container(
               width: MediaQuery.of(context).size.width - 40,
               margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
@@ -161,10 +196,7 @@ class _LoginPasswordScreenState extends State<LoginPasswordScreen> {
             Container(
               margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               child: RaisedButton(
-                onPressed: () {
-                  // ToDo: Check for login and go to home screen
-                  Navigator.of(context).pushNamed('/homepage');
-                },
+                onPressed: () => _validateAndLogin(),
                 color: AppColors.buttonBackground,
                 shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(7),
@@ -186,5 +218,27 @@ class _LoginPasswordScreenState extends State<LoginPasswordScreen> {
         ),
       ),
     );
+  }
+
+  void _validateAndLogin() {
+    if (password.isEmpty) {
+      setState(() {
+        _errorMessage = "Password can\'t be empty";
+      });
+    } else if (password.length < 8) {
+      setState(() {
+        _errorMessage = "Password must be 8 characters long";
+      });
+    } else {
+      authService.loginWithEmailAndPassword(widget.email, password).then((onValue) {
+        // Login success Go to homepage
+        Navigator.of(context).pushNamedAndRemoveUntil('/homepage', (Route<dynamic> route) => false);
+      }).catchError((onError) {
+        print(onError);
+        setState(() {
+          _errorMessage = "Either user does not exist or wrong password";
+        });
+      });
+    }
   }
 }

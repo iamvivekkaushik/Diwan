@@ -25,7 +25,7 @@ import 'package:flutter/material.dart';
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     // Getting arguments passed in while calling Navigator.pushNamed
-    final args = settings.arguments;
+    final dynamic args = settings.arguments;
     switch (settings.name) {
       case '/splashScreen':
         return MaterialPageRoute(builder: (_) => SplashPage());
@@ -41,9 +41,13 @@ class RouteGenerator {
       case '/signup/password':
         return MaterialPageRoute(builder: (_) => PasswordSignupScreen());
       case '/signup/name':
-        return MaterialPageRoute(builder: (_) => SignupNameScreen());
+        return MaterialPageRoute(builder: (_) => SignupNameScreen(
+          args
+        ));
       case '/signup/country':
-        return MaterialPageRoute(builder: (_) => CountrySelectionScreen());
+        return MaterialPageRoute(builder: (_) => CountrySelectionScreen(
+          args['password'], args['name']
+        ));
       case '/signup/terms':
         return MaterialPageRoute(builder: (_) => SignupTermsScreen());
       case '/signup/verification':

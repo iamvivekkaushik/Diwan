@@ -1,6 +1,8 @@
 import 'package:diwan/config/config.dart';
 import 'package:diwan/route_generator.dart';
+import 'package:diwan/screens/homepage.dart';
 import 'package:diwan/screens/welcome_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -34,7 +36,7 @@ class MyApp extends StatelessWidget {
         // Current Device locale is not supported, fallback to english
         return supportedLocales.first;
       },
-      home: WelcomePage(),
+      home: FirebaseAuth.instance.currentUser() != null ? HomepageScreen(0) : WelcomePage(),
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }

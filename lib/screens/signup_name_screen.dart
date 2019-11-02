@@ -6,11 +6,19 @@ import 'package:diwan/res/style.dart';
 import 'package:flutter/material.dart';
 
 class SignupNameScreen extends StatefulWidget {
+  final String password;
+
+  SignupNameScreen(this.password);
+
   @override
   _SignupNameScreenState createState() => _SignupNameScreenState();
 }
 
 class _SignupNameScreenState extends State<SignupNameScreen> {
+  String firstName = "";
+  String lastName = "";
+  String _errorMessage = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,6 +104,12 @@ class _SignupNameScreenState extends State<SignupNameScreen> {
                         .translate('enter_first_name'),
                     hintStyle: textFieldHintStyle,
                   ),
+                  onChanged: (value) {
+                    setState(() {
+                      _errorMessage = "";
+                      firstName = value;
+                    });
+                  },
                   style: textFieldStyle,
                 ),
               ),
@@ -138,8 +152,22 @@ class _SignupNameScreenState extends State<SignupNameScreen> {
                         .translate('enter_last_name'),
                     hintStyle: textFieldHintStyle,
                   ),
+                  onChanged: (value) {
+                    setState(() {
+                      _errorMessage = "";
+                      lastName = value;
+                    });
+                  },
                   style: textFieldStyle,
                 ),
+              ),
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width - 40,
+              margin: EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                _errorMessage,
+                style: subHeadingStyle,
               ),
             ),
             SizedBox(
@@ -150,9 +178,7 @@ class _SignupNameScreenState extends State<SignupNameScreen> {
               width: MediaQuery.of(context).size.width - 40,
               margin: EdgeInsets.symmetric(horizontal: 20),
               child: RaisedButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed('/signup/country');
-                },
+                onPressed: () => _validateAndNext(),
                 color: AppColors.buttonBackground,
                 shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(7),
@@ -167,5 +193,18 @@ class _SignupNameScreenState extends State<SignupNameScreen> {
         ),
       ),
     );
+  }
+
+  void _validateAndNext() {
+    if (firstName.isEmpty || lastName.isEmpty) {
+      setState(() {
+        _errorMessage = "Can't leave empty";
+      });
+    } else {
+      Navigator.of(context).pushNamed('/signup/country', arguments: {
+        "password": widget.password,
+        "name": firstName + " " + lastName
+      });
+    }
   }
 }

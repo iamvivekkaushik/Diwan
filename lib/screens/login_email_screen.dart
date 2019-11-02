@@ -1,5 +1,6 @@
 import 'package:diwan/helper/app_localization.dart';
 import 'package:diwan/helper/diwan_icons.dart';
+import 'package:diwan/models/Media.dart';
 import 'package:diwan/res/colors.dart';
 import 'package:diwan/res/dimen.dart';
 import 'package:diwan/res/style.dart';
@@ -11,6 +12,9 @@ class EmailLoginScreen extends StatefulWidget {
 }
 
 class _EmailLoginScreenState extends State<EmailLoginScreen> {
+  String email;
+  String validationMessage = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,15 +79,29 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                   border: new Border.all(color: AppColors.textFieldBorder)),
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 5),
-                child: TextField(
+                child: TextFormField(
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText:
                         AppLocalization.of(context).translate('enter_email'),
                     hintStyle: textFieldHintStyle,
                   ),
+                  onChanged: (value) {
+                    validationMessage = "";
+                    setState(() {
+                      email = value;
+                    });
+                  },
                   style: textFieldStyle,
                 ),
+              ),
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width - 40,
+              margin: EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                validationMessage,
+                style: errorMessageTextStyle,
               ),
             ),
             SizedBox(
@@ -107,9 +125,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
             Container(
               margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               child: RaisedButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed('/login/password');
-                },
+                onPressed: () => validateAndNext(),
                 color: AppColors.buttonBackground,
                 shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(7),
@@ -131,5 +147,19 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
         ),
       ),
     );
+  }
+
+  void validateAndNext() {
+    if (email == null || email.isEmpty) {
+      setState(() {
+        validationMessage = "Email can\'t be empty";
+      });
+    } else if (!RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email)) {
+      setState(() {
+        validationMessage = "Email is invalid";
+      });
+    } else {
+      Navigator.of(context).pushNamed('/login/password', arguments: email);
+    }
   }
 }

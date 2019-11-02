@@ -239,3 +239,12 @@ final TextStyle feedIconTextStyle = TextStyle(
     fontFamily: 'Segoe',
     fontWeight: FontWeight.w400,
     color: AppColors.separator);
+
+
+// Error Message TextStyle
+final TextStyle errorMessageTextStyle = TextStyle(
+    fontSize: 13,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w400,
+    color: Colors.red
+);
