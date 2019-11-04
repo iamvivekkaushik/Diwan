@@ -248,3 +248,19 @@ final TextStyle errorMessageTextStyle = TextStyle(
     fontWeight: FontWeight.w400,
     color: Colors.red
 );
+
+// File Attachment TextStyle
+
+final TextStyle attachmentYellowTextStyle = TextStyle(
+    fontSize: 14,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w400,
+    color: AppColors.buttonBackground
+);
+
+final TextStyle attachmentTextStyle = TextStyle(
+    fontSize: 14,
+    fontFamily: 'Segoe',
+    fontWeight: FontWeight.w400,
+    color: Colors.black
+);

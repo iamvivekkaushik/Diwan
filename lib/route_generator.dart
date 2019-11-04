@@ -2,6 +2,8 @@ import 'package:diwan/screens/account_screen.dart';
 import 'package:diwan/screens/announcement_screen.dart';
 import 'package:diwan/screens/connect_account_screen.dart';
 import 'package:diwan/screens/country_selection_screen.dart';
+import 'package:diwan/screens/create_diwan_screen.dart';
+import 'package:diwan/screens/create_user_screen.dart';
 import 'package:diwan/screens/customer_care_screen.dart';
 import 'package:diwan/screens/diwan_screen.dart';
 import 'package:diwan/screens/email_verification_screen.dart';
@@ -84,6 +86,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => SupportScreen());
       case '/groupDetail':
         return MaterialPageRoute(builder: (_) => GroupDetailScreen());
+      case '/admin/create_user':
+        return MaterialPageRoute(builder: (_) => CreateUserScreen());
+      case '/admin/create_diwan':
+        return MaterialPageRoute(builder: (_) => CreateDiwanScreen());
       default:
         // If there is no such named route in the switch statement, e.g. /third
         return _errorRoute();

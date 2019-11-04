@@ -25,7 +25,6 @@ class _SupportScreenState extends State<SupportScreen> {
             SizedBox(
               height: Dimen.topMargin,
             ),
-
             Container(
               height: 50,
               child: Row(
@@ -49,7 +48,8 @@ class _SupportScreenState extends State<SupportScreen> {
                   Expanded(
                     child: Center(
                       child: Text(
-                        AppLocalization.of(context).translate('one_one_support'),
+                        AppLocalization.of(context)
+                            .translate('one_one_support'),
                         style: announcementAppBarStyle,
                       ),
                     ),
@@ -60,7 +60,6 @@ class _SupportScreenState extends State<SupportScreen> {
                 ],
               ),
             ),
-
             Container(
               width: MediaQuery.of(context).size.width - 40,
               margin: EdgeInsets.symmetric(horizontal: 20),
@@ -71,34 +70,33 @@ class _SupportScreenState extends State<SupportScreen> {
                   Text(
                     AppLocalization.of(context).translate('diwan'),
                     style: TextStyle(
-                      color: AppColors.buttonBackground,
-                      fontFamily: 'Segoe',
-                      fontWeight: FontWeight.w400,
-                      fontSize: 30
-                    ),
+                        color: AppColors.buttonBackground,
+                        fontFamily: 'Segoe',
+                        fontWeight: FontWeight.w400,
+                        fontSize: 30),
                   ),
-
                   Expanded(
                     child: Align(
                       alignment: Alignment.centerRight,
                       child: Container(
-                        margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                          margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
                           child: InkWell(
-                            onTap: () {},
-                              child: Image.asset('images/drag.png', width: 20,))),
+                              onTap: () {},
+                              child: Image.asset(
+                                'images/drag.png',
+                                width: 20,
+                              ))),
                     ),
                   )
                 ],
               ),
             ),
-
             Container(
               width: MediaQuery.of(context).size.width,
               child: Divider(
                 color: AppColors.separator,
               ),
             ),
-
             Container(
               width: MediaQuery.of(context).size.width - 40,
               margin: EdgeInsets.symmetric(horizontal: 20),
@@ -107,7 +105,6 @@ class _SupportScreenState extends State<SupportScreen> {
                 style: subHeadingStyle,
               ),
             ),
-
             Container(
               width: MediaQuery.of(context).size.width - 20,
               height: 40,
@@ -119,8 +116,7 @@ class _SupportScreenState extends State<SupportScreen> {
               child: TextField(
                 decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText:
-                        "Search",
+                    hintText: "Search",
                     hintStyle: searchHintStyle,
                     prefixIcon: Icon(
                       Icons.search,
@@ -128,7 +124,6 @@ class _SupportScreenState extends State<SupportScreen> {
                     )),
               ),
             ),
-
             Container(
               width: MediaQuery.of(context).size.width - 40,
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
@@ -137,7 +132,6 @@ class _SupportScreenState extends State<SupportScreen> {
                 style: textHeadingStyle2,
               ),
             ),
-
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Text(
@@ -145,44 +139,34 @@ class _SupportScreenState extends State<SupportScreen> {
                 style: inputLabelStyle,
               ),
             ),
-
             Container(
               width: MediaQuery.of(context).size.width - 40,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(3),
                   border: new Border.all(color: AppColors.textFieldBorder)),
               margin: EdgeInsets.symmetric(horizontal: 20),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 3),
-                child:  DropdownButton<String>(
+              padding: EdgeInsets.symmetric(horizontal: 8),
+              child: DropdownButton<String>(
                   value: dropdownValue,
-                  isExpanded: true,
-                  icon: Image.asset(
-                    "images/dropdown_icon.png",
-                    width: 11,
-                    height: 6,
-                  ),
+                  iconEnabledColor: AppColors.separator,
                   style: TextStyle(fontFamily: 'Segoe', color: Colors.black),
+                  isExpanded: true,
                   underline: Container(),
-                  onChanged: (String newValue) {
-                    setState(() {
-                      dropdownValue = newValue;
+                  items: inquiryTypeList.map((String val) {
+                    return new DropdownMenuItem<String>(
+                      value: val,
+                      child: new Text(val),
+                    );
+                  }).toList(),
+                  onChanged: (newVal) {
+                    this.setState(() {
+                      dropdownValue = newVal;
                     });
-                  },
-                  // ToDo: fix this
-//                items:
-//                ["Account Inquiry"].map<DropdownMenuItem<String>>((String value) {
-//                  return DropdownMenuItem<String>(
-//                    value: value,
-//                    child: Text(value),
-//                  );
-//                }).toList(),
-                ),
-              ),
+                  }),
             ),
-
-            SizedBox(height: 10,),
-
+            SizedBox(
+              height: 10,
+            ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Row(
@@ -202,8 +186,6 @@ class _SupportScreenState extends State<SupportScreen> {
                 ],
               ),
             ),
-
-
             Container(
               width: MediaQuery.of(context).size.width - 40,
               decoration: BoxDecoration(
@@ -218,10 +200,9 @@ class _SupportScreenState extends State<SupportScreen> {
                 style: textFieldStyle,
               ),
             ),
-
-
-            SizedBox(height: 10,),
-
+            SizedBox(
+              height: 10,
+            ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Row(
@@ -241,8 +222,6 @@ class _SupportScreenState extends State<SupportScreen> {
                 ],
               ),
             ),
-
-
             Container(
               width: MediaQuery.of(context).size.width - 40,
               decoration: BoxDecoration(
@@ -257,10 +236,9 @@ class _SupportScreenState extends State<SupportScreen> {
                 style: textFieldStyle,
               ),
             ),
-
-
-            SizedBox(height: 10,),
-
+            SizedBox(
+              height: 10,
+            ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Row(
@@ -280,8 +258,6 @@ class _SupportScreenState extends State<SupportScreen> {
                 ],
               ),
             ),
-
-
             Container(
               width: MediaQuery.of(context).size.width - 40,
               decoration: BoxDecoration(
@@ -296,15 +272,16 @@ class _SupportScreenState extends State<SupportScreen> {
                 style: textFieldStyle,
               ),
             ),
-
-            SizedBox(height: 10,),
-
+            SizedBox(
+              height: 10,
+            ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Row(
                 children: <Widget>[
                   Text(
-                    AppLocalization.of(context).translate('diwan_account_email'),
+                    AppLocalization.of(context)
+                        .translate('diwan_account_email'),
                     style: inputLabelStyle,
                   ),
                   Text(
@@ -318,8 +295,6 @@ class _SupportScreenState extends State<SupportScreen> {
                 ],
               ),
             ),
-
-
             Container(
               width: MediaQuery.of(context).size.width - 40,
               decoration: BoxDecoration(
@@ -334,10 +309,9 @@ class _SupportScreenState extends State<SupportScreen> {
                 style: textFieldStyle,
               ),
             ),
-
-
-            SizedBox(height: 10,),
-
+            SizedBox(
+              height: 10,
+            ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Row(
@@ -357,8 +331,6 @@ class _SupportScreenState extends State<SupportScreen> {
                 ],
               ),
             ),
-
-
             Container(
               width: MediaQuery.of(context).size.width - 40,
               decoration: BoxDecoration(
@@ -375,9 +347,9 @@ class _SupportScreenState extends State<SupportScreen> {
                 style: textFieldStyle,
               ),
             ),
-
-            SizedBox(height: 10,),
-
+            SizedBox(
+              height: 10,
+            ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Text(
@@ -385,8 +357,6 @@ class _SupportScreenState extends State<SupportScreen> {
                 style: inputLabelStyle,
               ),
             ),
-
-
             Container(
               width: MediaQuery.of(context).size.width - 40,
               decoration: BoxDecoration(
@@ -394,24 +364,43 @@ class _SupportScreenState extends State<SupportScreen> {
                   border: new Border.all(color: AppColors.textFieldBorder)),
               margin: EdgeInsets.symmetric(horizontal: 20),
               padding: EdgeInsets.symmetric(horizontal: 5),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text("Add files here")
-                ],
-              )
+              child: InkWell(
+                onTap: () {},
+                child: Container(
+                  padding: EdgeInsets.all(16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Image.asset(
+                        'images/attachment.png',
+                        width: 18,
+                        height: 18,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        AppLocalization.of(context).translate("add_files") +
+                            " ",
+                        style: attachmentYellowTextStyle,
+                      ),
+                      Text(
+                        AppLocalization.of(context).translate("or_drop_files"),
+                        style: attachmentTextStyle,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
-
             SizedBox(
               height: 20,
             ),
-
             Container(
               margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               child: RaisedButton(
-                onPressed: () {
-                },
+                onPressed: () {},
                 color: AppColors.buttonBackground,
                 shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(7),

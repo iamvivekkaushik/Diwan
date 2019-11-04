@@ -36,8 +36,12 @@ class MyApp extends StatelessWidget {
         // Current Device locale is not supported, fallback to english
         return supportedLocales.first;
       },
-      home: FirebaseAuth.instance.currentUser() != null ? HomepageScreen(0) : WelcomePage(),
+      home: WelcomePage(),
       onGenerateRoute: RouteGenerator.generateRoute,
     );
+  }
+
+  Widget _getHomeScreen() {
+    return FirebaseAuth.instance.currentUser() != null ? HomepageScreen(0) : WelcomePage();
   }
 }

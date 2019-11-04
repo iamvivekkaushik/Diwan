@@ -15,6 +15,13 @@ class _AdminUserScreenState extends State<AdminUserScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: AppColors.buttonBackground,
+        child: Image.asset('images/fab_add_button.png', width: 25, height: 25,),
+        onPressed: () {
+          Navigator.of(context).pushNamed('/admin/create_user');
+        },
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,

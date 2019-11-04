@@ -11,6 +11,9 @@ class CreateDiwanScreen extends StatefulWidget {
 }
 
 class _CreateDiwanScreenState extends State<CreateDiwanScreen> {
+  String selectedOfficial = "Vivek Kumar";
+  List<String> officialsList = ['Vivek Kumar', 'Harsh Kumar'];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +25,6 @@ class _CreateDiwanScreenState extends State<CreateDiwanScreen> {
             SizedBox(
               height: Dimen.topMargin,
             ),
-
             Container(
               height: 50,
               child: Row(
@@ -57,7 +59,6 @@ class _CreateDiwanScreenState extends State<CreateDiwanScreen> {
                 ],
               ),
             ),
-
             Container(
               width: MediaQuery.of(context).size.width - 40,
               margin: EdgeInsets.symmetric(horizontal: 20),
@@ -71,10 +72,8 @@ class _CreateDiwanScreenState extends State<CreateDiwanScreen> {
                         color: AppColors.buttonBackground,
                         fontFamily: 'Segoe',
                         fontWeight: FontWeight.w400,
-                        fontSize: 30
-                    ),
+                        fontSize: 30),
                   ),
-
                   Expanded(
                     child: Align(
                       alignment: Alignment.centerRight,
@@ -82,20 +81,21 @@ class _CreateDiwanScreenState extends State<CreateDiwanScreen> {
                           margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
                           child: InkWell(
                               onTap: () {},
-                              child: Image.asset('images/drag.png', width: 20,))),
+                              child: Image.asset(
+                                'images/drag.png',
+                                width: 20,
+                              ))),
                     ),
                   )
                 ],
               ),
             ),
-
             Container(
               width: MediaQuery.of(context).size.width,
               child: Divider(
                 color: AppColors.separator,
               ),
             ),
-
             Container(
               width: MediaQuery.of(context).size.width - 40,
               margin: EdgeInsets.symmetric(horizontal: 20),
@@ -104,7 +104,6 @@ class _CreateDiwanScreenState extends State<CreateDiwanScreen> {
                 style: subHeadingStyle,
               ),
             ),
-
             Container(
               width: MediaQuery.of(context).size.width - 20,
               height: 40,
@@ -116,8 +115,7 @@ class _CreateDiwanScreenState extends State<CreateDiwanScreen> {
               child: TextField(
                 decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText:
-                    "Search",
+                    hintText: "Search",
                     hintStyle: searchHintStyle,
                     prefixIcon: Icon(
                       Icons.search,
@@ -125,7 +123,6 @@ class _CreateDiwanScreenState extends State<CreateDiwanScreen> {
                     )),
               ),
             ),
-
             Container(
               width: MediaQuery.of(context).size.width - 40,
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
@@ -134,7 +131,6 @@ class _CreateDiwanScreenState extends State<CreateDiwanScreen> {
                 style: textHeadingStyle2,
               ),
             ),
-
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Text(
@@ -142,7 +138,6 @@ class _CreateDiwanScreenState extends State<CreateDiwanScreen> {
                 style: inputLabelStyle,
               ),
             ),
-
             Container(
               width: MediaQuery.of(context).size.width - 40,
               decoration: BoxDecoration(
@@ -157,9 +152,9 @@ class _CreateDiwanScreenState extends State<CreateDiwanScreen> {
                 style: textFieldStyle,
               ),
             ),
-
-            SizedBox(height: 10,),
-
+            SizedBox(
+              height: 10,
+            ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Row(
@@ -179,8 +174,6 @@ class _CreateDiwanScreenState extends State<CreateDiwanScreen> {
                 ],
               ),
             ),
-
-
             Container(
               width: MediaQuery.of(context).size.width - 40,
               decoration: BoxDecoration(
@@ -188,16 +181,27 @@ class _CreateDiwanScreenState extends State<CreateDiwanScreen> {
                   border: new Border.all(color: AppColors.textFieldBorder)),
               margin: EdgeInsets.symmetric(horizontal: 20),
               padding: EdgeInsets.symmetric(horizontal: 5),
-              child: TextField(
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                ),
-                style: textFieldStyle,
-              ),
+              child: DropdownButton<String>(
+                  value: selectedOfficial,
+                  iconEnabledColor: AppColors.separator,
+                  style: TextStyle(fontFamily: 'Segoe', color: Colors.black),
+                  isExpanded: true,
+                  underline: Container(),
+                  items: officialsList.map((String val) {
+                    return new DropdownMenuItem<String>(
+                      value: val,
+                      child: new Text(val),
+                    );
+                  }).toList(),
+                  onChanged: (newVal) {
+                    this.setState(() {
+                      selectedOfficial = newVal;
+                    });
+                  }),
             ),
-
-            SizedBox(height: 10,),
-
+            SizedBox(
+              height: 10,
+            ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Text(
@@ -205,8 +209,6 @@ class _CreateDiwanScreenState extends State<CreateDiwanScreen> {
                 style: inputLabelStyle,
               ),
             ),
-
-
             Container(
               width: MediaQuery.of(context).size.width - 40,
               decoration: BoxDecoration(
@@ -214,23 +216,43 @@ class _CreateDiwanScreenState extends State<CreateDiwanScreen> {
                   border: new Border.all(color: AppColors.textFieldBorder)),
               margin: EdgeInsets.symmetric(horizontal: 20),
               padding: EdgeInsets.symmetric(horizontal: 5),
-              child: TextField(
-                decoration: InputDecoration(
-                  border: InputBorder.none,
+              child: InkWell(
+                onTap: () {},
+                child: Container(
+                  padding: EdgeInsets.all(16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Image.asset(
+                        'images/attachment.png',
+                        width: 18,
+                        height: 18,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        AppLocalization.of(context).translate("add_files") +
+                            " ",
+                        style: attachmentYellowTextStyle,
+                      ),
+                      Text(
+                        AppLocalization.of(context).translate("or_drop_files"),
+                        style: attachmentTextStyle,
+                      ),
+                    ],
+                  ),
                 ),
-                style: textFieldStyle,
               ),
             ),
-
             SizedBox(
               height: 70,
             ),
-
             Container(
               margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               child: RaisedButton(
-                onPressed: () {
-                },
+                onPressed: () {},
                 color: AppColors.buttonBackground,
                 shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(7),

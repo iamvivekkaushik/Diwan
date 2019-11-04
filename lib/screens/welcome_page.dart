@@ -109,7 +109,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   icon: Image.asset("images/twitter.png"),
                   onPressed: () {
                     // ToDo: Implement Twitter login
-                    Navigator.of(context).pushNamed('/signup/password');
+                    Navigator.of(context).pushNamed('/homepage');
                   },
                 ),
                 SizedBox(
