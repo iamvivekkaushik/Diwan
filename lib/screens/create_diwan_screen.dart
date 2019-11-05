@@ -1,9 +1,11 @@
 import 'package:diwan/helper/app_localization.dart';
 import 'package:diwan/helper/diwan_icons.dart';
+import 'package:diwan/models/diwan.dart';
 import 'package:diwan/res/colors.dart';
 import 'package:diwan/res/dimen.dart';
 import 'package:diwan/res/style.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class CreateDiwanScreen extends StatefulWidget {
   @override
@@ -11,8 +13,10 @@ class CreateDiwanScreen extends StatefulWidget {
 }
 
 class _CreateDiwanScreenState extends State<CreateDiwanScreen> {
+  String name = "";
   String selectedOfficial = "Vivek Kumar";
   List<String> officialsList = ['Vivek Kumar', 'Harsh Kumar'];
+  var _image;
 
   @override
   Widget build(BuildContext context) {
@@ -150,6 +154,11 @@ class _CreateDiwanScreenState extends State<CreateDiwanScreen> {
                   border: InputBorder.none,
                 ),
                 style: textFieldStyle,
+                onChanged: (value) {
+                  setState(() {
+                    name = value;
+                  });
+                },
               ),
             ),
             SizedBox(
@@ -217,7 +226,9 @@ class _CreateDiwanScreenState extends State<CreateDiwanScreen> {
               margin: EdgeInsets.symmetric(horizontal: 20),
               padding: EdgeInsets.symmetric(horizontal: 5),
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  getImage();
+                },
                 child: Container(
                   padding: EdgeInsets.all(16),
                   child: Row(
@@ -252,7 +263,7 @@ class _CreateDiwanScreenState extends State<CreateDiwanScreen> {
             Container(
               margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               child: RaisedButton(
-                onPressed: () {},
+                onPressed: () => _createDiwan(),
                 color: AppColors.buttonBackground,
                 shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(7),
@@ -274,5 +285,24 @@ class _CreateDiwanScreenState extends State<CreateDiwanScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> getImage() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      _image = image;
+    });
+  }
+
+  void _createDiwan() {
+    print('inside Create Diwan');
+    if (name.isEmpty || _image == null || selectedOfficial.isEmpty) {
+      print("Fill All the details");
+      return;
+    }
+
+    Diwan.createDiwan(
+        Diwan(name: name, image: _image, officials: [], followers: []));
   }
 }
