@@ -1,3 +1,4 @@
+import 'package:diwan/helper/auth.dart';
 import 'package:diwan/res/dimen.dart';
 import 'package:diwan/res/style.dart';
 import 'package:diwan/screens/admin/admin_diwan_screen.dart';
@@ -44,7 +45,7 @@ class _AdminAccountScreenState extends State<AdminAccountScreen> {
             margin: EdgeInsets.symmetric(horizontal: 20),
             width: MediaQuery.of(context).size.width,
             child: Text(
-              "Admin",
+              AuthService.instance.currentUser.name,
               style: boldTextHeading,
             ),
           ),
@@ -52,7 +53,7 @@ class _AdminAccountScreenState extends State<AdminAccountScreen> {
             margin: EdgeInsets.symmetric(horizontal: 20),
             width: MediaQuery.of(context).size.width,
             child: Text(
-              "admin@example.com",
+              AuthService.instance.currentUser.email,
               style: subHeadingStyle,
             ),
           ),

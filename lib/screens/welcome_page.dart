@@ -108,6 +108,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 IconButton(
                   icon: Image.asset("images/twitter.png"),
                   onPressed: () {
+                    print(AuthService.instance.isLoggedIn());
                     // ToDo: Implement Twitter login
                     Navigator.of(context).pushNamed('/homepage');
                   },
@@ -118,6 +119,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 IconButton(
                   icon: Image.asset("images/google.png"),
                   onPressed: () {
+                    AuthService authService = AuthService.instance;
                     authService.googleSignIn().then((firebaseUser) {
                       Navigator.of(context).pushNamed('/signup/password');
                     }).catchError((onError) {
@@ -145,6 +147,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   InkWell(
                     onTap: () {
                       // ToDo: Forgot password screen
+                      AuthService authService = AuthService.instance;
                       authService.signOut();
 //                    Navigator.of(context).pushNamed("/groupDetail");
                     },

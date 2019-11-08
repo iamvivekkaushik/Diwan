@@ -230,6 +230,7 @@ class _LoginPasswordScreenState extends State<LoginPasswordScreen> {
         _errorMessage = "Password must be 8 characters long";
       });
     } else {
+      AuthService authService = AuthService.instance;
       authService.loginWithEmailAndPassword(widget.email, password).then((onValue) {
         // Login success Go to homepage
         Navigator.of(context).pushNamedAndRemoveUntil('/homepage', (Route<dynamic> route) => false);

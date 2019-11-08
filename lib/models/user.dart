@@ -1,17 +1,35 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class User {
+  String id;
   String name;
+  String email;
   String image;
+  String country;
+  bool isAdmin;
   DateTime createdAt;
 
-  User(this.name, this.image, this.createdAt);
+
+  User({this.id, this.name, this.email, this.image, this.country, this.isAdmin,
+      this.createdAt});
+
+  User.fromDocument(DocumentSnapshot document) {
+    id = document.data['uid'];
+    name = document.data['displayName'];
+    email = document.data['email'];
+    image = document.data['photoURL'];
+    country = document.data['country'];
+    isAdmin = document.data['isAdmin'];
+    createdAt = document.data['lastSeen'].toDate();
+  }
 }
 
 List<User> userList = [
-  User("Sarah", "images/temp/person_1.png", DateTime.now()),
-  User("John", "images/temp/person_2.png", DateTime.now()),
+  User(name: "Sarah", image: "images/temp/person_1.png", createdAt: DateTime.now()),
+  User(name: "John", image: "images/temp/person_2.png", createdAt: DateTime.now()),
 ];
 
 List<User> diwanList = [
-  User("Super Junior", "images/temp/person_3.png", DateTime.now()),
-  User("K Food", "images/temp/person_4.png", DateTime.now()),
+  User(name: "Super Junior", image: "images/temp/person_3.png", createdAt: DateTime.now()),
+  User(name: "K Food", image: "images/temp/person_4.png", createdAt: DateTime.now()),
 ];

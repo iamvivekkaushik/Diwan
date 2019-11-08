@@ -89,7 +89,7 @@ class RouteGenerator {
       case '/admin/create_user':
         return MaterialPageRoute(builder: (_) => CreateUserScreen());
       case '/admin/create_diwan':
-        return MaterialPageRoute(builder: (_) => CreateDiwanScreen());
+        return MaterialPageRoute(builder: (_) => CreateDiwanScreen(args,));
       default:
         // If there is no such named route in the switch statement, e.g. /third
         return _errorRoute();

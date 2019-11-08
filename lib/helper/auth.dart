@@ -1,17 +1,39 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:diwan/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
+  static final AuthService instance = AuthService._();
+
   // Dependencies
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final Firestore _db = Firestore.instance;
+  FirebaseUser _firebaseUser;
+  User currentUser;
 
-  // Shared State for Widgets
-//  Observable<FirebaseUser> user; // firebase user
-//  Observable<Map<String, dynamic>> profile; // custom user data in Firestore
-//  PublishSubject loading = PublishSubject();
+  AuthService._() {
+    _auth.currentUser().then((user) {
+      _firebaseUser = user;
+      fetchUserData();
+    });
+  }
+
+  Future<void> fetchUserData() async {
+    DocumentReference ref = _db.collection('users').document(_firebaseUser.uid);
+    DocumentSnapshot documentSnapshot = await ref.get();
+
+    currentUser = User.fromDocument(documentSnapshot);
+  }
+
+  bool isLoggedIn() {
+    if(_firebaseUser == null) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 
   Future<FirebaseUser> loginWithEmailAndPassword(
       String email, String password) async {
@@ -41,8 +63,7 @@ class AuthService {
   }
 
   void updateUserData({String name, String photoURL, bool isAdmin, String country}) async {
-    FirebaseUser user = await _auth.currentUser();
-    DocumentReference ref = _db.collection('users').document(user.uid);
+    DocumentReference ref = _db.collection('users').document(_firebaseUser.uid);
 
     ref.get().then((docSnapshot) {
       if(docSnapshot.exists) {
@@ -67,11 +88,11 @@ class AuthService {
       } else {
         // Document does not exist
         ref.setData({
-          'uid': user.uid,
-          'email': user.email,
-          'photoUrl': user.photoUrl,
+          'uid': _firebaseUser.uid,
+          'email': _firebaseUser.email,
+          'photoUrl': _firebaseUser.photoUrl,
           'isAdmin': false,
-          'displayName': user.displayName,
+          'displayName': _firebaseUser.displayName,
           'lastSeen': DateTime.now()
         }, merge: true);
       }
@@ -98,5 +119,3 @@ class AuthService {
     _auth.signOut();
   }
 }
-
-final AuthService authService = AuthService();

@@ -1,12 +1,11 @@
+import 'package:diwan/helper/auth.dart';
 import 'package:diwan/helper/diwan_icons.dart';
 import 'package:diwan/res/colors.dart';
-import 'package:diwan/res/style.dart';
 import 'package:diwan/screens/account_screen.dart';
 import 'package:diwan/screens/admin/admin_account_screen.dart';
 import 'package:diwan/screens/discover_screen.dart';
 import 'package:diwan/screens/diwan_screen.dart';
 import 'package:diwan/screens/notification_screen.dart';
-import 'package:diwan/screens/notification_status_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_bottom_navigation_bar/gradient_bottom_navigation_bar.dart';
 
@@ -24,7 +23,6 @@ class _HomepageScreenState extends State<HomepageScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     _selectedIndex = 0;
     super.initState();
   }
@@ -66,7 +64,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
         return DiscoverScreen();
       case 2:
         // ToDo: Based on user change this view with AccountScreen
-        return AdminAccountScreen();
+        return AuthService.instance.currentUser.isAdmin ? AdminAccountScreen() : AccountScreen();
       case 3:
         return NotificationScreen();
     }

@@ -148,6 +148,7 @@ class _CountrySelectionScreenState extends State<CountrySelectionScreen> {
   }
 
   void _moveToNext() {
+    AuthService authService = AuthService.instance;
     authService.updateUserData(name: widget.name, country: dropdownValue);
     authService.updatePassword(widget.password);
     authService.updateProfile(name: widget.name);

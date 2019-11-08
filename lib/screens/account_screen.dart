@@ -1,5 +1,8 @@
+import 'package:diwan/helper/auth.dart';
 import 'package:diwan/res/dimen.dart';
 import 'package:diwan/res/style.dart';
+import 'package:diwan/screens/diwan_screen.dart';
+import 'package:diwan/screens/user/my_diwan.dart';
 import 'package:diwan/ui/app_pager.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +12,8 @@ class AccountScreen extends StatefulWidget {
 }
 
 class _AccountScreenState extends State<AccountScreen> {
+  Widget currentPage = MyDiwanScreen();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +44,7 @@ class _AccountScreenState extends State<AccountScreen> {
             margin: EdgeInsets.symmetric(horizontal: 20),
             width: MediaQuery.of(context).size.width,
             child: Text(
-              "Vivek Kaushik",
+              AuthService.instance.currentUser.name.toString(),
               style: boldTextHeading,
             ),
           ),
@@ -47,7 +52,7 @@ class _AccountScreenState extends State<AccountScreen> {
             margin: EdgeInsets.symmetric(horizontal: 20),
             width: MediaQuery.of(context).size.width,
             child: Text(
-              "email@example.com",
+              AuthService.instance.currentUser.email.toLowerCase(),
               style: subHeadingStyle,
             ),
           ),
@@ -61,10 +66,30 @@ class _AccountScreenState extends State<AccountScreen> {
                 pagerList: ['My Diwan', 'My Post', 'Bookmarks', 'Purchase'],
                 pageChanged: (index) {
                   // PageChanged
+                  setState(() {
+                    currentPage = _getCurrentScreen(index);
+                  });
                 },
               )),
+
+          Expanded(child: currentPage)
         ],
       ),
     );
+  }
+
+  Widget _getCurrentScreen(int index) {
+    switch(index) {
+      case 0:
+        return MyDiwanScreen();
+      case 1:
+        return Container();
+      case 2:
+        return Container();
+      case 3:
+        return Container();
+      default:
+        return Container();
+    }
   }
 }

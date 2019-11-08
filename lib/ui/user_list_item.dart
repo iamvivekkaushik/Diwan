@@ -6,8 +6,9 @@ import 'package:intl/intl.dart';
 
 class UserListItem extends StatelessWidget {
   final User user;
+  final GestureTapCallback onClicked;
 
-  UserListItem(this.user);
+  UserListItem(this.user, {this.onClicked});
 
   @override
   Widget build(BuildContext context) {
@@ -54,37 +55,43 @@ class UserListItem extends StatelessWidget {
               Expanded(
                 child: Align(
                   alignment: Alignment.centerRight,
-                  child: Container(
-                    width: 50,
-                    margin: EdgeInsets.symmetric(vertical: 8),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6),
-                        border: Border.all(color: AppColors.separator)
-                    ),
-                    padding: EdgeInsets.all(3),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Container(
-                          width: 10,
-                          height: 10,
-                          margin: EdgeInsets.symmetric(vertical: 5),
-                          decoration: BoxDecoration(
-                              color: AppColors.buttonBackground,
-                              borderRadius: BorderRadius.circular(30)
+                  child: InkWell(
+                    onTap: () {
+                      // Tapped
+                      onClicked();
+                    },
+                    child: Container(
+                      width: 50,
+                      margin: EdgeInsets.symmetric(vertical: 8),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(6),
+                          border: Border.all(color: AppColors.separator)
+                      ),
+                      padding: EdgeInsets.all(3),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Container(
+                            width: 10,
+                            height: 10,
+                            margin: EdgeInsets.symmetric(vertical: 5),
+                            decoration: BoxDecoration(
+                                color: AppColors.buttonBackground,
+                                borderRadius: BorderRadius.circular(30)
+                            ),
                           ),
-                        ),
 
-                        SizedBox(
-                          width: 5,
-                        ),
+                          SizedBox(
+                            width: 5,
+                          ),
 
-                        Text(
-                          "Edit",
-                          style: subHeadingStyle,
-                        )
-                      ],
+                          Text(
+                            "Edit",
+                            style: subHeadingStyle,
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
