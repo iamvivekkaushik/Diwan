@@ -233,6 +233,7 @@ class _LoginPasswordScreenState extends State<LoginPasswordScreen> {
       AuthService authService = AuthService.instance;
       authService.loginWithEmailAndPassword(widget.email, password).then((onValue) {
         // Login success Go to homepage
+        AuthService.instance.fetchUserData();
         Navigator.of(context).pushNamedAndRemoveUntil('/homepage', (Route<dynamic> route) => false);
       }).catchError((onError) {
         print(onError);

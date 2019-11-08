@@ -10,25 +10,32 @@ class AuthService {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final Firestore _db = Firestore.instance;
-  FirebaseUser _firebaseUser;
+  FirebaseUser firebaseUser;
   User currentUser;
 
   AuthService._() {
-    _auth.currentUser().then((user) {
-      _firebaseUser = user;
+    init();
+  }
+
+  Future<void> init() async {
+    firebaseUser = await _auth.currentUser();
+    if(firebaseUser != null) {
       fetchUserData();
-    });
+    }
   }
 
   Future<void> fetchUserData() async {
-    DocumentReference ref = _db.collection('users').document(_firebaseUser.uid);
+    if(firebaseUser == null) {
+      firebaseUser = await _auth.currentUser();
+    }
+    DocumentReference ref = _db.collection('users').document(firebaseUser.uid);
     DocumentSnapshot documentSnapshot = await ref.get();
 
     currentUser = User.fromDocument(documentSnapshot);
   }
 
   bool isLoggedIn() {
-    if(_firebaseUser == null) {
+    if(firebaseUser == null) {
       return false;
     } else {
       return true;
@@ -63,7 +70,7 @@ class AuthService {
   }
 
   void updateUserData({String name, String photoURL, bool isAdmin, String country}) async {
-    DocumentReference ref = _db.collection('users').document(_firebaseUser.uid);
+    DocumentReference ref = _db.collection('users').document(firebaseUser.uid);
 
     ref.get().then((docSnapshot) {
       if(docSnapshot.exists) {
@@ -88,11 +95,11 @@ class AuthService {
       } else {
         // Document does not exist
         ref.setData({
-          'uid': _firebaseUser.uid,
-          'email': _firebaseUser.email,
-          'photoUrl': _firebaseUser.photoUrl,
+          'uid': firebaseUser.uid,
+          'email': firebaseUser.email,
+          'photoUrl': firebaseUser.photoUrl,
           'isAdmin': false,
-          'displayName': _firebaseUser.displayName,
+          'displayName': firebaseUser.displayName,
           'lastSeen': DateTime.now()
         }, merge: true);
       }

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:diwan/helper/app_localization.dart';
 import 'package:diwan/helper/diwan_icons.dart';
 import 'package:diwan/helper/helper.dart';
@@ -22,16 +24,21 @@ class _CreateDiwanScreenState extends State<CreateDiwanScreen> {
   Diwan diwan;
   TextEditingController _nameController = new TextEditingController();
   String selectedOfficial = "John Doe";
-  List<String> officialsList = ['John Doe',];
-  var _image;
+  List<String> officialsList = [
+    'John Doe',
+  ];
+  File _image;
 
   @override
   void initState() {
     if (widget.data == null) {
-        diwan = Diwan(name: "", image: null,);
+      diwan = Diwan(
+        name: "",
+        image: null,
+      );
     } else {
-        diwan = widget.data;
-        _nameController.text = diwan.name;
+      diwan = widget.data;
+      _nameController.text = diwan.name;
     }
     super.initState();
   }
@@ -39,10 +46,9 @@ class _CreateDiwanScreenState extends State<CreateDiwanScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Builder(
-        builder: (context) {
-          snackContext = context;
-          return SingleChildScrollView(
+      body: Builder(builder: (context) {
+        snackContext = context;
+        return SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -271,7 +277,8 @@ class _CreateDiwanScreenState extends State<CreateDiwanScreen> {
                           style: attachmentYellowTextStyle,
                         ),
                         Text(
-                          AppLocalization.of(context).translate("or_drop_files"),
+                          AppLocalization.of(context)
+                              .translate("or_drop_files"),
                           style: attachmentTextStyle,
                         ),
                       ],
@@ -306,13 +313,12 @@ class _CreateDiwanScreenState extends State<CreateDiwanScreen> {
             ],
           ),
         );
-        }
-      ),
+      }),
     );
   }
 
   Future<void> getImage() async {
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    File image = await ImagePicker.pickImage(source: ImageSource.gallery);
 
     setState(() {
       _image = image;
@@ -322,11 +328,12 @@ class _CreateDiwanScreenState extends State<CreateDiwanScreen> {
   void _createDiwan() {
     print('inside Create Diwan');
     if (diwan.name.isEmpty || _image == null || selectedOfficial.isEmpty) {
-      createSnackbar(snackContext, message: "Fill All the fields", onPressed: () {});
+      createSnackbar(snackContext,
+          message: "Fill All the fields", onPressed: () {});
       return;
     }
 
-    diwan.image = _image;
+    diwan.image = _image.path;
     Diwan.createDiwan(diwan);
   }
 }

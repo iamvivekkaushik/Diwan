@@ -2,6 +2,7 @@ import 'package:diwan/config/config.dart';
 import 'package:diwan/helper/auth.dart';
 import 'package:diwan/route_generator.dart';
 import 'package:diwan/screens/homepage.dart';
+import 'package:diwan/screens/splash_screen.dart';
 import 'package:diwan/screens/welcome_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
         // Current Device locale is not supported, fallback to english
         return supportedLocales.first;
       },
-      home: AuthService.instance.isLoggedIn() ? HomepageScreen(0) : WelcomePage(),
+      home: SplashPage(),
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
