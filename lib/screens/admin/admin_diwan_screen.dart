@@ -1,8 +1,6 @@
 import 'package:diwan/models/diwan.dart';
-import 'package:diwan/models/user.dart';
 import 'package:diwan/res/colors.dart';
 import 'package:diwan/res/style.dart';
-import 'package:diwan/ui/user_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -16,7 +14,6 @@ class _AdminDiwanScreenState extends State<AdminDiwanScreen> {
 
   @override
   void initState() {
-    print('inside admin Diwan Screen init');
     Diwan.fetchDiwanList().then((List<Diwan> list) {
       setState(() {
         diwanList.addAll(list);
@@ -30,9 +27,15 @@ class _AdminDiwanScreenState extends State<AdminDiwanScreen> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.buttonBackground,
-        child: Image.asset('images/fab_add_button.png', width: 25, height: 25,),
+        child: Image.asset(
+          'images/fab_add_button.png',
+          width: 25,
+          height: 25,
+        ),
         onPressed: () {
-          Navigator.of(context).pushNamed('/admin/create_diwan',);
+          Navigator.of(context).pushNamed(
+            '/admin/create_diwan',
+          );
         },
       ),
       body: Column(
@@ -46,7 +49,6 @@ class _AdminDiwanScreenState extends State<AdminDiwanScreen> {
               style: subHeadingStyle,
             ),
           ),
-
           Expanded(
             child: ListView.builder(
                 itemCount: diwanList.length,
@@ -73,13 +75,15 @@ class _AdminDiwanScreenState extends State<AdminDiwanScreen> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
                 ),
-                child: Image.network(diwan.image, width: 40, height: 40,),
+                child: Image.network(
+                  diwan.image,
+                  width: 40,
+                  height: 40,
+                ),
               ),
-
               SizedBox(
                 width: 5,
               ),
-
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,31 +94,30 @@ class _AdminDiwanScreenState extends State<AdminDiwanScreen> {
                       style: commentUsernameStyle,
                     ),
                   ),
-
                   Container(
                     child: Text(
-                      "Created on " + new DateFormat("dd/MM/yyyy").format(DateTime.now()),
+                      "Created on " +
+                          new DateFormat("dd/MM/yyyy").format(DateTime.now()),
                       style: commentDateStyle,
                     ),
                   )
                 ],
               ),
-
               Expanded(
                 child: Align(
                   alignment: Alignment.centerRight,
                   child: InkWell(
                     onTap: () {
                       // Tapped
-                      Navigator.of(context).pushNamed('/admin/create_diwan', arguments: diwan);
+                      Navigator.of(context)
+                          .pushNamed('/admin/create_diwan', arguments: diwan);
                     },
                     child: Container(
                       width: 50,
                       margin: EdgeInsets.symmetric(vertical: 8),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(6),
-                          border: Border.all(color: AppColors.separator)
-                      ),
+                          border: Border.all(color: AppColors.separator)),
                       padding: EdgeInsets.all(3),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -126,14 +129,11 @@ class _AdminDiwanScreenState extends State<AdminDiwanScreen> {
                             margin: EdgeInsets.symmetric(vertical: 5),
                             decoration: BoxDecoration(
                                 color: AppColors.buttonBackground,
-                                borderRadius: BorderRadius.circular(30)
-                            ),
+                                borderRadius: BorderRadius.circular(30)),
                           ),
-
                           SizedBox(
                             width: 5,
                           ),
-
                           Text(
                             "Edit",
                             style: subHeadingStyle,
@@ -146,7 +146,6 @@ class _AdminDiwanScreenState extends State<AdminDiwanScreen> {
               )
             ],
           ),
-
           Container(
             margin: EdgeInsets.fromLTRB(0, 0, 0, 15),
             child: Divider(

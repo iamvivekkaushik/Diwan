@@ -43,24 +43,22 @@ class RouteGenerator {
       case '/signup/password':
         return MaterialPageRoute(builder: (_) => PasswordSignupScreen());
       case '/signup/name':
-        return MaterialPageRoute(builder: (_) => SignupNameScreen(
-          args
-        ));
+        return MaterialPageRoute(builder: (_) => SignupNameScreen(args));
       case '/signup/country':
-        return MaterialPageRoute(builder: (_) => CountrySelectionScreen(
-          args['password'], args['name']
-        ));
+        return MaterialPageRoute(
+            builder: (_) =>
+                CountrySelectionScreen(args['password'], args['name']));
       case '/signup/terms':
         return MaterialPageRoute(builder: (_) => SignupTermsScreen());
       case '/signup/verification':
         return MaterialPageRoute(builder: (_) => EmailVerificationScreen());
       case '/languageSelection':
-        return MaterialPageRoute(builder: (_) => LanguageScreen());
+        return MaterialPageRoute(builder: (_) => LanguageScreen(args));
       case '/homepage':
         return MaterialPageRoute(
             builder: (_) => HomepageScreen(
-              args,
-            ));
+                  args,
+                ));
       case '/diwan':
         return MaterialPageRoute(builder: (_) => DiwanScreen());
       case '/post/comment':
@@ -89,7 +87,10 @@ class RouteGenerator {
       case '/admin/create_user':
         return MaterialPageRoute(builder: (_) => CreateUserScreen());
       case '/admin/create_diwan':
-        return MaterialPageRoute(builder: (_) => CreateDiwanScreen(args,));
+        return MaterialPageRoute(
+            builder: (_) => CreateDiwanScreen(
+                  args,
+                ));
       default:
         // If there is no such named route in the switch statement, e.g. /third
         return _errorRoute();

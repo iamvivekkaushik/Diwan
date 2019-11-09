@@ -12,6 +12,12 @@ class AppLanguage {
     "اللغه العربيه",
     "한글"
   ];
+
+  static const dynamic languageList = [
+    {"language": "English", "code": "en"},
+    {"language": "اللغه العربيه", "code": "ar"},
+    {"language": "한글", "code": "ko"},
+  ];
 }
 
 List<String> countryList = [

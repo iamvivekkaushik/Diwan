@@ -56,7 +56,8 @@ class _WelcomePageState extends State<WelcomePage> {
                 child: RaisedButton(
                   onPressed: () {
                     // Go to Email SignUp Page
-                    Navigator.of(context).pushNamed('/languageSelection');
+                    Navigator.of(context)
+                        .pushNamed('/languageSelection', arguments: true);
                   },
                   color: AppColors.buttonBackground,
                   shape: RoundedRectangleBorder(

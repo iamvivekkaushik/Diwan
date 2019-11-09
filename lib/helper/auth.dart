@@ -19,13 +19,13 @@ class AuthService {
 
   Future<void> init() async {
     firebaseUser = await _auth.currentUser();
-    if(firebaseUser != null) {
+    if (firebaseUser != null) {
       fetchUserData();
     }
   }
 
   Future<void> fetchUserData() async {
-    if(firebaseUser == null) {
+    if (firebaseUser == null) {
       firebaseUser = await _auth.currentUser();
     }
     DocumentReference ref = _db.collection('users').document(firebaseUser.uid);
@@ -35,7 +35,7 @@ class AuthService {
   }
 
   bool isLoggedIn() {
-    if(firebaseUser == null) {
+    if (firebaseUser == null) {
       return false;
     } else {
       return true;
@@ -69,11 +69,12 @@ class AuthService {
     return user;
   }
 
-  void updateUserData({String name, String photoURL, bool isAdmin, String country}) async {
+  void updateUserData(
+      {String name, String photoURL, bool isAdmin, String country}) async {
     DocumentReference ref = _db.collection('users').document(firebaseUser.uid);
 
     ref.get().then((docSnapshot) {
-      if(docSnapshot.exists) {
+      if (docSnapshot.exists) {
         // Document exists only update provided data
         Map<String, dynamic> data = {};
 
@@ -104,6 +105,8 @@ class AuthService {
         }, merge: true);
       }
     });
+
+    init();
   }
 
   Future<void> updatePassword(String password) async {
@@ -116,8 +119,12 @@ class AuthService {
     FirebaseUser user = await _auth.currentUser();
 
     UserUpdateInfo userInfo = UserUpdateInfo();
-    name != null ? userInfo.displayName = name : userInfo.displayName = user.displayName;
-    photoUrl != null ? userInfo.photoUrl = photoUrl : userInfo.photoUrl = user.photoUrl;
+    name != null
+        ? userInfo.displayName = name
+        : userInfo.displayName = user.displayName;
+    photoUrl != null
+        ? userInfo.photoUrl = photoUrl
+        : userInfo.photoUrl = user.photoUrl;
 
     user.updateProfile(userInfo);
   }

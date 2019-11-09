@@ -1,18 +1,30 @@
 import 'package:diwan/config/config.dart';
 import 'package:diwan/helper/app_localization.dart';
-import 'package:diwan/helper/diwan_icons.dart';
+import 'package:diwan/helper/pref.dart';
 import 'package:diwan/res/colors.dart';
 import 'package:diwan/res/dimen.dart';
 import 'package:diwan/res/style.dart';
 import 'package:flutter/material.dart';
 
 class LanguageScreen extends StatefulWidget {
+  final bool isLogin;
+
+  LanguageScreen(this.isLogin);
+
   @override
   _LanguageScreenState createState() => _LanguageScreenState();
 }
 
 class _LanguageScreenState extends State<LanguageScreen> {
   String _selectedLanguage = AppLanguage.supportedLanguages.first;
+
+  @override
+  void initState() {
+    if (SharedPref.instance.containsKey("language_pref")) {
+      _selectedLanguage = SharedPref.instance.getString("language_pref");
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,8 +93,8 @@ class _LanguageScreenState extends State<LanguageScreen> {
               itemBuilder: (context, index) {
                 return RadioListTile(
                   groupValue: _selectedLanguage,
-                  title: Text("${AppLanguage.supportedLanguages[index]}"),
-                  value: AppLanguage.supportedLanguages[index],
+                  title: Text("${AppLanguage.languageList[index]['language']}"),
+                  value: AppLanguage.languageList[index]['code'],
                   onChanged: (val) {
                     setState(() {
                       _selectedLanguage = val;
@@ -97,11 +109,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
             child: Container(
               margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               child: RaisedButton(
-                onPressed: () {
-                  // ToDo: Set the app language to selected language
-                  // Go to next page
-                  Navigator.of(context).pushNamed('/login/email');
-                },
+                onPressed: _saveAndExit,
                 color: AppColors.buttonBackground,
                 shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(7),
@@ -123,5 +131,15 @@ class _LanguageScreenState extends State<LanguageScreen> {
         )
       ],
     ));
+  }
+
+  void _saveAndExit() {
+    // Save and go to next page reload app language
+    SharedPref.instance.setString("language_pref", _selectedLanguage);
+    if(widget.isLogin) {
+      Navigator.of(context).pushNamed('/login/email');
+    } else {
+      Navigator.of(context).pop();
+    }
   }
 }
