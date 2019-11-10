@@ -22,17 +22,22 @@ class Diwan {
     followers = [];
   }
 
-  static Future<void> createDiwan(Diwan diwan) async {
+  static Future<void> createDiwan(Diwan diwan, File image) async {
     Firestore _db = Firestore.instance;
     DocumentReference ref = _db.collection('diwans').document();
 
-//    StorageTaskSnapshot imageUrl = await FStorage.uploadImage(diwan.image);
+    dynamic url;
 
-//    dynamic url = await imageUrl.ref.getDownloadURL();
+    if(image != null) {
+      StorageTaskSnapshot imageUrl = await FStorage.uploadImage(image);
+      url = await imageUrl.ref.getDownloadURL();
+    } else {
+      url = diwan.image;
+    }
 
     Map<String, dynamic> data = {
       'name': diwan.name,
-      'image': "",
+      'image': url.toString(),
       'officials': diwan.officials,
       'followers': diwan.followers,
     };
@@ -55,18 +60,22 @@ class Diwan {
     return diwanList;
   }
 
-  static Future<void> updateDiwan(Diwan diwan, bool newImage) async {
+  static Future<void> updateDiwan(Diwan diwan, File image) async {
     Firestore _db = Firestore.instance;
     DocumentReference ref = _db.collection('diwans').document(diwan.id);
 
-    //ToDo: Fix this
-//    StorageTaskSnapshot imageUrl = await FStorage.uploadImage(diwan.image);
+    dynamic url;
 
-//    String url = newImage ? imageUrl.ref.getDownloadURL().toString() : diwan.image.toString();
+    if(image != null) {
+      StorageTaskSnapshot imageUrl = await FStorage.uploadImage(image);
+      url = await imageUrl.ref.getDownloadURL();
+    } else {
+      url = diwan.image;
+    }
 
     Map<String, dynamic> data = {
       'name': diwan.name,
-      'image': "",
+      'image': url.toString(),
       'officials': diwan.officials,
       'followers': diwan.followers,
     };

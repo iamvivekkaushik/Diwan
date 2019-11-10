@@ -2,6 +2,7 @@ import 'package:diwan/config/config.dart';
 import 'package:diwan/helper/app_localization.dart';
 import 'package:diwan/helper/auth.dart';
 import 'package:diwan/helper/diwan_icons.dart';
+import 'package:diwan/helper/helper.dart';
 import 'package:diwan/res/colors.dart';
 import 'package:diwan/res/dimen.dart';
 import 'package:diwan/res/style.dart';
@@ -147,12 +148,18 @@ class _CountrySelectionScreenState extends State<CountrySelectionScreen> {
     );
   }
 
-  void _moveToNext() {
+  void _moveToNext() async {
+    loadingDialog(context, "Signing In");
+
     AuthService authService = AuthService.instance;
     authService.updateUserData(name: widget.name, country: dropdownValue);
-    authService.updatePassword(widget.password);
-    authService.updateProfile(name: widget.name);
-
-    Navigator.of(context).pushNamed('/signup/terms');
+    await authService.updatePassword(widget.password);
+    authService.updateProfile(name: widget.name).then((onValue) {
+      Navigator.of(context).pop();
+      Navigator.of(context).pushNamed('/signup/terms');
+    }).catchError((onError) {
+      Navigator.of(context).pop();
+      createSnackbar(context, message: "Error occured");
+    });
   }
 }

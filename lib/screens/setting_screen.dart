@@ -79,13 +79,13 @@ class _SettingScreenState extends State<SettingScreen> {
                           EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                       child: _createRow(
                           title: AppLocalization.of(context).translate('email'),
-                          subText: AuthService.instance.currentUser.email)),
+                          subText: AuthService.instance.currentUser.email.toString())),
                   Container(
                       margin:
                           EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                       child: _createRow(
                           title: AppLocalization.of(context).translate('name'),
-                          subText: AuthService.instance.currentUser.name,
+                          subText: AuthService.instance.currentUser.name.toString(),
                           path: "")),
                   Container(
                       margin:

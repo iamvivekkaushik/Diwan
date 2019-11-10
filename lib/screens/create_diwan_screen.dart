@@ -254,9 +254,7 @@ class _CreateDiwanScreenState extends State<CreateDiwanScreen> {
                 margin: EdgeInsets.symmetric(horizontal: 20),
                 padding: EdgeInsets.symmetric(horizontal: 5),
                 child: InkWell(
-                  onTap: () {
-                    getImage();
-                  },
+                  onTap: () => getImage(),
                   child: Container(
                     padding: EdgeInsets.all(16),
                     child: Row(
@@ -326,14 +324,28 @@ class _CreateDiwanScreenState extends State<CreateDiwanScreen> {
   }
 
   void _createDiwan() {
-    print('inside Create Diwan');
-    if (diwan.name.isEmpty || _image == null || selectedOfficial.isEmpty) {
+    if (diwan.name.isEmpty ||
+        selectedOfficial.isEmpty ||
+        (diwan.image.isEmpty && _image == null)) {
       createSnackbar(snackContext,
           message: "Fill All the fields", onPressed: () {});
       return;
     }
 
-    diwan.image = _image.path;
-    Diwan.createDiwan(diwan);
+    if (widget.data == null) {
+      loadingDialog(context, "Creating New Diwan");
+      Diwan.createDiwan(diwan, _image).then((value) {
+        Navigator.of(context)..pop()..pop();
+      }).catchError((error) {
+        Navigator.pop(context);
+      });
+    } else {
+      loadingDialog(context, "Updating Diwan");
+      Diwan.updateDiwan(diwan, _image).then((value) {
+        Navigator.of(context)..pop()..pop();
+      }).catchError((error) {
+        Navigator.pop(context);
+      });
+    }
   }
 }

@@ -45,7 +45,7 @@ class _AdminAccountScreenState extends State<AdminAccountScreen> {
             margin: EdgeInsets.symmetric(horizontal: 20),
             width: MediaQuery.of(context).size.width,
             child: Text(
-              AuthService.instance.currentUser.name,
+              AuthService.instance.currentUser.name.toString(),
               style: boldTextHeading,
             ),
           ),
@@ -53,7 +53,7 @@ class _AdminAccountScreenState extends State<AdminAccountScreen> {
             margin: EdgeInsets.symmetric(horizontal: 20),
             width: MediaQuery.of(context).size.width,
             child: Text(
-              AuthService.instance.currentUser.email,
+              AuthService.instance.currentUser.email.toString(),
               style: subHeadingStyle,
             ),
           ),

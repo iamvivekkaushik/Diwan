@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:diwan/helper/auth.dart';
-import 'package:diwan/helper/pref.dart';
 import 'package:flutter/material.dart';
 
 class SplashPage extends StatefulWidget {
@@ -18,7 +17,6 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     AuthService.instance.isLoggedIn();
-    SharedPref.instance.toString();
     startTime();
     super.initState();
   }

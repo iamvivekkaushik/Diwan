@@ -47,9 +47,11 @@ class AuthService {
     AuthResult authResult = await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password);
 
+    firebaseUser = authResult.user;
+
     updateUserData();
 
-    return authResult.user;
+    return firebaseUser;
   }
 
   Future<FirebaseUser> googleSignIn() async {
@@ -62,11 +64,10 @@ class AuthService {
       idToken: googleAuth.idToken,
     );
 
-    final FirebaseUser user =
-        (await _auth.signInWithCredential(credential)).user;
+    firebaseUser = (await _auth.signInWithCredential(credential)).user;
 
     updateUserData();
-    return user;
+    return firebaseUser;
   }
 
   void updateUserData(
@@ -106,7 +107,7 @@ class AuthService {
       }
     });
 
-    init();
+    fetchUserData();
   }
 
   Future<void> updatePassword(String password) async {

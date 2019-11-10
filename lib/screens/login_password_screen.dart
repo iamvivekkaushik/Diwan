@@ -1,6 +1,7 @@
 import 'package:diwan/helper/app_localization.dart';
 import 'package:diwan/helper/auth.dart';
 import 'package:diwan/helper/diwan_icons.dart';
+import 'package:diwan/helper/helper.dart';
 import 'package:diwan/models/Media.dart';
 import 'package:diwan/res/colors.dart';
 import 'package:diwan/res/dimen.dart';
@@ -230,13 +231,15 @@ class _LoginPasswordScreenState extends State<LoginPasswordScreen> {
         _errorMessage = "Password must be 8 characters long";
       });
     } else {
+      loadingDialog(context, "Signing In");
       AuthService authService = AuthService.instance;
       authService.loginWithEmailAndPassword(widget.email, password).then((onValue) {
         // Login success Go to homepage
+        Navigator.of(context).pop(); // Remove loading Dialog
         AuthService.instance.fetchUserData();
         Navigator.of(context).pushNamedAndRemoveUntil('/homepage', (Route<dynamic> route) => false);
       }).catchError((onError) {
-        print(onError);
+        Navigator.of(context).pop(); // Remove loading Dialog
         setState(() {
           _errorMessage = "Either user does not exist or wrong password";
         });

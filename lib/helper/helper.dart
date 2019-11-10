@@ -19,6 +19,36 @@ void createSnackbar(BuildContext context,
     ..showSnackBar(snackBar);
 }
 
+void loadingDialog(BuildContext context, String message) {
+  showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return Dialog(
+          child: Container(
+            padding: EdgeInsets.all(8),
+            child: new Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                new CircularProgressIndicator(
+                  valueColor:
+                      AlwaysStoppedAnimation<Color>(AppColors.buttonBackground),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                new Text(
+                  message,
+                ),
+              ],
+            ),
+          ),
+        );
+      });
+}
+
 String getLanguageName(String languageCode) {
   String lang = "";
   AppLanguage.languageList.forEach((item) {
