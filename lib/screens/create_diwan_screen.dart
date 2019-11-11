@@ -34,7 +34,7 @@ class _CreateDiwanScreenState extends State<CreateDiwanScreen> {
     if (widget.data == null) {
       diwan = Diwan(
         name: "",
-        image: null,
+        image: "",
       );
     } else {
       diwan = widget.data;
