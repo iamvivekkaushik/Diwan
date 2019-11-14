@@ -79,13 +79,15 @@ class _SettingScreenState extends State<SettingScreen> {
                           EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                       child: _createRow(
                           title: AppLocalization.of(context).translate('email'),
-                          subText: AuthService.instance.currentUser.email.toString())),
+                          subText: AuthService.instance.currentUser.email
+                              .toString())),
                   Container(
                       margin:
                           EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                       child: _createRow(
                           title: AppLocalization.of(context).translate('name'),
-                          subText: AuthService.instance.currentUser.name.toString(),
+                          subText:
+                              AuthService.instance.currentUser.name.toString(),
                           path: "")),
                   Container(
                       margin:
@@ -128,7 +130,8 @@ class _SettingScreenState extends State<SettingScreen> {
                               .translate('app_language'),
                           subText: getLanguageName(
                               SharedPref.instance.getString("language_pref")),
-                          path: "/languageSelection", argument: false)),
+                          path: "/languageSelection",
+                          argument: false)),
                   Container(
                       margin:
                           EdgeInsets.symmetric(horizontal: 20, vertical: 15),
@@ -176,6 +179,28 @@ class _SettingScreenState extends State<SettingScreen> {
                           title: AppLocalization.of(context)
                               .translate('service_announcements'),
                           path: "/serviceAnnouncement")),
+                  Container(
+                    width: MediaQuery.of(context).size.width - 40,
+                    margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    child: Divider(
+                      color: AppColors.separator,
+                    ),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width - 40,
+                    margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    child: Text(
+                      AppLocalization.of(context).translate('account'),
+                      style: settingCategoryTitleStyle,
+                    ),
+                  ),
+                  Container(
+                      margin:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                      child: _createSingleRowItem(
+                          title:
+                              AppLocalization.of(context).translate('logout'),
+                          onTap: () => _logout())),
                 ],
               ),
             ),
@@ -246,5 +271,36 @@ class _SettingScreenState extends State<SettingScreen> {
         ],
       ),
     );
+  }
+
+  Widget _createSingleRowItem({String title, GestureTapCallback onTap}) {
+    double width = MediaQuery.of(context).size.width - 80;
+    return InkWell(
+      onTap: onTap,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            width: width,
+            child: Text(
+              title,
+              style: settingNameStyle,
+            ),
+          ),
+          Image.asset(
+            'images/icon_forward.png',
+            width: 10,
+            height: 15,
+          )
+        ],
+      ),
+    );
+  }
+
+  void _logout() {
+    AuthService.instance.signOut();
+    Navigator.of(context)
+        .pushNamedAndRemoveUntil('/welcome', (Route<dynamic> route) => false);
   }
 }

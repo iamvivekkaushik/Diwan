@@ -121,5 +121,8 @@
   "email_address": "이메일 주소",
   "user_creation": "사용자 생성",
   "create_new_user": "새 사용자를 만듭니다",
-  "user_type_text": "사용자의 유형은 무엇입니까?"
+  "user_type_text": "사용자의 유형은 무엇입니까?",
+  "logout": "로그 아웃",
+  "delete": "지우다",
+  "forgot_password_message": "비밀번호 재설정 링크가 포함 된 이메일이 메일 ID로 전송됩니다."
 }

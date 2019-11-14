@@ -7,6 +7,7 @@ import 'package:diwan/screens/create_user_screen.dart';
 import 'package:diwan/screens/customer_care_screen.dart';
 import 'package:diwan/screens/diwan_screen.dart';
 import 'package:diwan/screens/email_verification_screen.dart';
+import 'package:diwan/screens/forgot_password_screen.dart';
 import 'package:diwan/screens/group_detail_screen.dart';
 import 'package:diwan/screens/homepage.dart';
 import 'package:diwan/screens/language_screen.dart';
@@ -33,6 +34,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => SplashPage());
       case '/welcome':
         return MaterialPageRoute(builder: (_) => WelcomePage());
+      case '/forgotPassword':
+        return MaterialPageRoute(builder: (_) => ForgotPasswordScreen());
       case '/login/email':
         return MaterialPageRoute(builder: (_) => EmailLoginScreen());
       case '/login/password':
@@ -50,8 +53,8 @@ class RouteGenerator {
                 CountrySelectionScreen(args['password'], args['name']));
       case '/signup/terms':
         return MaterialPageRoute(builder: (_) => SignupTermsScreen());
-      case '/signup/verification':
-        return MaterialPageRoute(builder: (_) => EmailVerificationScreen());
+      case '/email_confirmation':
+        return MaterialPageRoute(builder: (_) => EmailVerificationScreen(args));
       case '/languageSelection':
         return MaterialPageRoute(builder: (_) => LanguageScreen(args));
       case '/homepage':

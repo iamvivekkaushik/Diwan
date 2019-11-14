@@ -149,7 +149,6 @@ class _SignupTermsScreenState extends State<SignupTermsScreen> {
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: RaisedButton(
                 onPressed: () {
-                  // ToDo: Go to Email Verification Screen
 //                  Navigator.of(context).pushNamed('/signup/verification');
                   Navigator.of(context).pushNamedAndRemoveUntil(
                       '/homepage', (Route<dynamic> route) => false);

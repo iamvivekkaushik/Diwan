@@ -2,11 +2,9 @@ import 'package:diwan/helper/app_localization.dart';
 import 'package:diwan/helper/auth.dart';
 import 'package:diwan/helper/diwan_icons.dart';
 import 'package:diwan/helper/helper.dart';
-import 'package:diwan/models/Media.dart';
 import 'package:diwan/res/colors.dart';
 import 'package:diwan/res/dimen.dart';
 import 'package:diwan/res/style.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginPasswordScreen extends StatefulWidget {
@@ -183,9 +181,14 @@ class _LoginPasswordScreenState extends State<LoginPasswordScreen> {
                     SizedBox(
                       width: 8,
                     ),
-                    Text(
-                      AppLocalization.of(context).translate('forgot_password'),
-                      style: subHeadingStyle,
+                    InkWell(
+                      onTap: () {
+                        Navigator.of(context).pushNamed("/email_confirmation", arguments: widget.email);
+                      },
+                      child: Text(
+                        AppLocalization.of(context).translate('forgot_password'),
+                        style: subHeadingStyle,
+                      ),
                     )
                   ],
                 ),

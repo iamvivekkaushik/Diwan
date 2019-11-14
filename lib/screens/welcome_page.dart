@@ -147,10 +147,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   ),
                   InkWell(
                     onTap: () {
-                      // ToDo: Forgot password screen
-                      AuthService authService = AuthService.instance;
-                      authService.signOut();
-//                    Navigator.of(context).pushNamed("/groupDetail");
+                      Navigator.of(context).pushNamed("/forgotPassword");
                     },
                     child: Text(
                       AppLocalization.of(context).translate('forgot_password'),

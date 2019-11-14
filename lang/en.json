@@ -121,5 +121,8 @@
   "email_address": "Email Address",
   "user_creation": "User Creation",
   "create_new_user": "Create new user",
-  "user_type_text": "What is the type of the User?"
+  "user_type_text": "What is the type of the User?",
+  "logout": "Logout",
+  "delete": "Delete",
+  "forgot_password_message": "An email with your password reset link will be sent to your mail ID."
 }

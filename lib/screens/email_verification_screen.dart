@@ -6,6 +6,10 @@ import 'package:diwan/res/style.dart';
 import 'package:flutter/material.dart';
 
 class EmailVerificationScreen extends StatefulWidget {
+  final String email;
+
+  EmailVerificationScreen(this.email);
+
   @override
   _EmailVerificationScreenState createState() =>
       _EmailVerificationScreenState();
@@ -31,7 +35,10 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
               height: 12,
             ),
             color: AppColors.blackIcon,
-            onPressed: () {},
+            onPressed: () {
+              // ToDo: Go back to welcome Screen
+              Navigator.of(context).pop();
+            },
           ),
         ),
         Container(
@@ -54,7 +61,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
           width: MediaQuery.of(context).size.width - 40,
           margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: Text(
-            "example@email.com",
+            widget.email.toLowerCase().toString(),
             style: textHeadingStyle,
           ),
         ),

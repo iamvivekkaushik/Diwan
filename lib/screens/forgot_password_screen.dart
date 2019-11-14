@@ -5,12 +5,12 @@ import 'package:diwan/res/dimen.dart';
 import 'package:diwan/res/style.dart';
 import 'package:flutter/material.dart';
 
-class EmailLoginScreen extends StatefulWidget {
+class ForgotPasswordScreen extends StatefulWidget {
   @override
-  _EmailLoginScreenState createState() => _EmailLoginScreenState();
+  _ForgotPasswordScreenState createState() => _ForgotPasswordScreenState();
 }
 
-class _EmailLoginScreenState extends State<EmailLoginScreen> {
+class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   String email;
   String validationMessage = "";
 
@@ -82,7 +82,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText:
-                        AppLocalization.of(context).translate('enter_email'),
+                    AppLocalization.of(context).translate('enter_email'),
                     hintStyle: textFieldHintStyle,
                   ),
                   onChanged: (value) {
@@ -106,15 +106,13 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
             SizedBox(
               height: MediaQuery.of(context).size.height / 2,
             ),
-            Align(
-              alignment: Alignment.center,
-              child: Text(
-                AppLocalization.of(context).translate('continue_with_social') +
-                    '?',
-                style: TextStyle(
-                  color: AppColors.buttonBackground,
-                  fontFamily: 'Segoe',
-                  fontWeight: FontWeight.w400,
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 20),
+              child: Align(
+                alignment: Alignment.center,
+                child: Text(
+                  AppLocalization.of(context).translate('forgot_password_message'),
+                  style: subHeadingStyle
                 ),
               ),
             ),
@@ -158,7 +156,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
         validationMessage = "Email is invalid";
       });
     } else {
-      Navigator.of(context).pushNamed('/login/password', arguments: email);
+      Navigator.of(context).pushNamed('/email_confirmation', arguments: email);
     }
   }
 }

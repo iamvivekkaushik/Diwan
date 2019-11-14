@@ -108,16 +108,24 @@ class _CreateDiwanScreenState extends State<CreateDiwanScreen> {
                     Expanded(
                       child: Align(
                         alignment: Alignment.centerRight,
-                        child: Container(
-                            margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                            child: InkWell(
-                                onTap: () {},
-                                child: Image.asset(
-                                  'images/drag.png',
-                                  width: 20,
-                                ))),
+                        child: PopupMenuButton(
+                          itemBuilder: (context) {
+                            var list = List<PopupMenuEntry<Object>>();
+                            list.add(
+                              PopupMenuItem(
+                                child: Text("Delete"),
+                                value: 1,
+                              ),
+                            );
+                            return list;
+                          },
+                          icon: Icon(Icons.menu, color: AppColors.buttonBackground,),
+                          onSelected: (value) {
+                            _deleteDiwan();
+                          },
+                        )
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -346,6 +354,12 @@ class _CreateDiwanScreenState extends State<CreateDiwanScreen> {
       }).catchError((error) {
         Navigator.pop(context);
       });
+    }
+  }
+
+  void _deleteDiwan() {
+    if (widget.data == null) {
+      Navigator.of(context).pop();
     }
   }
 }
