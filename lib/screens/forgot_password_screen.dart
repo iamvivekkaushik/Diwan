@@ -1,9 +1,12 @@
 import 'package:diwan/helper/app_localization.dart';
 import 'package:diwan/helper/diwan_icons.dart';
+import 'package:diwan/helper/helper.dart';
 import 'package:diwan/res/colors.dart';
 import 'package:diwan/res/dimen.dart';
 import 'package:diwan/res/style.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   @override
@@ -156,7 +159,19 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         validationMessage = "Email is invalid";
       });
     } else {
-      Navigator.of(context).pushNamed('/email_confirmation', arguments: email);
+      loadingDialog(context, "Sending Link");
+      FirebaseAuth.instance.sendPasswordResetEmail(email: email).then((onValue) {
+        Navigator.of(context).pop();
+        Navigator.of(context).pushNamed('/email_confirmation', arguments: email);
+      }).catchError((onError) {
+        Navigator.of(context).pop();
+        Fluttertoast.showToast(
+            msg: "An error occurred",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIos: 1,
+        );
+      });
     }
   }
 }

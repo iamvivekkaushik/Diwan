@@ -14,12 +14,17 @@ class _AdminDiwanScreenState extends State<AdminDiwanScreen> {
 
   @override
   void initState() {
+    fetchData();
+    super.initState();
+  }
+
+  void fetchData() {
     Diwan.fetchDiwanList().then((List<Diwan> list) {
+      diwanList.clear();
       setState(() {
         diwanList.addAll(list);
       });
     });
-    super.initState();
   }
 
   @override
@@ -33,9 +38,11 @@ class _AdminDiwanScreenState extends State<AdminDiwanScreen> {
           height: 25,
         ),
         onPressed: () {
-          Navigator.of(context).pushNamed(
-            '/admin/create_diwan',
-          );
+          Navigator.of(context)
+              .pushNamed(
+                '/admin/create_diwan',
+              )
+              .whenComplete(fetchData);
         },
       ),
       body: Column(
@@ -110,7 +117,8 @@ class _AdminDiwanScreenState extends State<AdminDiwanScreen> {
                     onTap: () {
                       // Tapped
                       Navigator.of(context)
-                          .pushNamed('/admin/create_diwan', arguments: diwan);
+                          .pushNamed('/admin/create_diwan', arguments: diwan)
+                          .whenComplete(fetchData);
                     },
                     child: Container(
                       width: 50,

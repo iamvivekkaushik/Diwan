@@ -17,7 +17,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    print(SharedPref.instance.getString("language_pref"));
     return MaterialApp(
       title: 'Diwan',
       localizationsDelegates: [

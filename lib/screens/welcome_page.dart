@@ -6,6 +6,7 @@ import 'package:diwan/res/dimen.dart';
 import 'package:diwan/res/style.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -108,25 +109,14 @@ class _WelcomePageState extends State<WelcomePage> {
               children: <Widget>[
                 IconButton(
                   icon: Image.asset("images/twitter.png"),
-                  onPressed: () {
-                    print(AuthService.instance.isLoggedIn());
-                    // ToDo: Implement Twitter login
-                    Navigator.of(context).pushNamed('/homepage');
-                  },
+                  onPressed: () => _handleTwitterLogin(),
                 ),
                 SizedBox(
                   width: 10,
                 ),
                 IconButton(
                   icon: Image.asset("images/google.png"),
-                  onPressed: () {
-                    AuthService authService = AuthService.instance;
-                    authService.googleSignIn().then((firebaseUser) {
-                      Navigator.of(context).pushNamed('/signup/password');
-                    }).catchError((onError) {
-                      _showSnackbar("Sign In Failed. Try Again.", context);
-                    });
-                  },
+                  onPressed: () => _handleGoogleLogin(),
                 ),
               ],
             ),
@@ -178,5 +168,33 @@ class _WelcomePageState extends State<WelcomePage> {
     Scaffold.of(context)
       ..removeCurrentSnackBar()
       ..showSnackBar(snackBar);
+  }
+
+  void _handleTwitterLogin() {
+    AuthService authService = AuthService.instance;
+    authService.twitterSignIn().then((firebaseUser) {
+      Navigator.of(context).pushReplacementNamed('/homepage');
+    }).catchError((onError) {
+      Fluttertoast.showToast(
+        msg: onError,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIos: 1,
+      );
+    });
+  }
+
+  void _handleGoogleLogin() {
+    AuthService authService = AuthService.instance;
+    authService.googleSignIn().then((firebaseUser) {
+      Navigator.of(context).pushReplacementNamed('/homepage');
+    }).catchError((onError) {
+      Fluttertoast.showToast(
+        msg: "Failed to sign in with Google",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIos: 1,
+      );
+    });
   }
 }

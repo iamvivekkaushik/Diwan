@@ -9,10 +9,9 @@ import 'package:diwan/res/style.dart';
 import 'package:flutter/material.dart';
 
 class CountrySelectionScreen extends StatefulWidget {
-  final String password, name;
+  final Map<String, String> data;
 
-
-  CountrySelectionScreen(this.password, this.name);
+  CountrySelectionScreen(this.data);
 
   @override
   _CountrySelectionScreenState createState() => _CountrySelectionScreenState();
@@ -148,18 +147,8 @@ class _CountrySelectionScreenState extends State<CountrySelectionScreen> {
     );
   }
 
-  void _moveToNext() async {
-    loadingDialog(context, "Signing In");
-
-    AuthService authService = AuthService.instance;
-    authService.updateUserData(name: widget.name, country: dropdownValue);
-    await authService.updatePassword(widget.password);
-    authService.updateProfile(name: widget.name).then((onValue) {
-      Navigator.of(context).pop();
-      Navigator.of(context).pushNamed('/signup/terms');
-    }).catchError((onError) {
-      Navigator.of(context).pop();
-      createSnackbar(context, message: "Error occured");
-    });
+  void _moveToNext() {
+    widget.data['country'] = dropdownValue;
+    Navigator.of(context).pushNamed('/signup/terms', arguments: widget.data);
   }
 }

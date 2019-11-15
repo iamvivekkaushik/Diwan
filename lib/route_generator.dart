@@ -44,17 +44,19 @@ class RouteGenerator {
                   email: args,
                 ));
       case '/signup/password':
-        return MaterialPageRoute(builder: (_) => PasswordSignupScreen());
+        return MaterialPageRoute(builder: (_) => PasswordSignupScreen(args));
       case '/signup/name':
         return MaterialPageRoute(builder: (_) => SignupNameScreen(args));
       case '/signup/country':
         return MaterialPageRoute(
             builder: (_) =>
-                CountrySelectionScreen(args['password'], args['name']));
+                CountrySelectionScreen(args));
       case '/signup/terms':
-        return MaterialPageRoute(builder: (_) => SignupTermsScreen());
+        return MaterialPageRoute(builder: (_) => SignupTermsScreen(args));
       case '/email_confirmation':
-        return MaterialPageRoute(builder: (_) => EmailVerificationScreen(args));
+        return MaterialPageRoute(
+            builder: (_) =>
+                EmailVerificationScreen(args['email'], args['isSignUp']));
       case '/languageSelection':
         return MaterialPageRoute(builder: (_) => LanguageScreen(args));
       case '/homepage':

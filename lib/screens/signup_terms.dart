@@ -1,11 +1,18 @@
 import 'package:diwan/helper/app_localization.dart';
+import 'package:diwan/helper/auth.dart';
 import 'package:diwan/helper/diwan_icons.dart';
+import 'package:diwan/helper/helper.dart';
 import 'package:diwan/res/colors.dart';
 import 'package:diwan/res/dimen.dart';
 import 'package:diwan/res/style.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class SignupTermsScreen extends StatefulWidget {
+  final Map<String, String> data;
+
+  SignupTermsScreen(this.data);
+
   @override
   _SignupTermsScreenState createState() => _SignupTermsScreenState();
 }
@@ -148,11 +155,7 @@ class _SignupTermsScreenState extends State<SignupTermsScreen> {
               width: MediaQuery.of(context).size.width - 40,
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: RaisedButton(
-                onPressed: () {
-//                  Navigator.of(context).pushNamed('/signup/verification');
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                      '/homepage', (Route<dynamic> route) => false);
-                },
+                onPressed: () => _signUpAndNext(),
                 color: AppColors.buttonBackground,
                 shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(7),
@@ -226,5 +229,36 @@ class _SignupTermsScreenState extends State<SignupTermsScreen> {
         ],
       ),
     );
+  }
+
+  void _signUpAndNext() {
+    print("Clicked");
+    loadingDialog(context, "Signing In");
+
+    AuthService.instance
+        .signUp(
+            name: widget.data['name'],
+            email: widget.data['email'],
+            password: widget.data['password'],
+            country: widget.data['country'])
+        .then((onValue) {
+      // Account created move to verification screen
+
+      print("Account Created");
+      print(widget.data);
+      Navigator.of(context).pop();
+      Navigator.of(context).pushNamed('/email_confirmation',
+          arguments: {"email": widget.data['email'], "isSignUp": true});
+    }).catchError((onError) {
+      // Some Error Occurred while creating the account
+
+      print("error");
+      Fluttertoast.showToast(
+        msg: "Some error occurred",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIos: 1,
+      );
+    });
   }
 }

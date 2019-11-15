@@ -1,9 +1,12 @@
 import 'package:diwan/helper/app_localization.dart';
 import 'package:diwan/helper/diwan_icons.dart';
+import 'package:diwan/helper/helper.dart';
 import 'package:diwan/res/colors.dart';
 import 'package:diwan/res/dimen.dart';
 import 'package:diwan/res/style.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class EmailLoginScreen extends StatefulWidget {
   @override
@@ -153,12 +156,40 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
       setState(() {
         validationMessage = "Email can\'t be empty";
       });
-    } else if (!RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email)) {
+    } else if (!RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        .hasMatch(email)) {
       setState(() {
         validationMessage = "Email is invalid";
       });
     } else {
-      Navigator.of(context).pushNamed('/login/password', arguments: email);
+      // Email validation complete do some stuff
+
+      loadingDialog(context, "Checking for email");
+
+      // Check if user with this email exist
+      FirebaseAuth.instance
+          .fetchSignInMethodsForEmail(email: email)
+          .then((onValue) {
+        if (onValue.length > 0) {
+          // User with this email exist
+          Navigator.of(context)
+            ..pop()
+            ..pushNamed('/login/password', arguments: email);
+        } else {
+          // User does not exist
+          Navigator.of(context)
+            ..pop()
+            ..pushNamed('/signup/password', arguments: {"email": email});
+        }
+      }).catchError((onError) {
+        // Some error occurred while checking for user
+        Fluttertoast.showToast(
+          msg: "Some error occurred",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIos: 1,
+        );
+      });
     }
   }
 }

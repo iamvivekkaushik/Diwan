@@ -6,9 +6,9 @@ import 'package:diwan/res/style.dart';
 import 'package:flutter/material.dart';
 
 class SignupNameScreen extends StatefulWidget {
-  final String password;
+  final Map<String, String> data;
 
-  SignupNameScreen(this.password);
+  SignupNameScreen(this.data);
 
   @override
   _SignupNameScreenState createState() => _SignupNameScreenState();
@@ -201,10 +201,8 @@ class _SignupNameScreenState extends State<SignupNameScreen> {
         _errorMessage = "Can't leave empty";
       });
     } else {
-      Navigator.of(context).pushNamed('/signup/country', arguments: {
-        "password": widget.password,
-        "name": firstName + " " + lastName
-      });
+      widget.data['name'] = firstName + " " + lastName;
+      Navigator.of(context).pushNamed('/signup/country', arguments: widget.data);
     }
   }
 }

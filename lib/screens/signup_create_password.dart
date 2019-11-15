@@ -6,6 +6,10 @@ import 'package:diwan/res/style.dart';
 import 'package:flutter/material.dart';
 
 class PasswordSignupScreen extends StatefulWidget {
+  final Map<String, String> data;
+
+  PasswordSignupScreen(this.data);
+
   @override
   _PasswordSignupScreenState createState() => _PasswordSignupScreenState();
 }
@@ -261,7 +265,8 @@ class _PasswordSignupScreenState extends State<PasswordSignupScreen> {
     } else if (password.length < 8){
       tempMessage = "Password does not match requirements";
     } else {
-      Navigator.of(context).pushNamed('/signup/name', arguments: password);
+      widget.data['password'] = password;
+      Navigator.of(context).pushNamed('/signup/name', arguments: widget.data);
     }
 
     setState(() {

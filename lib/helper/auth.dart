@@ -1,13 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:diwan/config/config.dart';
 import 'package:diwan/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_twitter_login/flutter_twitter_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
   static final AuthService instance = AuthService._();
 
   // Dependencies
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final Firestore _db = Firestore.instance;
   FirebaseUser firebaseUser;
@@ -54,7 +55,18 @@ class AuthService {
     return firebaseUser;
   }
 
+  Future<void> signUp({String email, String password, String name, String country}) async {
+    AuthResult authResult = await _auth.createUserWithEmailAndPassword(
+        email: email, password: password);
+
+    firebaseUser = authResult.user;
+    await updateProfile(name: name);
+    updateUserData(name: name, photoURL: "", isAdmin: false, country: country);
+    firebaseUser.sendEmailVerification();
+  }
+
   Future<FirebaseUser> googleSignIn() async {
+    final GoogleSignIn _googleSignIn = GoogleSignIn();
     final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
     final GoogleSignInAuthentication googleAuth =
         await googleUser.authentication;
@@ -66,12 +78,40 @@ class AuthService {
 
     firebaseUser = (await _auth.signInWithCredential(credential)).user;
 
-    updateUserData();
+    updateUserData(linkedGoogle: true);
     return firebaseUser;
   }
 
+  Future<FirebaseUser> twitterSignIn() async {
+    final TwitterLogin twitterLogin = new TwitterLogin(
+        consumerKey: twitterKeys['api_key'],
+        consumerSecret: twitterKeys['secret_key']);
+    TwitterLoginResult twitterLoginResult = await twitterLogin.authorize();
+    TwitterSession currentUserTwitterSession = twitterLoginResult.session;
+    TwitterLoginStatus twitterLoginStatus = twitterLoginResult.status;
+
+    if (twitterLoginStatus == TwitterLoginStatus.loggedIn) {
+      AuthCredential _authCredential = TwitterAuthProvider.getCredential(
+          authToken: currentUserTwitterSession.token.toString(),
+          authTokenSecret: currentUserTwitterSession.secret.toString());
+
+      AuthResult authResult = await _auth.signInWithCredential(_authCredential);
+      firebaseUser = authResult.user;
+      updateUserData(linkedTwitter: true);
+      return firebaseUser;
+    } else {
+      throw (twitterLoginResult.errorMessage);
+    }
+  }
+
   void updateUserData(
-      {String name, String photoURL, bool isAdmin, String country}) async {
+      {String name,
+      String photoURL,
+      bool isAdmin,
+      String country = "",
+      bool linkedGoogle,
+      bool linkedTwitter}) async {
+    print(linkedGoogle);
     DocumentReference ref = _db.collection('users').document(firebaseUser.uid);
 
     ref.get().then((docSnapshot) {
@@ -91,6 +131,12 @@ class AuthService {
         if (country != null) {
           data["country"] = country;
         }
+        if (linkedGoogle != null) {
+          data["linkedGoogle"] = linkedGoogle;
+        }
+        if (linkedTwitter != null) {
+          data["linkedTwitter"] = linkedTwitter;
+        }
 
         data['lastSeen'] = DateTime.now();
         ref.setData(data, merge: true);
@@ -101,13 +147,16 @@ class AuthService {
           'email': firebaseUser.email,
           'photoUrl': firebaseUser.photoUrl,
           'isAdmin': false,
+          'country': country,
+          'linkedGoogle': linkedGoogle == null ? false : linkedGoogle,
+          'linkedTwitter': linkedTwitter == null ? false : linkedTwitter,
           'displayName': firebaseUser.displayName,
           'lastSeen': DateTime.now()
         }, merge: true);
       }
-    });
 
-    fetchUserData();
+      fetchUserData();
+    });
   }
 
   Future<void> updatePassword(String password) async {
@@ -117,17 +166,22 @@ class AuthService {
   }
 
   Future<void> updateProfile({String name, String photoUrl}) async {
-    FirebaseUser user = await _auth.currentUser();
-
     UserUpdateInfo userInfo = UserUpdateInfo();
     name != null
         ? userInfo.displayName = name
-        : userInfo.displayName = user.displayName;
+        : userInfo.displayName = firebaseUser.displayName;
     photoUrl != null
         ? userInfo.photoUrl = photoUrl
-        : userInfo.photoUrl = user.photoUrl;
+        : userInfo.photoUrl = firebaseUser.photoUrl;
 
-    user.updateProfile(userInfo);
+    if(userInfo.displayName == null) {
+      userInfo.displayName = "";
+    }
+    if(userInfo.photoUrl == null) {
+      userInfo.photoUrl = "";
+    }
+
+    firebaseUser.updateProfile(userInfo);
   }
 
   void signOut() {

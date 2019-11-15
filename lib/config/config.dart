@@ -20,6 +20,11 @@ class AppLanguage {
   ];
 }
 
+final Map<String, String> twitterKeys = {
+  "api_key": "U76FKhXsD4KxOOcTOJk9CBjG0",
+  "secret_key": "UB7XnnFgvWtj5lriZNF9OyVhEiacuEOjSNRcWer0OPqd6BBkwa"
+};
+
 List<String> countryList = [
   "Afghanistan",
   "Albania",

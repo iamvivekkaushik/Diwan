@@ -1,14 +1,19 @@
 import 'package:diwan/helper/app_localization.dart';
+import 'package:diwan/helper/auth.dart';
 import 'package:diwan/helper/diwan_icons.dart';
+import 'package:diwan/helper/helper.dart';
 import 'package:diwan/res/colors.dart';
 import 'package:diwan/res/dimen.dart';
 import 'package:diwan/res/style.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class EmailVerificationScreen extends StatefulWidget {
   final String email;
+  final bool isSignUp;
 
-  EmailVerificationScreen(this.email);
+  EmailVerificationScreen(this.email, this.isSignUp);
 
   @override
   _EmailVerificationScreenState createState() =>
@@ -36,8 +41,8 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
             ),
             color: AppColors.blackIcon,
             onPressed: () {
-              // ToDo: Go back to welcome Screen
-              Navigator.of(context).pop();
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/welcome', (Route<dynamic> route) => false);
             },
           ),
         ),
@@ -76,45 +81,86 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                 child: Container(
                   height: 50,
                   color: AppColors.termsBackground,
-                  child: InkWell(
-                    onTap: () {
-                      // ToDo: Go to forgot screen
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          AppLocalization.of(context)
-                              .translate('email_not_received'),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        AppLocalization.of(context)
+                            .translate('email_not_received'),
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: 'Segoe',
+                            color: AppColors.textFieldHint),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      InkWell(
+                        onTap: () => _resendEmail(),
+                        child: Text(
+                          AppLocalization.of(context).translate('resend_email'),
                           style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                              fontFamily: 'Segoe',
-                              color: AppColors.textFieldHint),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            // ToDo: Resend Email
-                          },
-                          child: Text(
-                            AppLocalization.of(context).translate('resend_email'),
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                              fontFamily: 'Segoe',
-                              color: Colors.black,
-                            ),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: 'Segoe',
+                            color: Colors.black,
                           ),
-                        )
-                      ],
-                    ),
+                        ),
+                      )
+                    ],
                   ),
                 )))
       ],
     ));
+  }
+
+  void _resendEmail() {
+    loadingDialog(context, "Sending Link");
+
+    if (widget.isSignUp) {
+      // send the email verification email
+
+      AuthService.instance.firebaseUser.sendEmailVerification().then((onValue) {
+        Navigator.of(context).pop();
+        Fluttertoast.showToast(
+          msg: "Email Sent",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIos: 1,
+        );
+      }).catchError((onError) {
+        Navigator.of(context).pop();
+        Fluttertoast.showToast(
+          msg: "An error occurred",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIos: 1,
+        );
+      });
+    } else {
+      // send the password reset email
+
+      FirebaseAuth.instance
+          .sendPasswordResetEmail(email: widget.email)
+          .then((onValue) {
+        Navigator.of(context).pop();
+        Fluttertoast.showToast(
+          msg: "Email Sent",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIos: 1,
+        );
+      }).catchError((onError) {
+        Navigator.of(context).pop();
+        Fluttertoast.showToast(
+          msg: "An error occurred",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIos: 1,
+        );
+      });
+    }
   }
 }

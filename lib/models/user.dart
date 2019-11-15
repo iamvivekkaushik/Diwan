@@ -7,11 +7,13 @@ class User {
   String image;
   String country;
   bool isAdmin;
+  bool linkedGoogle;
+  bool linkedTwitter;
   DateTime createdAt;
 
 
   User({this.id, this.name, this.email, this.image, this.country, this.isAdmin,
-      this.createdAt});
+      this.linkedGoogle, this.linkedTwitter, this.createdAt});
 
   User.fromDocument(DocumentSnapshot document) {
     id = document.data['uid'];
@@ -20,6 +22,8 @@ class User {
     image = document.data['photoURL'];
     country = document.data['country'];
     isAdmin = document.data['isAdmin'];
+    linkedGoogle = document.data['linkedGoogle'];
+    linkedTwitter = document.data['linkedTwitter'];
     createdAt = document.data['lastSeen'].toDate();
   }
 }

@@ -82,4 +82,15 @@ class Diwan {
 
     return ref.updateData(data);
   }
+
+  static Future<void> deleteDiwan(Diwan diwan) async {
+    if(diwan.id == null) {
+      return null;
+    }
+
+    Firestore _db = Firestore.instance;
+    DocumentReference ref = _db.collection('diwans').document(diwan.id);
+
+    return ref.delete();
+  }
 }

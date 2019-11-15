@@ -1,4 +1,5 @@
 import 'package:diwan/helper/app_localization.dart';
+import 'package:diwan/helper/auth.dart';
 import 'package:diwan/res/colors.dart';
 import 'package:diwan/res/dimen.dart';
 import 'package:diwan/res/style.dart';
@@ -20,7 +21,6 @@ class _ConnectAccountScreenState extends State<ConnectAccountScreen> {
           SizedBox(
             height: Dimen.topMargin,
           ),
-
           Container(
             height: 50,
             child: Row(
@@ -56,14 +56,12 @@ class _ConnectAccountScreenState extends State<ConnectAccountScreen> {
               ],
             ),
           ),
-
           Container(
             width: MediaQuery.of(context).size.width,
             child: Divider(
               color: AppColors.separator,
             ),
           ),
-
           Container(
             margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Text(
@@ -71,22 +69,29 @@ class _ConnectAccountScreenState extends State<ConnectAccountScreen> {
               style: commentUsernameStyle,
             ),
           ),
-
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 20),
-              child: _createRowWithIcon(title: "Twitter", image: "images/twitter.png", path: "")),
-
+              margin: EdgeInsets.symmetric(horizontal: 20),
+              child: _createRowWithIcon(
+                  title: "Twitter",
+                  image: "images/twitter.png",
+                  secondImage: AuthService.instance.currentUser.linkedTwitter
+                      ? "images/check.png"
+                      : "images/add_icon.png")),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
             child: Divider(
               color: AppColors.separator,
             ),
           ),
-
           Container(
               margin: EdgeInsets.symmetric(horizontal: 20),
-              child: _createRowWithIcon(title: "Google", image: "images/google.png", path: "")),
-
+              child: _createRowWithIcon(
+                title: "Google",
+                image: "images/google.png",
+                secondImage: AuthService.instance.currentUser.linkedGoogle
+                    ? "images/check.png"
+                    : "images/add_icon.png",
+              )),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
             child: Divider(
@@ -98,7 +103,7 @@ class _ConnectAccountScreenState extends State<ConnectAccountScreen> {
     );
   }
 
-  Widget _createRowWithIcon({String title, String image, String path}) {
+  Widget _createRowWithIcon({String title, String image, String secondImage}) {
     double width = (MediaQuery.of(context).size.width / 4) * 2;
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -106,9 +111,11 @@ class _ConnectAccountScreenState extends State<ConnectAccountScreen> {
       children: <Widget>[
         Container(
           margin: const EdgeInsets.all(8.0),
-          child: Image.asset(image, width: 25,),
+          child: Image.asset(
+            image,
+            width: 25,
+          ),
         ),
-
         SizedBox(
           width: 20,
         ),
@@ -120,14 +127,16 @@ class _ConnectAccountScreenState extends State<ConnectAccountScreen> {
             style: settingNameStyle,
           ),
         ),
-
         Expanded(
           child: Container(
             margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
             child: Align(
               alignment: Alignment.centerRight,
-              child: Image.asset('images/add_icon.png', width: 20,
-                height: 20,),
+              child: Image.asset(
+                secondImage,
+                width: 20,
+                height: 20,
+              ),
             ),
           ),
         )

@@ -8,6 +8,7 @@ import 'package:diwan/res/colors.dart';
 import 'package:diwan/res/dimen.dart';
 import 'package:diwan/res/style.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 
 class CreateDiwanScreen extends StatefulWidget {
@@ -360,6 +361,20 @@ class _CreateDiwanScreenState extends State<CreateDiwanScreen> {
   void _deleteDiwan() {
     if (widget.data == null) {
       Navigator.of(context).pop();
+      return;
     }
+
+    loadingDialog(context, "Deleting Diwan");
+    Diwan.deleteDiwan(diwan).then((onValue) {
+      Navigator.of(context)..pop()..pop();
+    }).catchError((onError) {
+      Navigator.of(context).pop();
+      Fluttertoast.showToast(
+        msg: "Couldn't delete Diwan",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIos: 1,
+      );
+    });
   }
 }
