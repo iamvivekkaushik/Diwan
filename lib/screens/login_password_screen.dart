@@ -5,6 +5,7 @@ import 'package:diwan/helper/helper.dart';
 import 'package:diwan/res/colors.dart';
 import 'package:diwan/res/dimen.dart';
 import 'package:diwan/res/style.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginPasswordScreen extends StatefulWidget {
@@ -107,7 +108,10 @@ class _LoginPasswordScreenState extends State<LoginPasswordScreen> {
                         AppLocalization.of(context).translate('enter_password'),
                     hintStyle: textFieldHintStyle,
                     suffixIcon: IconButton(
-                      icon: Icon(hidePassword ? Icons.visibility_off : Icons.visibility, color: AppColors.textFieldHint,),
+                      icon: Icon(
+                        hidePassword ? Icons.visibility_off : Icons.visibility,
+                        color: AppColors.textFieldHint,
+                      ),
                       onPressed: () {
                         setState(() {
                           setState(() {
@@ -125,15 +129,16 @@ class _LoginPasswordScreenState extends State<LoginPasswordScreen> {
                 ),
               ),
             ),
-            _errorMessage.isNotEmpty ?
-            Container(
-              width: MediaQuery.of(context).size.width - 40,
-              margin: EdgeInsets.symmetric(horizontal: 20),
-              child: Text(
-                _errorMessage,
-                style: errorMessageTextStyle,
-              ),
-            ) : Container(),
+            _errorMessage.isNotEmpty
+                ? Container(
+                    width: MediaQuery.of(context).size.width - 40,
+                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    child: Text(
+                      _errorMessage,
+                      style: errorMessageTextStyle,
+                    ),
+                  )
+                : Container(),
             Container(
               width: MediaQuery.of(context).size.width - 40,
               margin: EdgeInsets.fromLTRB(20, 10, 20, 0),
@@ -183,10 +188,16 @@ class _LoginPasswordScreenState extends State<LoginPasswordScreen> {
                     ),
                     InkWell(
                       onTap: () {
-                        Navigator.of(context).pushNamed("/email_confirmation", arguments: widget.email);
+                        FirebaseAuth.instance.sendPasswordResetEmail(email: widget.email);
+                        Navigator.of(context).pushNamed("/email_confirmation",
+                            arguments: {
+                              "email": widget.email,
+                              "isSignUp": false
+                            });
                       },
                       child: Text(
-                        AppLocalization.of(context).translate('forgot_password'),
+                        AppLocalization.of(context)
+                            .translate('forgot_password'),
                         style: subHeadingStyle,
                       ),
                     )
@@ -235,12 +246,14 @@ class _LoginPasswordScreenState extends State<LoginPasswordScreen> {
       });
     } else {
       loadingDialog(context, "Signing In");
-      AuthService authService = AuthService.instance;
-      authService.loginWithEmailAndPassword(widget.email, password).then((onValue) {
+      AuthService.instance
+          .loginWithEmailAndPassword(widget.email, password)
+          .then((onValue) {
         // Login success Go to homepage
         Navigator.of(context).pop(); // Remove loading Dialog
         AuthService.instance.fetchUserData();
-        Navigator.of(context).pushNamedAndRemoveUntil('/homepage', (Route<dynamic> route) => false);
+        Navigator.of(context).pushNamedAndRemoveUntil(
+            '/homepage', (Route<dynamic> route) => false);
       }).catchError((onError) {
         Navigator.of(context).pop(); // Remove loading Dialog
         setState(() {

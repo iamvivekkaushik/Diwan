@@ -19,6 +19,7 @@ class AuthService {
   }
 
   Future<void> init() async {
+    print("init Data");
     firebaseUser = await _auth.currentUser();
     if (firebaseUser != null) {
       fetchUserData();
@@ -50,18 +51,37 @@ class AuthService {
 
     firebaseUser = authResult.user;
 
-    updateUserData();
+    await updateUserData();
 
     return firebaseUser;
   }
 
-  Future<void> signUp({String email, String password, String name, String country}) async {
+  Future<void> signUp(
+      {String email, String password, String name, String country}) async {
+    print("sigining up");
+    print("email: " +
+        email +
+        "\n" +
+        "password: " +
+        password +
+        "\n" +
+        "name: " +
+        name +
+        "\n" +
+        "country: " +
+        country);
+
     AuthResult authResult = await _auth.createUserWithEmailAndPassword(
         email: email, password: password);
+
+    print(authResult.user);
 
     firebaseUser = authResult.user;
     await updateProfile(name: name);
     updateUserData(name: name, photoURL: "", isAdmin: false, country: country);
+
+    print(firebaseUser.displayName);
+
     firebaseUser.sendEmailVerification();
   }
 
@@ -104,7 +124,7 @@ class AuthService {
     }
   }
 
-  void updateUserData(
+  Future<void> updateUserData(
       {String name,
       String photoURL,
       bool isAdmin,
@@ -114,49 +134,53 @@ class AuthService {
     print(linkedGoogle);
     DocumentReference ref = _db.collection('users').document(firebaseUser.uid);
 
-    ref.get().then((docSnapshot) {
-      if (docSnapshot.exists) {
-        // Document exists only update provided data
-        Map<String, dynamic> data = {};
+    DocumentSnapshot docSnapshot = await ref.get();
 
-        if (name != null && name.isNotEmpty) {
-          data["displayName"] = name;
-        }
-        if (photoURL != null) {
-          data["photoUrl"] = photoURL;
-        }
-        if (isAdmin != null) {
-          data["isAdmin"] = isAdmin;
-        }
-        if (country != null) {
-          data["country"] = country;
-        }
-        if (linkedGoogle != null) {
-          data["linkedGoogle"] = linkedGoogle;
-        }
-        if (linkedTwitter != null) {
-          data["linkedTwitter"] = linkedTwitter;
-        }
+    if (docSnapshot.exists) {
+      // Document exists only update provided data
+      Map<String, dynamic> data = {};
 
-        data['lastSeen'] = DateTime.now();
-        ref.setData(data, merge: true);
-      } else {
-        // Document does not exist
-        ref.setData({
-          'uid': firebaseUser.uid,
-          'email': firebaseUser.email,
-          'photoUrl': firebaseUser.photoUrl,
-          'isAdmin': false,
-          'country': country,
-          'linkedGoogle': linkedGoogle == null ? false : linkedGoogle,
-          'linkedTwitter': linkedTwitter == null ? false : linkedTwitter,
-          'displayName': firebaseUser.displayName,
-          'lastSeen': DateTime.now()
-        }, merge: true);
+      if (name != null && name.isNotEmpty) {
+        data["displayName"] = name;
+      }
+      if (photoURL != null) {
+        data["photoUrl"] = photoURL;
+      }
+      if (isAdmin != null) {
+        data["isAdmin"] = isAdmin;
+      }
+      if (country != null) {
+        data["country"] = country;
+      }
+      if (linkedGoogle != null) {
+        data["linkedGoogle"] = linkedGoogle;
+      }
+      if (linkedTwitter != null) {
+        data["linkedTwitter"] = linkedTwitter;
       }
 
-      fetchUserData();
-    });
+      data['lastSeen'] = DateTime.now();
+      await ref.setData(data, merge: true).catchError((error) {
+        print(error);
+      });
+    } else {
+      // Document does not exist
+      await ref.setData({
+        'uid': firebaseUser.uid,
+        'email': firebaseUser.email,
+        'photoUrl': firebaseUser.photoUrl,
+        'isAdmin': false,
+        'country': country,
+        'linkedGoogle': linkedGoogle == null ? false : linkedGoogle,
+        'linkedTwitter': linkedTwitter == null ? false : linkedTwitter,
+        'displayName': name != null ? name : firebaseUser.displayName,
+        'lastSeen': DateTime.now()
+      }, merge: true).catchError((error) {
+        print(error);
+      });
+    }
+
+    await init();
   }
 
   Future<void> updatePassword(String password) async {
@@ -174,14 +198,14 @@ class AuthService {
         ? userInfo.photoUrl = photoUrl
         : userInfo.photoUrl = firebaseUser.photoUrl;
 
-    if(userInfo.displayName == null) {
+    if (userInfo.displayName == null) {
       userInfo.displayName = "";
     }
-    if(userInfo.photoUrl == null) {
+    if (userInfo.photoUrl == null) {
       userInfo.photoUrl = "";
     }
 
-    firebaseUser.updateProfile(userInfo);
+    await firebaseUser.updateProfile(userInfo);
   }
 
   void signOut() {

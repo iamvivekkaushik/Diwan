@@ -153,23 +153,6 @@ class _WelcomePageState extends State<WelcomePage> {
     );
   }
 
-  void _showSnackbar(message, context) {
-    final snackBar = SnackBar(
-      content: Text('Warning: $message'),
-      duration: Duration(seconds: 30),
-      action: SnackBarAction(
-        label: "OK",
-        onPressed: () {
-          // Some code to undo the change.
-        },
-      ),
-    );
-
-    Scaffold.of(context)
-      ..removeCurrentSnackBar()
-      ..showSnackBar(snackBar);
-  }
-
   void _handleTwitterLogin() {
     AuthService authService = AuthService.instance;
     authService.twitterSignIn().then((firebaseUser) {

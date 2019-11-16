@@ -183,8 +183,10 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
         }
       }).catchError((onError) {
         // Some error occurred while checking for user
+
+        Navigator.of(context).pop();
         Fluttertoast.showToast(
-          msg: "Some error occurred",
+          msg: onError,
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIos: 1,

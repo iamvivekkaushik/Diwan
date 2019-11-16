@@ -162,7 +162,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       loadingDialog(context, "Sending Link");
       FirebaseAuth.instance.sendPasswordResetEmail(email: email).then((onValue) {
         Navigator.of(context).pop();
-        Navigator.of(context).pushNamed('/email_confirmation', arguments: email);
+        Navigator.of(context).pushNamed('/email_confirmation', arguments: {"email": email, "isSignUp": false});
       }).catchError((onError) {
         Navigator.of(context).pop();
         Fluttertoast.showToast(
