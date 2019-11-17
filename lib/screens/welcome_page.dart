@@ -168,9 +168,9 @@ class _WelcomePageState extends State<WelcomePage> {
       print(onError.toString());
       Fluttertoast.showToast(
         msg: onError.toString(),
-        toastLength: Toast.LENGTH_SHORT,
+        toastLength: Toast.LENGTH_LONG,
         gravity: ToastGravity.BOTTOM,
-        timeInSecForIos: 1,
+        timeInSecForIos: 3,
       );
     });
   }

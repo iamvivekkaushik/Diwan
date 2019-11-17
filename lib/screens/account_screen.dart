@@ -1,7 +1,7 @@
+import 'package:diwan/helper/app_localization.dart';
 import 'package:diwan/helper/auth.dart';
 import 'package:diwan/res/dimen.dart';
 import 'package:diwan/res/style.dart';
-import 'package:diwan/screens/diwan_screen.dart';
 import 'package:diwan/screens/user/my_diwan.dart';
 import 'package:diwan/ui/app_pager.dart';
 import 'package:flutter/material.dart';
@@ -63,7 +63,12 @@ class _AccountScreenState extends State<AccountScreen> {
               margin: EdgeInsets.fromLTRB(20, 10, 0, 10),
               height: 50,
               child: AppPager(
-                pagerList: ['My Diwan', 'My Post', 'Bookmarks', 'Purchase'],
+                pagerList: [
+                  AppLocalization.of(context).translate('my_diwan'),
+                  AppLocalization.of(context).translate('my_post'),
+                  AppLocalization.of(context).translate('bookmarks'),
+                  AppLocalization.of(context).translate('purchase')
+                ],
                 pageChanged: (index) {
                   // PageChanged
                   setState(() {
@@ -71,7 +76,6 @@ class _AccountScreenState extends State<AccountScreen> {
                   });
                 },
               )),
-
           Expanded(child: currentPage)
         ],
       ),
@@ -79,7 +83,7 @@ class _AccountScreenState extends State<AccountScreen> {
   }
 
   Widget _getCurrentScreen(int index) {
-    switch(index) {
+    switch (index) {
       case 0:
         return MyDiwanScreen();
       case 1:

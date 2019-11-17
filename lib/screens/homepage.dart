@@ -1,3 +1,4 @@
+import 'package:diwan/helper/app_localization.dart';
 import 'package:diwan/helper/auth.dart';
 import 'package:diwan/helper/diwan_icons.dart';
 import 'package:diwan/res/colors.dart';
@@ -36,10 +37,10 @@ class _HomepageScreenState extends State<HomepageScreen> {
           backgroundColorStart: AppColors.navbarBackground,
           backgroundColorEnd: AppColors.navbarBackground,
           items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(icon: Image.asset("images/nav_diwan.png", width: 18, color: AppColors.settingCategoryTitle,), title: Text('Diwan')),
-            BottomNavigationBarItem(icon: Icon(DiwanIcons.discover, color: AppColors.settingCategoryTitle,), title: Text('Discover')),
-            BottomNavigationBarItem(icon: Image.asset("images/nav_account.png", width: 18, color: AppColors.settingCategoryTitle,), title: Text('My')),
-            BottomNavigationBarItem(icon: Icon(DiwanIcons.bell, color: AppColors.settingCategoryTitle,), title: Text('Notification')),
+            BottomNavigationBarItem(icon: Image.asset("images/nav_diwan.png", width: 18, color: AppColors.settingCategoryTitle,), title: Text(AppLocalization.of(context).translate('diwan'))),
+            BottomNavigationBarItem(icon: Icon(DiwanIcons.discover, color: AppColors.settingCategoryTitle,), title: Text(AppLocalization.of(context).translate('discover'))),
+            BottomNavigationBarItem(icon: Image.asset("images/nav_account.png", width: 18, color: AppColors.settingCategoryTitle,), title: Text(AppLocalization.of(context).translate('my'))),
+            BottomNavigationBarItem(icon: Icon(DiwanIcons.bell, color: AppColors.settingCategoryTitle,), title: Text(AppLocalization.of(context).translate('notification'))),
           ],
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,

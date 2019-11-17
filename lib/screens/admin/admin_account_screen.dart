@@ -1,3 +1,4 @@
+import 'package:diwan/helper/app_localization.dart';
 import 'package:diwan/helper/auth.dart';
 import 'package:diwan/res/dimen.dart';
 import 'package:diwan/res/style.dart';
@@ -64,7 +65,12 @@ class _AdminAccountScreenState extends State<AdminAccountScreen> {
               margin: EdgeInsets.fromLTRB(20, 10, 0, 10),
               height: 50,
               child: AppPager(
-                pagerList: ['Diwan', 'Post', 'User', 'Trend'],
+                pagerList: [
+                  AppLocalization.of(context).translate('diwan'),
+                  AppLocalization.of(context).translate('post'),
+                  AppLocalization.of(context).translate('user'),
+                  AppLocalization.of(context).translate('trend')
+                ],
                 fitWidth: true,
                 pageChanged: (index) {
                   // PageChanged
@@ -73,7 +79,6 @@ class _AdminAccountScreenState extends State<AdminAccountScreen> {
                   });
                 },
               )),
-          
           Expanded(child: currentPage)
         ],
       ),
@@ -81,7 +86,7 @@ class _AdminAccountScreenState extends State<AdminAccountScreen> {
   }
 
   Widget _getCurrentScreen(int index) {
-    switch(index) {
+    switch (index) {
       case 0:
         return AdminDiwanScreen();
       case 1:
