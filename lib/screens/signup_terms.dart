@@ -18,6 +18,13 @@ class SignupTermsScreen extends StatefulWidget {
 }
 
 class _SignupTermsScreenState extends State<SignupTermsScreen> {
+  bool agreeToAll = true;
+  bool agreeToTerms = true;
+  bool agreeToCollection = true;
+  bool agreeToAge = true;
+  bool activityNotification = true;
+  bool eventNotification = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,17 +97,20 @@ class _SignupTermsScreenState extends State<SignupTermsScreen> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                        decoration: BoxDecoration(
-                            color: AppColors.tickBackground,
-                            borderRadius: BorderRadius.circular(50)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(3),
-                          child: Icon(
-                            Icons.check,
-                            size: 17,
-                            color: Colors.black,
+                      InkWell(
+                        onTap: () => _agreeToAll(),
+                        child: Container(
+                          margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                          decoration: BoxDecoration(
+                              color: AppColors.tickBackground,
+                              borderRadius: BorderRadius.circular(50)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(3),
+                            child: Icon(
+                              Icons.check,
+                              size: 17,
+                              color: agreeToAll ? Colors.black : AppColors.separator,
+                            ),
                           ),
                         ),
                       ),
@@ -119,34 +129,59 @@ class _SignupTermsScreenState extends State<SignupTermsScreen> {
             _termView(
                 term: AppLocalization.of(context)
                     .translate('agree_to_diwan_terms'),
-                isSelected: false,
+                isSelected: agreeToTerms,
                 isOptional: false,
-                link: ""),
+                link: "",
+                onTap: () {
+                  setState(() {
+                    agreeToTerms = !agreeToTerms;
+                  });
+                }),
             _termView(
                 term: AppLocalization.of(context)
                     .translate('agree_to_collection'),
-                isSelected: false,
+                isSelected: agreeToCollection,
                 isOptional: false,
-                link: ""),
+                link: "",
+                onTap: () {
+                  setState(() {
+                    agreeToCollection = !agreeToCollection;
+                  });
+                }),
             _termView(
                 term:
                     AppLocalization.of(context).translate('agree_to_age_limit'),
-                isSelected: false,
-                isOptional: false),
+                isSelected: agreeToAge,
+                isOptional: false,
+                onTap: () {
+                  setState(() {
+                    agreeToAge = !agreeToAge;
+                  });
+                }),
             _termView(
                 term: AppLocalization.of(context)
                     .translate('activity_notification_term'),
                 desc: AppLocalization.of(context)
                     .translate('activity_notification_term_desc'),
-                isSelected: false,
-                isOptional: false),
+                isSelected: activityNotification,
+                isOptional: false,
+                onTap: () {
+                  setState(() {
+                    activityNotification = !activityNotification;
+                  });
+                }),
             _termView(
                 term: AppLocalization.of(context)
                     .translate('event_notification_term'),
                 desc: AppLocalization.of(context)
                     .translate('event_notification_term_desc'),
-                isSelected: false,
-                isOptional: false),
+                isSelected: eventNotification,
+                isOptional: false,
+                onTap: () {
+                  setState(() {
+                    eventNotification = !eventNotification;
+                  });
+                }),
             SizedBox(
               height: 10,
             ),
@@ -177,7 +212,7 @@ class _SignupTermsScreenState extends State<SignupTermsScreen> {
       String desc,
       bool isSelected,
       bool isOptional,
-      String link}) {
+      String link, GestureTapCallback onTap}) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       width: MediaQuery.of(context).size.width - 40,
@@ -187,14 +222,17 @@ class _SignupTermsScreenState extends State<SignupTermsScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Container(
-                width: 30,
-                margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                child: Center(
-                    child: Icon(Icons.check,
-                        size: 15,
-                        color:
-                            isSelected ? AppColors.separator : Colors.black)),
+              InkWell(
+                onTap: onTap,
+                child: Container(
+                  width: 30,
+                  margin: EdgeInsets.fromLTRB(10, 5, 0, 0),
+                  child: Center(
+                      child: Icon(Icons.check,
+                          size: 15,
+                          color:
+                              isSelected ? Colors.black : AppColors.separator)),
+                ),
               ),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 10),
@@ -231,8 +269,37 @@ class _SignupTermsScreenState extends State<SignupTermsScreen> {
     );
   }
 
+  void _agreeToAll() {
+    setState(() {
+      agreeToAll = !agreeToAll;
+
+      if(agreeToAll) {
+        agreeToTerms = true;
+        agreeToCollection = true;
+        agreeToAge = true;
+        activityNotification = true;
+        eventNotification = true;
+      } else {
+        agreeToTerms = false;
+        agreeToCollection = false;
+        agreeToAge = false;
+        activityNotification = false;
+        eventNotification = false;
+      }
+    });
+  }
+
   void _signUpAndNext() {
-    print("Clicked");
+    if (!agreeToTerms || !agreeToCollection || !agreeToAge) {
+      Fluttertoast.showToast(
+        msg: "Agree to the terms to continue.",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIos: 1,
+      );
+      return;
+    }
+
     loadingDialog(context, "Signing In");
 
     AuthService.instance
@@ -244,15 +311,12 @@ class _SignupTermsScreenState extends State<SignupTermsScreen> {
         .then((onValue) {
       // Account created move to verification screen
 
-      print("Account Created");
-      print(widget.data);
       Navigator.of(context).pop();
       Navigator.of(context).pushNamed('/email_confirmation',
           arguments: {"email": widget.data['email'], "isSignUp": true});
     }).catchError((onError) {
       // Some Error Occurred while creating the account
 
-      print("error");
       Fluttertoast.showToast(
         msg: "Some error occurred",
         toastLength: Toast.LENGTH_SHORT,

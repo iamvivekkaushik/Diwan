@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:diwan/config/config.dart';
 import 'package:diwan/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_twitter_login/flutter_twitter_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -47,10 +46,8 @@ class AuthService {
 
   Future<FirebaseUser> loginWithEmailAndPassword(
       String email, String password) async {
-    AuthResult authResult = await FirebaseAuth.instance
+    firebaseUser = await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password);
-
-    firebaseUser = authResult.user;
 
     await updateUserData();
 
@@ -59,10 +56,9 @@ class AuthService {
 
   Future<void> signUp(
       {String email, String password, String name, String country}) async {
-    AuthResult authResult = await _auth.createUserWithEmailAndPassword(
+    firebaseUser = await _auth.createUserWithEmailAndPassword(
         email: email, password: password);
 
-    firebaseUser = authResult.user;
     await updateProfile(name: name);
     updateUserData(name: name, photoURL: "", isAdmin: false, country: country);
 
@@ -80,7 +76,7 @@ class AuthService {
       idToken: googleAuth.idToken,
     );
 
-    firebaseUser = (await _auth.signInWithCredential(credential)).user;
+    firebaseUser = await _auth.signInWithCredential(credential);
 
     await updateUserData(linkedGoogle: true);
     return firebaseUser;
@@ -95,7 +91,6 @@ class AuthService {
 
     switch (result.status) {
       case TwitterLoginStatus.loggedIn:
-        debugPrint("Twitter login Success");
         var session = result.session;
         AuthCredential authCredential = TwitterAuthProvider.getCredential(
             authToken: session.token, authTokenSecret: session.secret);
@@ -103,20 +98,15 @@ class AuthService {
         print(session.token);
         print(session.secret);
 
-        AuthResult authResult =
-            await _auth.signInWithCredential(authCredential);
-        firebaseUser = authResult.user;
-
+        firebaseUser = await _auth.signInWithCredential(authCredential);
         await updateUserData(linkedTwitter: true);
 
         return firebaseUser;
         break;
       case TwitterLoginStatus.cancelledByUser:
-        debugPrint("Twitter Canceled by user");
         throw (result.errorMessage);
         break;
       case TwitterLoginStatus.error:
-        print("Error Occurred while logging with twitter");
         throw (result.errorMessage);
         break;
     }

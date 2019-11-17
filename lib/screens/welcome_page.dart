@@ -1,6 +1,7 @@
 import 'package:diwan/helper/app_localization.dart';
 import 'package:diwan/helper/auth.dart';
 import 'package:diwan/helper/diwan_icons.dart';
+import 'package:diwan/helper/helper.dart';
 import 'package:diwan/res/colors.dart';
 import 'package:diwan/res/dimen.dart';
 import 'package:diwan/res/style.dart';
@@ -154,10 +155,16 @@ class _WelcomePageState extends State<WelcomePage> {
   }
 
   void _handleTwitterLogin() {
+    loadingDialog(context, "Signing In");
+
     AuthService authService = AuthService.instance;
     authService.twitterSignIn().then((firebaseUser) {
+      Navigator.of(context).pop();
+
       Navigator.of(context).pushReplacementNamed('/homepage');
     }).catchError((Object onError) {
+      Navigator.of(context).pop();
+
       print(onError.toString());
       Fluttertoast.showToast(
         msg: onError.toString(),
@@ -169,10 +176,16 @@ class _WelcomePageState extends State<WelcomePage> {
   }
 
   void _handleGoogleLogin() {
+    loadingDialog(context, "Signing In");
+
     AuthService authService = AuthService.instance;
     authService.googleSignIn().then((firebaseUser) {
+      Navigator.of(context).pop();
+
       Navigator.of(context).pushReplacementNamed('/homepage');
     }).catchError((onError) {
+      Navigator.of(context).pop();
+
       Fluttertoast.showToast(
         msg: "Failed to sign in with Google",
         toastLength: Toast.LENGTH_LONG,
