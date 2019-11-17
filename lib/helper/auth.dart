@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:diwan/config/config.dart';
 import 'package:diwan/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_twitter_login/flutter_twitter_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -19,10 +20,10 @@ class AuthService {
   }
 
   Future<void> init() async {
-    print("init Data");
     firebaseUser = await _auth.currentUser();
+
     if (firebaseUser != null) {
-      fetchUserData();
+      await fetchUserData();
     }
   }
 
@@ -58,29 +59,12 @@ class AuthService {
 
   Future<void> signUp(
       {String email, String password, String name, String country}) async {
-    print("sigining up");
-    print("email: " +
-        email +
-        "\n" +
-        "password: " +
-        password +
-        "\n" +
-        "name: " +
-        name +
-        "\n" +
-        "country: " +
-        country);
-
     AuthResult authResult = await _auth.createUserWithEmailAndPassword(
         email: email, password: password);
-
-    print(authResult.user);
 
     firebaseUser = authResult.user;
     await updateProfile(name: name);
     updateUserData(name: name, photoURL: "", isAdmin: false, country: country);
-
-    print(firebaseUser.displayName);
 
     firebaseUser.sendEmailVerification();
   }
@@ -98,30 +82,46 @@ class AuthService {
 
     firebaseUser = (await _auth.signInWithCredential(credential)).user;
 
-    updateUserData(linkedGoogle: true);
+    await updateUserData(linkedGoogle: true);
     return firebaseUser;
   }
 
   Future<FirebaseUser> twitterSignIn() async {
-    final TwitterLogin twitterLogin = new TwitterLogin(
+    var twitterLogin = new TwitterLogin(
         consumerKey: twitterKeys['api_key'],
         consumerSecret: twitterKeys['secret_key']);
-    TwitterLoginResult twitterLoginResult = await twitterLogin.authorize();
-    TwitterSession currentUserTwitterSession = twitterLoginResult.session;
-    TwitterLoginStatus twitterLoginStatus = twitterLoginResult.status;
 
-    if (twitterLoginStatus == TwitterLoginStatus.loggedIn) {
-      AuthCredential _authCredential = TwitterAuthProvider.getCredential(
-          authToken: currentUserTwitterSession.token.toString(),
-          authTokenSecret: currentUserTwitterSession.secret.toString());
+    final TwitterLoginResult result = await twitterLogin.authorize();
 
-      AuthResult authResult = await _auth.signInWithCredential(_authCredential);
-      firebaseUser = authResult.user;
-      updateUserData(linkedTwitter: true);
-      return firebaseUser;
-    } else {
-      throw (twitterLoginResult.errorMessage);
+    switch (result.status) {
+      case TwitterLoginStatus.loggedIn:
+        debugPrint("Twitter login Success");
+        var session = result.session;
+        AuthCredential authCredential = TwitterAuthProvider.getCredential(
+            authToken: session.token, authTokenSecret: session.secret);
+
+        print(session.token);
+        print(session.secret);
+
+        AuthResult authResult =
+            await _auth.signInWithCredential(authCredential);
+        firebaseUser = authResult.user;
+
+        await updateUserData(linkedTwitter: true);
+
+        return firebaseUser;
+        break;
+      case TwitterLoginStatus.cancelledByUser:
+        debugPrint("Twitter Canceled by user");
+        throw (result.errorMessage);
+        break;
+      case TwitterLoginStatus.error:
+        print("Error Occurred while logging with twitter");
+        throw (result.errorMessage);
+        break;
     }
+
+    return null;
   }
 
   Future<void> updateUserData(
@@ -131,7 +131,6 @@ class AuthService {
       String country = "",
       bool linkedGoogle,
       bool linkedTwitter}) async {
-    print(linkedGoogle);
     DocumentReference ref = _db.collection('users').document(firebaseUser.uid);
 
     DocumentSnapshot docSnapshot = await ref.get();

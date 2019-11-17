@@ -16,7 +16,7 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   void initState() {
-    AuthService.instance.isLoggedIn();
+    AuthService.instance.init();
     startTime();
     super.initState();
   }
@@ -33,11 +33,10 @@ class _SplashPageState extends State<SplashPage> {
     );
   }
 
-  void _checkIfReady() {
+  void _checkIfReady() async {
     if (AuthService.instance.firebaseUser == null) {
-      AuthService.instance.init().then((onValue) {
-        _startActivity();
-      });
+      await AuthService.instance.init();
+      _startActivity();
     } else {
       _startActivity();
     }

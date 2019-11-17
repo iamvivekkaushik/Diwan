@@ -157,9 +157,10 @@ class _WelcomePageState extends State<WelcomePage> {
     AuthService authService = AuthService.instance;
     authService.twitterSignIn().then((firebaseUser) {
       Navigator.of(context).pushReplacementNamed('/homepage');
-    }).catchError((onError) {
+    }).catchError((Object onError) {
+      print(onError.toString());
       Fluttertoast.showToast(
-        msg: onError,
+        msg: onError.toString(),
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIos: 1,
@@ -174,9 +175,9 @@ class _WelcomePageState extends State<WelcomePage> {
     }).catchError((onError) {
       Fluttertoast.showToast(
         msg: "Failed to sign in with Google",
-        toastLength: Toast.LENGTH_SHORT,
+        toastLength: Toast.LENGTH_LONG,
         gravity: ToastGravity.BOTTOM,
-        timeInSecForIos: 1,
+        timeInSecForIos: 2,
       );
     });
   }
