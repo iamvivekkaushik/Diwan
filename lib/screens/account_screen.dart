@@ -52,7 +52,7 @@ class _AccountScreenState extends State<AccountScreen> {
             margin: EdgeInsets.symmetric(horizontal: 20),
             width: MediaQuery.of(context).size.width,
             child: Text(
-              AuthService.instance.currentUser.email.toLowerCase(),
+              AuthService.instance.currentUser.email.toLowerCase().toString(),
               style: subHeadingStyle,
             ),
           ),

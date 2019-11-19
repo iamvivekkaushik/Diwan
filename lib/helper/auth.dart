@@ -101,6 +101,11 @@ class AuthService {
         firebaseUser = await _auth.signInWithCredential(authCredential);
         await updateUserData(linkedTwitter: true);
 
+        if(firebaseUser.email == null) {
+          signOut();
+          throw("Twitter Login Failed: Email Not Found");
+        }
+
         return firebaseUser;
         break;
       case TwitterLoginStatus.cancelledByUser:
