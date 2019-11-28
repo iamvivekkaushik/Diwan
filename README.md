@@ -17,7 +17,7 @@ These are the functionality that are integrated in the app.
 - [x] App is localized in Korean Arabic And English.
 - [x] Firebase is integrated in this app.
 - [x] Twitter login is working.
-- [x] Login With Twitter is working.
+- [x] Login With Google is working.
 - [x] Email And Password login is working.
 - [x] Firebase Database is integrated.
 - [x] Firebase Storage is integrated.
