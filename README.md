@@ -14,7 +14,7 @@ A Flutter app for a client who didn't pay. Below are some of the screenshots att
 These are the functionality that are integrated in the app.
 
 - [x] App UI is built.
-- [x] App is localized in Korean Arabic And English.
+- [x] App is localized in Korean, Arabic And English.
 - [x] Firebase is integrated in this app.
 - [x] Twitter login is working.
 - [x] Login With Google is working.
